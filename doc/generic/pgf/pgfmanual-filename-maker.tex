@@ -1,0 +1,181 @@
+% lwarp to use short section names for filenames but not for TOC
+
+\makeatletter
+\begin{warpHTML}
+\DeclareDocumentCommand{\LWR@section}{m m m m}{%
+\IfValueTF{#2}%
+    {\LWR@traceinfo{LWR@section: starting #4 #2}}%
+    {\LWR@traceinfo{LWR@section: starting #4 #3}}%
+    \LWR@spanwarninvalid{section}%
+\LWR@maybeprintpendingfootnotes{\csuse{LWR@depth#4}}%
+\LWR@stoppars%
+\LWR@startnewdepth{#4}%
+\global\boolfalse{LWR@minipagethispar}%
+\LWR@traceinfo{LWR@section: testing whether to start a new HTML file}%
+\IfBooleanT{#1}{\LWR@traceinfo{LWR@section: starred}}%
+\ifbool{LWR@forcinghtmlpage}{\LWR@traceinfo{LWR@section: forcinghtmlpage}}{}%
+\ifthenelse{%
+    \(%
+        \(\NOT\equal{#1}{\BooleanTrue}\)\OR%
+        \(\cnttest{\@nameuse{LWR@depth#4}}{=}{\LWR@depthpart}\)\OR%
+        \(\boolean{LWR@forcinghtmlpage}\)%
+    \)%
+    \AND%
+    \cnttest{\@nameuse{LWR@depth#4}}{<=}{\value{FileDepth}}%
+    \AND%
+    \(%
+        \NOT\boolean{CombineHigherDepths}\OR%
+        \cnttest{\@nameuse{LWR@depth#4}}{<=}{\value{LWR@prevFileDepth}}%
+    \)%
+    \AND%
+    \(% phantomsection
+        \NOT\isempty{#3}%
+        \OR%
+        \(\NOT\equal{#1}{\BooleanTrue}\)%
+    \)%
+}%
+{% new file
+    \LWR@traceinfo{LWR@section: new HTML file}%
+    \IfNoValueTF{#2}%
+        {\LWR@newhtmlfile{#3}}%
+        {\LWR@newhtmlfile{#2}}%
+}% new file
+{% not new file
+    \LWR@traceinfo{LWR@section: not a new HTML file, about to LWR@orignewpage}%
+    \LWR@maybe@orignewpage%
+}% not new file
+
+\IfValueT{#3}{%
+    \LWR@traceinfo{LWR@section: about to LWR@setlatestname}%
+    \LWR@setlatestname{#3}%
+}%
+\ifbool{HTMLDebugComments}{%
+    \begingroup%
+    \LWR@nullfonts%
+    \IfBooleanTF{#1}% starred
+    {\LWR@htmlcomment{Opening #4*}}%
+    {%
+            \LWR@htmlcomment{Opening #4 ``#3''}%
+    }\LWR@orignewline%
+    \endgroup%
+}{}
+\ifthenelse{%
+    \cnttest{\@nameuse{LWR@depth#4}}{>=}{\LWR@depthparagraph}%
+}%
+    {\LWR@startpars}%
+    {}%
+\LWR@traceinfo{LWR@section: about to LWR@createautosec}%
+\LWR@createautosec{\@nameuse{LWR@tag#4}}%
+\setcounter{LWR@currentautosecpage}{\value{page}}%
+\IfBooleanTF{#1}%
+{%
+    \LWR@traceinfo{LWR@section: starred}%
+    \ifbool{LWR@forcinghtmltoc}%
+    {%
+        \addcontentsline{toc}{#4}{%
+            \LWR@isolate{#3}%
+        }%
+    }%
+    {}%
+}% starred
+{% not starred
+    \ifthenelse{%
+        \cnttest{\@nameuse{LWR@depth#4}}{<=}{\value{secnumdepth}}%
+    }%
+    {% if secnumdepth
+        \LWR@traceinfo{LWR@section: about to test main matter}%
+        \ifbool{LWR@mainmatter}%
+        {%
+            \LWR@traceinfo{LWR@section: yes mainmatter}%
+            \refstepcounter{#4}%
+            \LWR@traceinfo{LWR@section: about to addcontentsline}%
+            \addcontentsline{toc}{#4}%
+            {%
+                \protect\numberline{%
+                    \@nameuse{pre#4name}%
+                    \@nameuse{the#4}%
+                    \@nameuse{post#4name}%
+                }%
+                {%
+                    \ignorespaces%
+                    \LWR@isolate{#3}\protect\relax%
+                }%
+            }%
+            \LWR@traceinfo{LWR@section: finished addcontentsline}%
+        }% end of if main matter
+        {% not main matter
+            \LWR@traceinfo{LWR@section: no main matter}%
+            \addcontentsline{toc}{#4}{%
+                \LWR@isolate{#3}%
+            }%
+        }% end of not main matter
+    }% end of secnumdepth
+    {%
+        \addcontentsline{toc}{#4}{%
+            \LWR@isolate{#3}%
+        }%
+    }%
+    \ifbool{LWR@mainmatter}%
+    {%
+        \ifthenelse{%
+            \(\cnttest{\@nameuse{LWR@depth#4}}{<=}%
+                {\value{secnumdepth}}\) \AND%
+            \(\cnttest{\@nameuse{LWR@depth#4}}{=}{\LWR@depthpart}\)%
+        }%
+            {\@partnameformat}%
+            {}%
+        \LWR@traceinfo{LWR@section: about to print section number}%
+        \ifthenelse{%
+            \cnttest{\@nameuse{LWR@depth#4}}{<=}{\value{secnumdepth}}%
+        }%
+            {%
+                \ifstrequal{#4}{part}%
+                {\protect\LWR@sectionnumber{\@partcntformat{#4}}}%
+                {%
+                    \ifstrequal{#4}{chapter}%
+                        {%
+                            \LWR@printchaptername%
+                            \protect\LWR@sectionnumber{\@chapcntformat{#4}}%
+                        }%
+                        {\protect\LWR@sectionnumber{\@seccntformat{#4}}}%
+                }%
+            }%
+            {}%
+        \LWR@traceinfo{LWR@section: finished print section number}%
+    }{}%
+}% not starred
+\LWR@traceinfo{LWR@section: about to print the section name}%
+\LWR@isolate{#3}%
+\LWR@traceinfo{LWR@section: about to close the heading tag}%
+\LWR@htmltag{\@nameuse{LWR@tag#4end}}%
+\LWR@orignewline%
+\LWR@traceinfo{LWR@section: about to create the LaTeX label}%
+\setcounter{LWR@currentautosecfloatpage}{\value{page}}%
+\LWR@newautopagelabel{LWR@currentautosecpage}\LWR@orignewline%
+\ifbool{LWR@setseqfilelabel}{}{%
+    \label{\BaseJobname-autofile-\arabic{LWR@htmlseqfilenumber}}%
+    \booltrue{LWR@setseqfilelabel}%
+}%
+\ifthenelse{%
+    \cnttest{\@nameuse{LWR@depth#4}}{<}{\LWR@depthparagraph}%
+}%
+    {\LWR@startpars}%
+    {}%
+\ifthenelse{%
+    \NOT\equal{#1}{\BooleanTrue}\OR%
+    \cnttest{\@nameuse{LWR@depth#4}}{=}{\LWR@depthpart}%
+}%
+    {% not starred
+        \setcounter{LWR@prevFileDepth}{\@nameuse{LWR@depth#4}}%
+    }% not starred
+    {}%
+\ifstrempty{#3}%
+    {}%
+    {%
+        \global\boolfalse{LWR@forcinghtmlpage}%
+        \global\boolfalse{LWR@forcinghtmltoc}%
+    }%
+\LWR@traceinfo{LWR@section: done}%
+}
+\end{warpHTML}
+\makeatother

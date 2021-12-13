@@ -17,6 +17,9 @@
 \definecolor{codebackground}{rgb}{0.9,0.9,1}
 \definecolor{animationgraphicbackground}{rgb}{0.96,0.96,0.8}
 
+
+
+
 \makeatletter
 \newenvironment{pgfmanualentry}%
 {\LWR@restoreoriglists%
@@ -1969,3 +1972,12 @@
 %%% mode: latex
 %%% TeX-master: "beameruserguide"
 %%% End: 
+
+
+% %%%%% MODIFY HTML FILE NAME SYSTEM
+\input{pgfmanual-filename-maker.tex}
+
+% remove weird space in table of content behind section number
+\makeatletter
+% original: \def\@seccntformat#1{\csname the#1\endcsname\quad}
+\makeatother

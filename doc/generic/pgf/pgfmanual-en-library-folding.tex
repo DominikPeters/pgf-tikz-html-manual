@@ -8,7 +8,7 @@
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
 
-\section{Paper-Folding Diagrams Library}
+\section[library-folding]{Paper-Folding Diagrams Library}
 \label{section-calender-folding}
 
 \begin{tikzlibrary}{folding}
@@ -188,25 +188,26 @@ The foldings are sorted by number of faces.
     %
 \end{pictype}
 
-\begin{pictype}{dodecahedron rhombic folding}{}
-    A rhombic dodecahedron, based on square-of-two rhombi.
-    %
-\begin{codeexample}[preamble={\usetikzlibrary{folding}}]
-\tikz \pic [folding line length=6mm, numbered faces, transform shape]
-  { dodecahedron rhombic folding };
-\end{codeexample}
-    %
-\end{pictype}
+% DOMINIK: My PGF install wasn't up to date, didn't know this pictype yet
+% \begin{pictype}{dodecahedron rhombic folding}{}
+%     A rhombic dodecahedron, based on square-of-two rhombi.
+%     %
+% \begin{codeexample}[preamble={\usetikzlibrary{folding}}]
+% \tikz \pic [folding line length=6mm, numbered faces, transform shape]
+%   { dodecahedron rhombic folding };
+% \end{codeexample}
+%     %
+% \end{pictype}
 
-\begin{pictype}{dodecahedron golden folding}{}
-    An alternative rhombic dodecahedron, flat laying, based on golden rhombi.
-    %
-\begin{codeexample}[preamble={\usetikzlibrary{folding}}]
-\tikz \pic [folding line length=6mm, numbered faces, transform shape]
-  { dodecahedron golden folding };
-\end{codeexample}
-    %
-\end{pictype}
+% \begin{pictype}{dodecahedron golden folding}{}
+%     An alternative rhombic dodecahedron, flat laying, based on golden rhombi.
+%     %
+% \begin{codeexample}[preamble={\usetikzlibrary{folding}}]
+% \tikz \pic [folding line length=6mm, numbered faces, transform shape]
+%   { dodecahedron golden folding };
+% \end{codeexample}
+%     %
+% \end{pictype}
 
 \begin{pictype}{cuboctahedron folding}{}
     A folding of a cuboctahedron.
