@@ -184,7 +184,7 @@ The first step toward creating a chain is to use the |start chain| option.
             and so on.
 
             The value of this internal counter is globally stored in the macro
-            \declare{|\tikzchaincount|}.
+            \declare{\texttt{\textbackslash{}tikzchaincount}}.
         \item If the node does not yet have a name, (having been given using
             the |name| option or the name-syntax), the name of the node is set
             to \meta{chain name}|-|\meta{value of the internal chain counter}.
@@ -194,9 +194,9 @@ The first step toward creating a chain is to use the |start chain| option.
             |chain-2|, and so on.
         \item Independently of whether the name has been provided automatically
             or via the |name| option, the name of the node is globally stored
-            in the macro \declare{|\tikzchaincurrent|}.
+            in the macro \declare{\texttt{\textbackslash{}tikzchaincurrent}}.
         \item Except for the first node, the macro
-            \declare{|\tikzchainprevious|} is now globally set to the name of
+            \declare{\texttt{\textbackslash{}tikzchainprevious}} is now globally set to the name of
             the node of the previous node on the chain. For the first node of
             the chain, this macro is globally set to the empty string.
         \item Except possibly for the first node of the chain, the placement

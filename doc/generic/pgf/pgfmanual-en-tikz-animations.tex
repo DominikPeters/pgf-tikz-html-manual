@@ -2684,11 +2684,12 @@ animation at different points in time and which can then be inserted alongside
 each other into the printed document. This approach has been used with the
 examples of animations in this manual.
 %
-\begin{codeexample}[preamble={\usetikzlibrary{animations}}]
-\foreach \t in {0.5, 1, 1.5, 2}
-  \tikz [make snapshot of = \t]
-    \fill :fill = {0s="black", 2s="red"} (0,0) circle [radius = 5mm];
-\end{codeexample}
+% TODO broken
+% \begin{codeexample}[preamble={\usetikzlibrary{animations}}]
+% \foreach \t in {0.5, 1, 1.5, 2}
+%   \tikz [make snapshot of = \t]
+%     \fill :fill = {0s="black", 2s="red"} (0,0) circle [radius = 5mm];
+% \end{codeexample}
 
 Creating snapshots is done using the following key:
 

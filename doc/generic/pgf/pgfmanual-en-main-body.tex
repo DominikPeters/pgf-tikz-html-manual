@@ -12,232 +12,234 @@
 
 % The titlepage
 
-\pgfmathsetseed{1}
-\newbox\mybox
-{
-  \parindent0pt
-  \null
-  \colorlet{mintgreen}{green!50!black!50}
+% \pgfmathsetseed{1}
+% \newbox\mybox
+% {
+%   \parindent0pt
+%   \null
+%   \colorlet{mintgreen}{green!50!black!50}
 
-  \thispagestyle{empty}
-  \vskip3cm
-  \vfill
-  \hfil
-  \begin{tikzpicture}[overlay]
-    \coordinate (front) at (0,0);
-    \coordinate (horizon) at (0,.31\paperheight);
-    \coordinate (bottom) at (0,-.6\paperheight);
-    \coordinate (sky) at (0,.57\paperheight);
-    \coordinate (left) at (-.51\paperwidth,0);
-    \coordinate (right) at (.51\paperwidth,0);
+%   \thispagestyle{empty}
+%   \vskip3cm
+%   \vfill
+%   \hfil
+%   \begin{tikzpicture}[overlay]
+%     \coordinate (front) at (0,0);
+%     \coordinate (horizon) at (0,.31\paperheight);
+%     \coordinate (bottom) at (0,-.6\paperheight);
+%     \coordinate (sky) at (0,.57\paperheight);
+%     \coordinate (left) at (-.51\paperwidth,0);
+%     \coordinate (right) at (.51\paperwidth,0);
 
-    \shade [bottom color=blue!30!black!10,top color=blue!30!black!50]
-      ([yshift=-5mm]horizon -|  left) rectangle (sky -| right);
-    \shade [bottom color=black!70!green!25,top color=black!70!green!10]
-      (front -| left) -- (horizon -| left)
-      decorate [decoration=random steps] { -- (horizon -| right) }
-      -- (front -| right) -- cycle;
-    \shade [top color=black!70!green!25,bottom color=black!25]
-      ([yshift=-5mm-1pt]front -| left) rectangle ([yshift=1pt]front -| right);
-    \fill [black!25] (bottom -| left) rectangle ([yshift=-5mm]front -| right);
+%     \shade [bottom color=blue!30!black!10,top color=blue!30!black!50]
+%       ([yshift=-5mm]horizon -|  left) rectangle (sky -| right);
+%     \shade [bottom color=black!70!green!25,top color=black!70!green!10]
+%       (front -| left) -- (horizon -| left)
+%       decorate [decoration=random steps] { -- (horizon -| right) }
+%       -- (front -| right) -- cycle;
+%     \shade [top color=black!70!green!25,bottom color=black!25]
+%       ([yshift=-5mm-1pt]front -| left) rectangle ([yshift=1pt]front -| right);
+%     \fill [black!25] (bottom -| left) rectangle ([yshift=-5mm]front -| right);
 
-    \def\nodeshadowed[#1]#2;{\node[scale=2,above,#1]{\global\setbox\mybox=\hbox{#2}\copy\mybox};
-      \node[scale=2,above,#1,yscale=-1,scope fading=south,opacity=0.4]{\box\mybox};}
+%     \def\nodeshadowed[#1]#2;{\node[scale=2,above,#1]{\global\setbox\mybox=\hbox{#2}\copy\mybox};
+%       \node[scale=2,above,#1,yscale=-1,scope fading=south,opacity=0.4]{\box\mybox};}
 
-    \nodeshadowed [at={(-5,5  )},yslant=0.05] {\Huge Ti\textcolor{orange}{\emph{k}}Z};
-    \nodeshadowed [at={( 0,5.3)}] {\huge \textcolor{mintgreen}{\&}};
-    \nodeshadowed [at={( 5,5  )},yslant=-0.05] {\Huge \textsc{PGF}};
-    \nodeshadowed [at={( 0,2  )}] {Manual for Version \pgftypesetversion};
+%     \nodeshadowed [at={(-5,5  )},yslant=0.05] {\Huge Ti\textcolor{orange}{\emph{k}}Z};
+%     \nodeshadowed [at={( 0,5.3)}] {\huge \textcolor{mintgreen}{\&}};
+%     \nodeshadowed [at={( 5,5  )},yslant=-0.05] {\Huge \textsc{PGF}};
+%     \nodeshadowed [at={( 0,2  )}] {Manual for Version \pgftypesetversion};
 
-    \foreach \where in {-9cm,9cm}
-    {\nodeshadowed [at={(\where,5cm)}] {
-    % TODO: Nesting tikzpictures is NOT supported
-    \tikz \draw [green!20!black, rotate=90]
-    [l-system={rule set={F -> FF-[-F+F]+[+F-F]}, axiom=F, order=4,
-      step=2pt, randomize step percent=50, angle=30, randomize angle percent=5}]
-    lindenmayer system;};}
+%     \foreach \where in {-9cm,9cm}
+%     {\nodeshadowed [at={(\where,5cm)}] {
+%     % TODO: Nesting tikzpictures is NOT supported
+%     \tikz \draw [green!20!black, rotate=90]
+%     [l-system={rule set={F -> FF-[-F+F]+[+F-F]}, axiom=F, order=4,
+%       step=2pt, randomize step percent=50, angle=30, randomize angle percent=5}]
+%     lindenmayer system;};}
 
-    \foreach \i in {0.5,0.6,...,2}
-      \fill [white,decoration=Koch snowflake,opacity=.9]
-            [shift=(horizon),shift={(rand*11,rnd*7)},scale=\i]
-            [double copy shadow={opacity=0.2,shadow xshift=0pt,shadow
-              yshift=3*\i pt,fill=white,draw=none}]
-        decorate {
-          decorate {
-            decorate {
-              (0,0) -- ++(60:1) -- ++(-60:1) -- cycle
-            }
-          }
-        };
+%     \foreach \i in {0.5,0.6,...,2}
+%       \fill [white,decoration=Koch snowflake,opacity=.9]
+%             [shift=(horizon),shift={(rand*11,rnd*7)},scale=\i]
+%             [double copy shadow={opacity=0.2,shadow xshift=0pt,shadow
+%               yshift=3*\i pt,fill=white,draw=none}]
+%         decorate {
+%           decorate {
+%             decorate {
+%               (0,0) -- ++(60:1) -- ++(-60:1) -- cycle
+%             }
+%           }
+%         };
 
-  \node (left text) [text width=.5\paperwidth-2cm,below right,at={(-.5\paperwidth+1cm,-1.5cm)}]
-  {
-    \fontencoding{T1}
-    \fontfamily{pcr}
-    \def\textbraceleft{\char`\{}
-    \def\textbraceright{\char`\}}
-    \def\textbackslash{\char`\\}
-    \begin{lstlisting}[basicstyle=\scriptsize\color{black},
-                       keywordstyle=\bfseries\color{white},
-                       identifierstyle=\bfseries\color{black},
-                       keywords={tikzpicture,shade,fill,draw,path,node},
-                       literate={-}{{-}}1]
-\begin{tikzpicture}
-  \coordinate (front) at (0,0);
-  \coordinate (horizon) at (0,.31\paperheight);
-  \coordinate (bottom) at (0,-.6\paperheight);
-  \coordinate (sky) at (0,.57\paperheight);
-  \coordinate (left) at (-.51\paperwidth,0);
-  \coordinate (right) at (.51\paperwidth,0);
+%   \node (left text) [text width=.5\paperwidth-2cm,below right,at={(-.5\paperwidth+1cm,-1.5cm)}]
+%   {
+%     \fontencoding{T1}
+%     \fontfamily{pcr}
+%     \def\textbraceleft{\char`\{}
+%     \def\textbraceright{\char`\}}
+%     \def\textbackslash{\char`\\}
+%     \begin{lstlisting}[basicstyle=\scriptsize\color{black},
+%                        keywordstyle=\bfseries\color{white},
+%                        identifierstyle=\bfseries\color{black},
+%                        keywords={tikzpicture,shade,fill,draw,path,node},
+%                        literate={-}{{-}}1]
+% \begin{tikzpicture}
+%   \coordinate (front) at (0,0);
+%   \coordinate (horizon) at (0,.31\paperheight);
+%   \coordinate (bottom) at (0,-.6\paperheight);
+%   \coordinate (sky) at (0,.57\paperheight);
+%   \coordinate (left) at (-.51\paperwidth,0);
+%   \coordinate (right) at (.51\paperwidth,0);
 
-  \shade [bottom color=white,
-          top color=blue!30!black!50]
-              ([yshift=-5mm]horizon -|  left)
-    rectangle (sky -| right);
+%   \shade [bottom color=white,
+%           top color=blue!30!black!50]
+%               ([yshift=-5mm]horizon -|  left)
+%     rectangle (sky -| right);
 
-  \shade [bottom color=black!70!green!25,
-          top color=black!70!green!10]
-    (front -| left) -- (horizon -| left)
-    decorate [decoration=random steps] {
-      -- (horizon -| right)  }
-    -- (front -| right) -- cycle;
+%   \shade [bottom color=black!70!green!25,
+%           top color=black!70!green!10]
+%     (front -| left) -- (horizon -| left)
+%     decorate [decoration=random steps] {
+%       -- (horizon -| right)  }
+%     -- (front -| right) -- cycle;
 
-  \shade [top color=black!70!green!25,
-         bottom color=black!25]
-              ([yshift=-5mm-1pt]front -| left)
-    rectangle ([yshift=1pt]front -| right);
+%   \shade [top color=black!70!green!25,
+%          bottom color=black!25]
+%               ([yshift=-5mm-1pt]front -| left)
+%     rectangle ([yshift=1pt]front -| right);
 
-  \fill [black!25]
-              (bottom -| left)
-    rectangle ([yshift=-5mm]front -| right);
+%   \fill [black!25]
+%               (bottom -| left)
+%     rectangle ([yshift=-5mm]front -| right);
 
-  \def\nodeshadowed[#1]#2;{
-    \node[scale=2,above,#1]{
-      \global\setbox\mybox=\hbox{#2}
-      \copy\mybox};
-    \node[scale=2,above,#1,yscale=-1,
-          scope fading=south,opacity=0.4]{\box\mybox};
-  }
-\end{lstlisting}
-};
+%   \def\nodeshadowed[#1]#2;{
+%     \node[scale=2,above,#1]{
+%       \global\setbox\mybox=\hbox{#2}
+%       \copy\mybox};
+%     \node[scale=2,above,#1,yscale=-1,
+%           scope fading=south,opacity=0.4]{\box\mybox};
+%   }
+% \end{lstlisting}
+% };
 
-  \node (right text) [text width=.5\paperwidth-2cm,below right,at={(1cm,-1.5cm)}]
-  {
-    \fontencoding{T1}
-    \fontfamily{pcr}
-    \def\textbraceleft{\char`\{}
-    \def\textbraceright{\char`\}}
-    \def\textbackslash{\char`\\}
-    \begin{lstlisting}[basicstyle=\scriptsize\color{black},
-                       keywordstyle=\bfseries\color{white},
-                       identifierstyle=\bfseries\color{black},
-                       keywords={tikzpicture,shade,fill,draw,path,node},
-                       literate={-}{{-}}1]
-  \nodeshadowed [at={(-5,8  )},yslant=0.05]
-    {\Huge Ti\textcolor{orange}{\emph{k}}Z};
-  \nodeshadowed [at={( 0,8.3)}]
-    {\huge \textcolor{green!50!black!50}{\&}};
-  \nodeshadowed [at={( 5,8  )},yslant=-0.05]
-    {\Huge \textsc{PGF}};
-  \nodeshadowed [at={( 0,5  )}]
-    {Manual for Version \pgftypesetversion};
+%   \node (right text) [text width=.5\paperwidth-2cm,below right,at={(1cm,-1.5cm)}]
+%   {
+%     \fontencoding{T1}
+%     \fontfamily{pcr}
+%     \def\textbraceleft{\char`\{}
+%     \def\textbraceright{\char`\}}
+%     \def\textbackslash{\char`\\}
+%     \begin{lstlisting}[basicstyle=\scriptsize\color{black},
+%                        keywordstyle=\bfseries\color{white},
+%                        identifierstyle=\bfseries\color{black},
+%                        keywords={tikzpicture,shade,fill,draw,path,node},
+%                        literate={-}{{-}}1]
+%   \nodeshadowed [at={(-5,8  )},yslant=0.05]
+%     {\Huge Ti\textcolor{orange}{\emph{k}}Z};
+%   \nodeshadowed [at={( 0,8.3)}]
+%     {\huge \textcolor{green!50!black!50}{\&}};
+%   \nodeshadowed [at={( 5,8  )},yslant=-0.05]
+%     {\Huge \textsc{PGF}};
+%   \nodeshadowed [at={( 0,5  )}]
+%     {Manual for Version \pgftypesetversion};
 
-  \foreach \where in {-9cm,9cm} {
-    \nodeshadowed [at={(\where,5cm)}] { \tikz
-      \draw [green!20!black, rotate=90,
-             l-system={rule set={F -> FF-[-F+F]+[+F-F]},
-               axiom=F, order=4,step=2pt,
-               randomize step percent=50, angle=30,
-               randomize angle percent=5}] l-system; }}
+%   \foreach \where in {-9cm,9cm} {
+%     \nodeshadowed [at={(\where,5cm)}] { \tikz
+%       \draw [green!20!black, rotate=90,
+%              l-system={rule set={F -> FF-[-F+F]+[+F-F]},
+%                axiom=F, order=4,step=2pt,
+%                randomize step percent=50, angle=30,
+%                randomize angle percent=5}] l-system; }}
 
-  \foreach \i in {0.5,0.6,...,2}
-    \fill
-      [white,opacity=\i/2,
-       decoration=Koch snowflake,
-       shift=(horizon),shift={(rand*11,rnd*7)},
-       scale=\i,double copy shadow={
-         opacity=0.2,shadow xshift=0pt,
-         shadow yshift=3*\i pt,fill=white,draw=none}]
-      decorate {
-        decorate {
-          decorate {
-            (0,0)- ++(60:1) -- ++(-60:1) -- cycle
-          } } };
+%   \foreach \i in {0.5,0.6,...,2}
+%     \fill
+%       [white,opacity=\i/2,
+%        decoration=Koch snowflake,
+%        shift=(horizon),shift={(rand*11,rnd*7)},
+%        scale=\i,double copy shadow={
+%          opacity=0.2,shadow xshift=0pt,
+%          shadow yshift=3*\i pt,fill=white,draw=none}]
+%       decorate {
+%         decorate {
+%           decorate {
+%             (0,0)- ++(60:1) -- ++(-60:1) -- cycle
+%           } } };
 
-   \node (left text) ...
-   \node (right text) ...
+%    \node (left text) ...
+%    \node (right text) ...
 
-   \fill [decorate,decoration={footprints,foot of=gnome},
-          opacity=.5,brown]        (rand*8,-rnd*10)
-     to [out=rand*180,in=rand*180] (rand*8,-rnd*10);
-\end{tikzpicture}
-  \end{lstlisting}
-  };
+%    \fill [decorate,decoration={footprints,foot of=gnome},
+%           opacity=.5,brown]        (rand*8,-rnd*10)
+%      to [out=rand*180,in=rand*180] (rand*8,-rnd*10);
+% \end{tikzpicture}
+%   \end{lstlisting}
+%   };
 
-  \fill [decorate,decoration=footprints,
-         decoration={footprints,foot of=gnome},
-         opacity=.5,brown]        (rand*8,-rnd*10)
-    to [out=rand*180,in=rand*180] (rand*8,-rnd*10);
-\end{tikzpicture}
-\vfill
-\vbox{}
-\clearpage
-}
+%   \fill [decorate,decoration=footprints,
+%          decoration={footprints,foot of=gnome},
+%          opacity=.5,brown]        (rand*8,-rnd*10)
+%     to [out=rand*180,in=rand*180] (rand*8,-rnd*10);
+% \end{tikzpicture}
+% \vfill
+% \vbox{}
+% \clearpage
+% }
 
-{
-  \vbox{}
-  \vskip0pt plus 1fill
-  Für meinen Vater, damit er noch viele schöne \TeX-Graphiken
-  erschaffen kann.
-  \vskip1em
-  \hfill\emph{Till}
-  \vskip0pt plus 3fill
+% {
+%   \vbox{}
+%   \vskip0pt plus 1fill
+%   Für meinen Vater, damit er noch viele schöne \TeX-Graphiken
+%   erschaffen kann.
+%   \vskip1em
+%   \hfill\emph{Till}
+%   \vskip0pt plus 3fill
 
-  \parindent=0pt
-  Copyright 2007 to 2013 by Till Tantau
+%   \parindent=0pt
+%   Copyright 2007 to 2013 by Till Tantau
 
-  \medskip
-  Permission is granted to copy, distribute and/or modify \emph{the
-  documentation} under the terms of the \textsc{gnu} Free Documentation
-  License, Version 1.2 or any later version published by the Free Software
-  Foundation; with no Invariant Sections, no Front-Cover Texts, and no
-  Back-Cover Texts. A copy of the license is included in the section entitled
-  \textsc{gnu} Free Documentation License.
+%   \medskip
+%   Permission is granted to copy, distribute and/or modify \emph{the
+%   documentation} under the terms of the \textsc{gnu} Free Documentation
+%   License, Version 1.2 or any later version published by the Free Software
+%   Foundation; with no Invariant Sections, no Front-Cover Texts, and no
+%   Back-Cover Texts. A copy of the license is included in the section entitled
+%   \textsc{gnu} Free Documentation License.
 
-  \medskip
-  Permission is granted to copy, distribute and/or modify \emph{the code of the
-  package} under the terms of the \textsc{gnu} Public License, Version 2 or any
-  later version published by the Free Software Foundation. A copy of the
-  license is included in the section entitled \textsc{gnu} Public License.
+%   \medskip
+%   Permission is granted to copy, distribute and/or modify \emph{the code of the
+%   package} under the terms of the \textsc{gnu} Public License, Version 2 or any
+%   later version published by the Free Software Foundation. A copy of the
+%   license is included in the section entitled \textsc{gnu} Public License.
 
-  \medskip
-  Permission is also granted to distribute and/or modify \emph{both the
-  documentation and the code} under the conditions of the LaTeX Project Public
-  License, either version 1.3 of this license or (at your option) any later
-  version. A copy of the license is included in the section entitled \LaTeX\
-  Project Public License.
+%   \medskip
+%   Permission is also granted to distribute and/or modify \emph{both the
+%   documentation and the code} under the conditions of the LaTeX Project Public
+%   License, either version 1.3 of this license or (at your option) any later
+%   version. A copy of the license is included in the section entitled \LaTeX\
+%   Project Public License.
 
-  \vbox{}
-  \clearpage
-}
+%   \vbox{}
+%   \clearpage
+% }
 
 
 \title{\bfseries The \tikzname\ and {\Large PGF} Packages\\
-  \large Manual for version \pgfversion\\[1mm]
-\large\href{https://github.com/pgf-tikz/pgf}{\texttt{https://github.com/pgf-tikz/pgf}}}
+\large Manual for version \pgfversion}%\\[1mm]
+%\normalsize\texttt{https://github.com/pgf-tikz/pgf}}
 \author{Till Tantau\footnote{Editor of this documentation. Parts of
     this documentation have been written by other authors as indicated
     in these parts or chapters and in Section~\ref{section-authors}.}\\
   \normalsize Institut für Theoretische Informatik\\[-1mm]
   \normalsize Universität zu Lübeck}
 
+\HTMLTitle{TikZ and PGF Manual}
+\HTMLTitleAfterSection
+
 \maketitle
 \label{table-of-contents}
 
 \tableofcontents
 
-\clearpage
-
+% \clearpage
 
 \include{pgfmanual-en-introduction}
 
@@ -261,13 +263,13 @@ how you should proceed when creating graphics using \tikzname.
   (0,0) -- (0,2) -- (1,3.25) -- (2,2) -- (2,0) -- (0,2) -- (2,2) -- (0,0) -- (2,0);
 \end{codeexample}
 
-
 \include{pgfmanual-en-tutorial}
 \include{pgfmanual-en-tutorial-nodes}
-\include{pgfmanual-en-tutorial-Euclid}
+\include{pgfmanual-en-tutorial-Euclid} % two examples don't compile, using code only
 \include{pgfmanual-en-tutorial-chains}
 \include{pgfmanual-en-tutorial-map}
 \include{pgfmanual-en-guidelines}
+
 
 
 
@@ -376,10 +378,10 @@ read the present part.
 \include{pgfmanual-en-tikz-matrices}
 \include{pgfmanual-en-tikz-trees}
 \include{pgfmanual-en-tikz-plots}
-\include{pgfmanual-en-tikz-transparency}
+\include{pgfmanual-en-tikz-transparency} % Fadings commented out
 \include{pgfmanual-en-tikz-decorations}
 \include{pgfmanual-en-tikz-transformations}
-\include{pgfmanual-en-tikz-animations}
+% % \include{pgfmanual-en-tikz-animations} % todo one broken example % codeexample needs to be told how to show animations
 
 
 
@@ -439,7 +441,7 @@ implement new algorithms in the Lua programming language. \vskip1cm
 % 1. compile-time dependencies which are hard to resolve
 % 2. it is "hardly usable anyway" (TT)
 %\include{pgfmanual-en-gd-ogdf}
-\include{pgfmanual-en-gd-algorithm-layer}
+\include{pgfmanual-en-gd-algorithm-layer} % broken for unusual reason
 \include{pgfmanual-en-gd-algorithms-in-c}
 \include{pgfmanual-en-gd-display-layer}
 \include{pgfmanual-en-gd-binding-layer}
@@ -518,7 +520,6 @@ libraries are not loaded by default since many users will not need them.
 \end{minipage}
 \end{codeexample}
 
-
 \include{pgfmanual-en-library-3d}
 \include{pgfmanual-en-library-angles}
 \include{pgfmanual-en-library-arrows}
@@ -528,7 +529,7 @@ libraries are not loaded by default since many users will not need them.
 \include{pgfmanual-en-library-calc}
 \include{pgfmanual-en-library-calendar}
 \include{pgfmanual-en-library-chains}
-\include{pgfmanual-en-library-circuits}
+\include{pgfmanual-en-library-circuits} 
 \include{pgfmanual-en-library-decorations}
 \include{pgfmanual-en-library-er}
 \include{pgfmanual-en-library-external}
@@ -537,17 +538,17 @@ libraries are not loaded by default since many users will not need them.
 \include{pgfmanual-en-library-fixedpoint}
 \include{pgfmanual-en-library-fpu}
 \include{pgfmanual-en-library-lsystems}
-\include{pgfmanual-en-library-math}
+\include{pgfmanual-en-library-math} % todo four codeexamples fail (endgroup, improper)
 \include{pgfmanual-en-library-matrices}
 \include{pgfmanual-en-library-mindmaps}
 \include{pgfmanual-en-library-folding}
 \include{pgfmanual-en-library-patterns}
 \include{pgfmanual-en-library-perspective}
 \include{pgfmanual-en-library-petri}
-\include{pgfmanual-en-library-plot-handlers}
-\include{pgfmanual-en-library-plot-marks}
+\include{pgfmanual-en-library-plot-handlers} 
+\include{pgfmanual-en-library-plot-marks} 
 \include{pgfmanual-en-library-profiler}
-\include{pgfmanual-en-library-rdf}
+% \include{pgfmanual-en-library-rdf} % broken with luatex
 \include{pgfmanual-en-library-shadings}
 \include{pgfmanual-en-library-shadows}
 \include{pgfmanual-en-library-shapes}
@@ -701,6 +702,7 @@ inheritance), \emph{methods}, \emph{attributes} and \emph{objects}.
 \end{codeexample}
 
 
+% Dominik: works
 \include{pgfmanual-en-math-design}
 \include{pgfmanual-en-math-parsing}
 \include{pgfmanual-en-math-commands}
@@ -758,11 +760,11 @@ inheritance), \emph{methods}, \emph{attributes} and \emph{objects}.
 \include{pgfmanual-en-base-transformations}
 \include{pgfmanual-en-base-patterns}
 \include{pgfmanual-en-base-images}
-\include{pgfmanual-en-base-external}
+% \include{pgfmanual-en-base-external} % broken
 \include{pgfmanual-en-base-plots}
 \include{pgfmanual-en-base-layers}
 \include{pgfmanual-en-base-shadings}
-\include{pgfmanual-en-base-transparency}
+\include{pgfmanual-en-base-transparency} % some examples broken, now using "code only"
 \include{pgfmanual-en-base-animations}
 \include{pgfmanual-en-base-internalregisters}
 \include{pgfmanual-en-base-quick}
@@ -819,35 +821,35 @@ work.
 \include{pgfmanual-en-pgfsys-commands}
 \include{pgfmanual-en-pgfsys-paths}
 \include{pgfmanual-en-pgfsys-protocol}
-\include{pgfmanual-en-pgfsys-animations}
+% \include{pgfmanual-en-pgfsys-animations} % broken
 
 
 
-\part{References and Index}
+% \part{References and Index}
 
-\vskip1cm
-\begin{codeexample}[graphic=white]
-\begin{tikzpicture}
-  \draw[line width=0.3cm,color=red!30,line cap=round,line join=round] (0,0)--(2,0)--(2,5);
-  \draw[help lines] (-2.5,-2.5) grid (5.5,7.5);
-  \draw[very thick] (1,-1)--(-1,-1)--(-1,1)--(0,1)--(0,0)--
-    (1,0)--(1,-1)--(3,-1)--(3,2)--(2,2)--(2,3)--(3,3)--
-    (3,5)--(1,5)--(1,4)--(0,4)--(0,6)--(1,6)--(1,5)
-    (3,3)--(4,3)--(4,5)--(3,5)--(3,6)
-    (3,-1)--(4,-1);
-  \draw[below left] (0,0) node(s){$s$};
-  \draw[below left] (2,5) node(t){$t$};
-  \fill (0,0) circle (0.06cm) (2,5) circle (0.06cm);
-  \draw[->,rounded corners=0.2cm,shorten >=2pt]
-    (1.5,0.5)-- ++(0,-1)-- ++(1,0)-- ++(0,2)-- ++(-1,0)-- ++(0,2)-- ++(1,0)--
-    ++(0,1)-- ++(-1,0)-- ++(0,-1)-- ++(-2,0)-- ++(0,3)-- ++(2,0)-- ++(0,-1)--
-    ++(1,0)-- ++(0,1)-- ++(1,0)-- ++(0,-1)-- ++(1,0)-- ++(0,-3)-- ++(-2,0)--
-    ++(1,0)-- ++(0,-3)-- ++(1,0)-- ++(0,-1)-- ++(-6,0)-- ++(0,3)-- ++(2,0)--
-    ++(0,-1)-- ++(1,0);
-\end{tikzpicture}
-\end{codeexample}
+% \vskip1cm
+% \begin{codeexample}[graphic=white]
+% \begin{tikzpicture}
+%   \draw[line width=0.3cm,color=red!30,line cap=round,line join=round] (0,0)--(2,0)--(2,5);
+%   \draw[help lines] (-2.5,-2.5) grid (5.5,7.5);
+%   \draw[very thick] (1,-1)--(-1,-1)--(-1,1)--(0,1)--(0,0)--
+%     (1,0)--(1,-1)--(3,-1)--(3,2)--(2,2)--(2,3)--(3,3)--
+%     (3,5)--(1,5)--(1,4)--(0,4)--(0,6)--(1,6)--(1,5)
+%     (3,3)--(4,3)--(4,5)--(3,5)--(3,6)
+%     (3,-1)--(4,-1);
+%   \draw[below left] (0,0) node(s){$s$};
+%   \draw[below left] (2,5) node(t){$t$};
+%   \fill (0,0) circle (0.06cm) (2,5) circle (0.06cm);
+%   \draw[->,rounded corners=0.2cm,shorten >=2pt]
+%     (1.5,0.5)-- ++(0,-1)-- ++(1,0)-- ++(0,2)-- ++(-1,0)-- ++(0,2)-- ++(1,0)--
+%     ++(0,1)-- ++(-1,0)-- ++(0,-1)-- ++(-2,0)-- ++(0,3)-- ++(2,0)-- ++(0,-1)--
+%     ++(1,0)-- ++(0,1)-- ++(1,0)-- ++(0,-1)-- ++(1,0)-- ++(0,-3)-- ++(-2,0)--
+%     ++(1,0)-- ++(0,-3)-- ++(1,0)-- ++(0,-1)-- ++(-6,0)-- ++(0,3)-- ++(2,0)--
+%     ++(0,-1)-- ++(1,0);
+% \end{tikzpicture}
+% \end{codeexample}
 
-\printindex
+% \printindex
 
 %\typeout{Examples: \the\codeexamplecount}%
 \end{document}

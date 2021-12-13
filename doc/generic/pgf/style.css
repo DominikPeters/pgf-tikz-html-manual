@@ -1,0 +1,81 @@
+@import url("lwarp.css");
+
+.example {
+    display: flex;
+    align-items: stretch;
+    margin: 1em;
+}
+.example-image {
+    background-color: rgb(245,245,204);
+    /* padding: 0.5em; */
+}
+.example-image p {
+    margin: 0;
+    padding: 0.5em;
+}
+/* .example-image img {
+    min-width: 150px;
+} */
+.example-image p:hover {
+    background-color: rgb(245,245,204);
+    transform-origin: top left;
+    transform: scale(2);
+}
+.example-code {
+    padding: 0 1em;
+    background: #E5E5FF; 
+    font-family: monospace;
+}
+.example-code a {
+    color: inherit;
+    background-color: rgba(255,255,255,0.2);
+    text-decoration: underline;
+    text-decoration-color: rgba(255,255,255,0.6);
+}
+.example-code a:hover {
+    background-color: rgba(255,255,255,0.6);
+    text-decoration-color: blue;
+}
+.example-code>p>br:first-child {
+    display: none; /* hide the first <br> which is spurious */
+}
+.example-code-comment {
+    color: #444;
+}
+.c-preamble {
+    color: #444;
+}
+.angle {
+    display: inline;
+    font-size: 140%;
+    line-height: 0.5;
+    vertical-align: -2px;
+}
+kbd, span.texttt, p span.text {
+    font-family: monospace !important;
+    font-size: 120% !important;
+    line-height: 0.8;
+}
+.manualentry {
+    margin-left: 40px;
+}
+.entryheadline {
+    margin-left: -40px;
+}
+.entryheadline p {
+    display: flex;
+    justify-content: space-between;
+}
+.entryheadline p > a {
+    position: absolute;
+}
+.hl-def{
+    /* nothing */
+}
+.hl-default {
+    margin-left: 2em;
+    color: rgb(49, 50, 58);
+}
+table {
+    margin: 1ex;
+}

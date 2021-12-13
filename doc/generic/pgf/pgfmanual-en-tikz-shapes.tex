@@ -957,8 +957,8 @@ Let us now first have a look at the |text width| command.
 
     In detail, you can set \meta{alignment option} to one of the following values:
     %
-    \begin{description}
-        \item[|align=|\declare{|left|}] For alignment without line breaking,
+    \begin{itemize}
+        \item |align=|\declare{|left|} For alignment without line breaking,
             the different lines are simply aligned such that their left borders
             are below one another.
             %
@@ -975,7 +975,7 @@ Let us now first have a look at the |text width| command.
   {This is a demonstration text for showing how line breaking works.};
 \end{codeexample}
             %
-        \item[|align=|\declare{\texttt{flush left}}] For alignment without line
+        \item |align=|\declare{\texttt{flush left}} For alignment without line
             breaking this option has exactly the same effect as |left|.
             However, for alignment with line breaking, there is a difference:
             While |left| uses the original plain \TeX\ definition of a ragged
@@ -990,7 +990,7 @@ Let us now first have a look at the |text width| command.
   {This is a demonstration text for showing how line breaking works.};
 \end{codeexample}
             %
-        \item[|align=|\declare{|right|}] Works like |left|, only for right
+        \item |align=|\declare{|right|} Works like |left|, only for right
             alignment.
             %
 \begin{codeexample}[]
@@ -1003,7 +1003,7 @@ Let us now first have a look at the |text width| command.
   {This is a demonstration text for showing how line breaking works.};
 \end{codeexample}
             %
-        \item[|align=|\declare{\texttt{flush right}}] Works like |flush left|,
+        \item |align=|\declare{\texttt{flush right}} Works like |flush left|,
             only for right alignment.
             %
 \begin{codeexample}[]
@@ -1011,7 +1011,7 @@ Let us now first have a look at the |text width| command.
   {This is a demonstration text for showing how line breaking works.};
 \end{codeexample}
             %
-        \item[|align=|\declare{|center|}] Works like |left| or |right|, only
+        \item |align=|\declare{|center|}  Works like |left| or |right|, only
             for centered alignment.
             %
 \begin{codeexample}[]
@@ -1042,7 +1042,7 @@ Let us now first have a look at the |text width| command.
                 and the contents is not long enough to fill the box
                 sufficiently.
             \end{key}
-        \item[|align=|\declare{\texttt{flush center}}] Works like |flush left|
+        \item |align=|\declare{\texttt{flush center}}  Works like |flush left|
             or |flush right|, only for center alignment. Because of all the
             trouble that results from the |center| option in conjunction with
             narrow lines, I suggest picking this option rather than  |center|
@@ -1054,7 +1054,7 @@ Let us now first have a look at the |text width| command.
   {This is a demonstration text for showing how line breaking works.};
 \end{codeexample}
             %
-        \item[|align=|\declare{|justify|}] For alignment without line breaking,
+        \item |align=|\declare{|justify|} For alignment without line breaking,
             this has the same effect as |left|. For alignment with line
             breaking, this causes the text to be ``justified''. Use this only
             with rather broad nodes.
@@ -1069,9 +1069,9 @@ Let us now first have a look at the |text width| command.
             badly typeset lines. (For this manual I asked \TeX\ to stop
             complaining by using |\hbadness=10000|, but this is a foul deed,
             indeed.)
-        \item[|align=|\declare{|none|}] Disables all alignments and |\\| will
+        \item |align=|\declare{|none|} Disables all alignments and |\\| will
             not be redefined.
-    \end{description}
+    \end{itemize}
 \end{key}
 
 \begin{key}{/tikz/node halign header=\meta{macro storing a header} (initially \normalfont empty)}

@@ -8,7 +8,7 @@
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
 
-\section{Transparency}
+\section[Base Layer Transparency]{Transparency}
 \label{section-transparency}
 
 For an introduction to the notion of transparency, fadings, and transparency
@@ -152,7 +152,7 @@ painted at all in the picture are always completely transparent.
     that has the color |pgftransparent!0| at the left-hand side and the color
     |pgftransparent!100| at the right-hand side.
     %
-\begin{codeexample}[]
+\begin{codeexample}[code only] % TODO: doesn't compile
 \pgfdeclarefading{fading2}
 {\tikz \shade[left color=pgftransparent!0,
               right color=pgftransparent!100] (0,0) rectangle (2,2);}
@@ -206,7 +206,7 @@ different commands for using fadings:
     which may result in inaccuracies and the following graphics may be slightly
     distorted if you use a strong \meta{transformation}.
     %
-\begin{codeexample}[]
+\begin{codeexample}[code only] % TODO: remove code only, doesn't compile
 \pgfdeclarefading{fading2}
 {\tikz \shade[left color=pgftransparent!0,
               right color=pgftransparent!100] (0,0) rectangle (2,2);}
@@ -217,8 +217,8 @@ different commands for using fadings:
   \fill [red] (0,0) rectangle (2,2);
 \end{tikzpicture}
 \end{codeexample}
-    %
-\begin{codeexample}[preamble={\pgfdeclarefading{fading2}
+    %% TODO: remove code only, doesn't compile
+\begin{codeexample}[code only,preamble={\pgfdeclarefading{fading2}
 {\tikz \shade[left color=pgftransparent!0,
               right color=pgftransparent!100] (0,0) rectangle (2,2);}}]
 \begin{tikzpicture}

@@ -191,25 +191,25 @@ These three triples must always ``remain together''. Thus, a lonely
 In details, the following tokens exist:
 %
 \begin{itemize}
-    \item \declare{|\pgfsyssoftpath@movetotoken|} indicates a move-to
+    \item \declare{\texttt{\textbackslash{}pgfsyssoftpath@movetotoken}} indicates a move-to
         operation. The two following numbers indicate the position to which the
         current point should be moved.
-    \item \declare{|\pgfsyssoftpath@linetotoken|} indicates a line-to
+    \item \declare{\texttt{\textbackslash{}pgfsyssoftpath@linetotoken}} indicates a line-to
         operation.
-    \item \declare{|\pgfsyssoftpath@curvetosupportatoken|} indicates the first
+    \item \declare{\texttt{\textbackslash{}pgfsyssoftpath@curvetosupportatoken}} indicates the first
         control point of a curve-to operation. The triple must be followed by a
         |\pgfsyssoftpath@curvetosupportbtoken|.
-    \item \declare{|\pgfsyssoftpath@curvetosupportbtoken|} indicates the second
+    \item \declare{\texttt{\textbackslash{}pgfsyssoftpath@curvetosupportbtoken}} indicates the second
         control point of a curve-to operation. The triple must be followed by a
         |\pgfsyssoftpath@curvetotoken|.
-    \item \declare{|\pgfsyssoftpath@curvetotoken|} indicates the target of a
+    \item \declare{\texttt{\textbackslash{}pgfsyssoftpath@curvetotoken}} indicates the target of a
         curve-to operation.
-    \item \declare{|\pgfsyssoftpath@rectcornertoken|} indicates the corner of a
+    \item \declare{\texttt{\textbackslash{}pgfsyssoftpath@rectcornertoken}} indicates the corner of a
         rectangle on the soft path. The triple must be followed by a
         |\pgfsyssoftpath@rectsizetoken|.
-    \item \declare{|\pgfsyssoftpath@rectsizetoken|} indicates the size of a
+    \item \declare{\texttt{\textbackslash{}pgfsyssoftpath@rectsizetoken}} indicates the size of a
         rectangle on the soft path.
-    \item \declare{|\pgfsyssoftpath@closepath|} indicates that the subpath
+    \item \declare{\texttt{\textbackslash{}pgfsyssoftpath@closepath}} indicates that the subpath
         begun with the last move-to operation should be closed. The parameter
         numbers are currently not important, but if set to anything different
         from |{0pt}{0pt}|, they should be set to the coordinate of the original

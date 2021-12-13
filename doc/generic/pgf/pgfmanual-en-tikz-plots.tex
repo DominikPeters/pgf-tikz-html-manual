@@ -92,14 +92,14 @@ coordinates of the points to be plotted:
 %
 \begin{enumerate}
     \item \opt{|--|}|plot|\oarg{local
-        options}\declare{|coordinates{|\meta{coordinate 1}\meta{coordinate
-        2}\dots\meta{coordinate $n$}|}|}
+        options}\declare{|coordinates|\char`\{\meta{coordinate 1}\meta{coordinate
+        2}\dots\meta{coordinate $n$}\char`\}}
     \item \opt{|--|}|plot|\oarg{local
-        options}\declare{|file{|\meta{filename}|}|}
+        options}\declare{|file|\char`\{\meta{filename}\char`\}}
     \item \opt{|--|}|plot|\oarg{local options}\declare{\meta{coordinate
         expression}}
-    \item \opt{|--|}|plot|\oarg{local options}\declare{|function{|\meta{gnuplot
-        formula}|}|}
+    \item \opt{|--|}|plot|\oarg{local options}\declare{|function|\char`\{\meta{gnuplot
+        formula}\char`\}}
 \end{enumerate}
 
 These different ways are explained in the following.
@@ -449,7 +449,14 @@ In detail, the following options govern how marks are drawn:
     \begin{tabular}{lc}
         Option & Effect \\
             \hline
-        \vrule height14pt width0pt \plotmarkentrytikz{ball}
+        \vrule height14pt width0pt %\plotmarkentrytikz{ball}
+        \index{#1@\protect\texttt{#1} plot mark}%
+        \index{Plot marks!#1@\protect\texttt{ball}}
+        \texttt{mark=\declare{\noligs{ball}}} 
+        & 
+        \tikz\draw[color=black!25]
+        plot[mark=ball,mark options={fill=examplefill,draw=black}] 
+            coordinates {(0,0) (.5,0.2) (1,0) (1.5,0.2)};\\
     \end{tabular}
 \end{key}
 

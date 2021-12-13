@@ -276,104 +276,107 @@ renderers, let alone printers, will have trouble rendering blending correctly.
     \definecolor{gb}{rgb}{0,1,1}
     \definecolor{br}{rgb}{1,0,1}
 
-    \def\makeline#1#2#3{\leavevmode
-        \hbox to 40mm{#1\hss}\ \hbox to
-        20.5mm{#2\hss}\ \begin{minipage}[t]{88.5mm}\raggedright#3\end{minipage}\par
-        \textcolor{black!25}{\hrule height1pt}
+    \def\showmodeR#1{\leavevmode
+        \begin{minipage}[t]{88.5mm}\raggedright#1\end{minipage} \\
     }
-
-    \def\showmode#1#2{
-        \makeline{
-            \tikz [blend mode=#1,baseline=-.5ex] {
-              \fill[red]      ( 90:.5em) circle (.75em);
-              \fill[green]    (210:.5em) circle (.75em);
-              \fill[blue]     (330:.5em) circle (.75em);
-              \scoped[yshift=-2.5em]{
-                \fill[red!50]   ( 90:.5em) circle (.75em);
-                \fill[green!50] (210:.5em) circle (.75em);
-                \fill[blue!50]  (330:.5em) circle (.75em);
-              }
-            }
-            \tikz [blend mode=#1,baseline=-.5ex] {
-              \fill[rg]       ( 90:.5em) circle (.75em);
-              \fill[gb]       (210:.5em) circle (.75em);
-              \fill[br]       (330:.5em) circle (.75em);
-              \scoped[yshift=-2.5em]{
-                \fill[rg!50]  ( 90:.5em) circle (.75em);
-                \fill[gb!50]  (210:.5em) circle (.75em);
-                \fill[br!50]  (330:.5em) circle (.75em);
-              }
-            }
-            \tikz [blend mode=#1,baseline=-.5ex+1.25em] {
-              \shade[ball color=red]   ( 90:1em) circle (1.5em);
-              \shade[ball color=green] (210:1em) circle (1.5em);
-              \shade[ball color=blue]  (330:1em) circle (1.5em);
-            }}{\verb|#1|}{#2}%
-               % this argument was changed from {|#1|}
-               % --> see <https://sourceforge.net/p/pgf/bugs/486/>
+    % \def\makeline#1#2#3{
+    %   #1 & #2 & \begin{minipage}[t]{88.5mm}\raggedright#3\end{minipage}
+    %   \textcolor{black!25}{\hrule height1pt} \\
+    % }
+    % \newcommand{\makeline}[3]{
+    %   #1 & #2 & #3 \\
+    % }
+    \def\showmode#1{
+      \tikz [blend mode=#1,baseline=-.5ex] {
+        \fill[red]      ( 90:.5em) circle (.75em);
+        \fill[green]    (210:.5em) circle (.75em);
+        \fill[blue]     (330:.5em) circle (.75em);
+        \scoped[yshift=-2.5em]{
+          \fill[red!50]   ( 90:.5em) circle (.75em);
+          \fill[green!50] (210:.5em) circle (.75em);
+          \fill[blue!50]  (330:.5em) circle (.75em);
+        }
+      }
+      \tikz [blend mode=#1,baseline=-.5ex] {
+        \fill[rg]       ( 90:.5em) circle (.75em);
+        \fill[gb]       (210:.5em) circle (.75em);
+        \fill[br]       (330:.5em) circle (.75em);
+        \scoped[yshift=-2.5em]{
+          \fill[rg!50]  ( 90:.5em) circle (.75em);
+          \fill[gb!50]  (210:.5em) circle (.75em);
+          \fill[br!50]  (330:.5em) circle (.75em);
+        }
+      }
+      \tikz [blend mode=#1,baseline=-.5ex+1.25em] {
+        \shade[ball color=red]   ( 90:1em) circle (1.5em);
+        \shade[ball color=green] (210:1em) circle (1.5em);
+        \shade[ball color=blue]  (330:1em) circle (1.5em);
+      }
     }
 
     \medskip
-    \makeline{\emph{Example}}{\emph{Mode}}{\emph{Explanations quoted from
-        Table~7.2 of the \textsc{pdf} Specification, Version~1.7}}
-    \showmode{normal}{When painting a pixel with a some color (called the
+    \begin{tabular}{lll}
+    {\emph{Example}} & {\emph{Mode}} & {\emph{Explanations quoted from
+        Table~7.2 of the \textsc{pdf} Specification, Version~1.7}} \\
+    \showmode{normal} & \verb|normal| & \showmodeR{When painting a pixel with a some color (called the
         ``source color''), the background color (called the ``backdrop'') is
         completely ignored.}
-    \showmode{multiply}{Multiplies the backdrop and source color values. The
+    \showmode{multiply} & \verb|multiply| & \showmodeR{Multiplies the backdrop and source color values. The
         result color is always at least as dark as either of the two
         constituent colors. Multiplying any color with black produces black;
         multiplying with white leaves the original color unchanged. Painting
         successive overlapping objects with a color other than black or white
         produces progressively darker colors.}
-    \showmode{screen}{Multiplies the complements of the backdrop and source
+    \showmode{screen} & \verb|screen| & \showmodeR{Multiplies the complements of the backdrop and source
         color values, then complements the result. The result color is always
         at least as light as either of the two constituent colors. Screening
         any color with white produces white; screening with black leaves the
         original color unchanged. The effect is similar to projecting multiple
         photographic slides simultaneously onto a single screen.}
-    \showmode{overlay}{Multiplies or screens the colors, depending on the
+    \showmode{overlay} & \verb|overlay| & \showmodeR{Multiplies or screens the colors, depending on the
         backdrop color value. Source colors overlay the backdrop while
         preserving its highlights and shadows. The backdrop color is not
         replaced but is mixed with the source color to reflect the lightness or
         darkness of the backdrop.}
-    \showmode{darken}{Selects the darker of the backdrop and source colors. The
+    \showmode{darken} & \verb|darken| & \showmodeR{Selects the darker of the backdrop and source colors. The
         backdrop is replaced with the source where the source is darker;
         otherwise, it is left unchanged.}
-    \showmode{lighten}{Selects the lighter of the backdrop and source colors.
+    \showmode{lighten} & \verb|lighten| & \showmodeR{Selects the lighter of the backdrop and source colors.
         The backdrop is replaced with the source where the source is lighter;
         otherwise, it is left unchanged.}
-    \showmode{color dodge}{Brightens the backdrop color to reflect the source
+    \showmode{color dodge} & \verb|color dodge| & \showmodeR{Brightens the backdrop color to reflect the source
         color. Painting with black produces no changes.}
-    \showmode{color burn}{Darkens the backdrop color to reflect the source
+    \showmode{color burn} & \verb|color burn| & \showmodeR{Darkens the backdrop color to reflect the source
         color. Painting with white produces no change.}
-    \showmode{hard light}{Multiplies or screens the colors, depending on the
+    \showmode{hard light} & \verb|hard light| & \showmodeR{Multiplies or screens the colors, depending on the
         source color value. The effect is similar to shining a harsh spotlight
         on the backdrop.}
-    \showmode{soft light}{Darkens or lightens the colors, depending on the
+    \showmode{soft light} & \verb|soft light| & \showmodeR{Darkens or lightens the colors, depending on the
         source color value. The effect is similar to shining a diffused
         spotlight on the backdrop.}
-    \showmode{difference}{Subtracts the darker of the two constituent colors
+    \showmode{difference} & \verb|difference| & \showmodeR{Subtracts the darker of the two constituent colors
         from the lighter color. Painting with white inverts the backdrop color;
         painting with black produces no change.}
-    \showmode{exclusion}{Produces an effect similar to that of the Difference
+    \showmode{exclusion} & \verb|exclusion| & \showmodeR{Produces an effect similar to that of the Difference
         mode but lower in contrast. Painting with white inverts the backdrop
         color; painting with black produces no change.}
-    \showmode{hue}{Creates a color with the hue of the source color and the
+    \showmode{hue} & \verb|hue| & \showmodeR{Creates a color with the hue of the source color and the
         saturation and luminosity of the backdrop color.}
-    \showmode{saturation}{Creates a color with the saturation of the source
+    \showmode{saturation} & \verb|saturation| & \showmodeR{Creates a color with the saturation of the source
         color and the hue and luminosity of the backdrop color. Painting with
         this mode in an area of the backdrop that is a pure gray (no
         saturation) produces no change.}
-    \showmode{color}{Creates a color with the hue and saturation of the source
+    \showmode{color} & \verb|color| & \showmodeR{Creates a color with the hue and saturation of the source
         color and the luminosity of the backdrop color. This preserves the gray
         levels of the backdrop and is useful for coloring monochrome images or
         tinting color images.}
-    \showmode{luminosity}{Creates a color with the luminosity of the source
+    \showmode{luminosity} & \verb|luminosity| & \showmodeR{Creates a color with the luminosity of the source
         color and the hue and saturation of the backdrop color. This produces
         an inverse effect to that of the Color mode.}
+    \end{tabular}
 \end{key}
 
-
+\iffalse
 \subsection{Fadings}
 
 For complicated graphics, uniform transparency settings are not always
@@ -740,7 +743,7 @@ then all subsequent drawings in the scope are faded. You will use a
 \end{codeexample}
     %
 \end{key}
-
+\fi
 
 \subsection{Transparency Groups}
 \label{section-transparency-groups}

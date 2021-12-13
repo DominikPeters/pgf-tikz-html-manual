@@ -1116,14 +1116,14 @@ The following table shows which symbols are declared by the main
 \begin{tabular}{lccc}
   \emph{Key} & \emph{Appearance inside} & \emph{Appearance inside} & \emph{Appearance inside} \\
       & |circuit logic IEC| & |circuit logic US| & |circuit logic CDH| \\
-  \gateexamples{/tikz/and gate}\\
-  \gateexamples{/tikz/nand gate}\\
-  \gateexamples{/tikz/or gate}\\
-  \gateexamples{/tikz/nor gate}\\
-  \gateexamples{/tikz/xor gate}\\
-  \gateexamples{/tikz/xnor gate}\\
-  \gateexamples{/tikz/not gate}\\
-  \gateexamples{/tikz/buffer gate}
+    \texttt{/tikz/and gate} \indexkey{/tikz/and gate} & \tikz[baseline,circuit logic IEC] \node[/tikz/and gate,label=] {}; & \tikz[baseline,circuit logic US]  \node[/tikz/and gate] {}; &  \tikz[baseline,circuit logic CDH] \node[/tikz/and gate] {}; \\
+    \texttt{/tikz/nand gate} \indexkey{/tikz/nand gate} & \tikz[baseline,circuit logic IEC] \node[/tikz/and gate,label=] {}; & \tikz[baseline,circuit logic US]  \node[/tikz/and gate] {}; &  \tikz[baseline,circuit logic CDH] \node[/tikz/and gate] {}; \\
+    \texttt{/tikz/or gate} \indexkey{/tikz/or gate} & \tikz[baseline,circuit logic IEC] \node[/tikz/and gate,label=] {}; & \tikz[baseline,circuit logic US]  \node[/tikz/and gate] {}; &  \tikz[baseline,circuit logic CDH] \node[/tikz/and gate] {}; \\
+    \texttt{/tikz/nor gate} \indexkey{/tikz/nor gate} & \tikz[baseline,circuit logic IEC] \node[/tikz/and gate,label=] {}; & \tikz[baseline,circuit logic US]  \node[/tikz/and gate] {}; &  \tikz[baseline,circuit logic CDH] \node[/tikz/and gate] {}; \\
+    \texttt{/tikz/xor gate} \indexkey{/tikz/xor gate} & \tikz[baseline,circuit logic IEC] \node[/tikz/and gate,label=] {}; & \tikz[baseline,circuit logic US]  \node[/tikz/and gate] {}; &  \tikz[baseline,circuit logic CDH] \node[/tikz/and gate] {}; \\
+    \texttt{/tikz/xnor gate} \indexkey{/tikz/xnor gate} & \tikz[baseline,circuit logic IEC] \node[/tikz/and gate,label=] {}; & \tikz[baseline,circuit logic US]  \node[/tikz/and gate] {}; &  \tikz[baseline,circuit logic CDH] \node[/tikz/and gate] {}; \\
+    \texttt{/tikz/not gate} \indexkey{/tikz/not gate} & \tikz[baseline,circuit logic IEC] \node[/tikz/and gate,label=] {}; & \tikz[baseline,circuit logic US]  \node[/tikz/and gate] {}; &  \tikz[baseline,circuit logic CDH] \node[/tikz/and gate] {}; \\
+    \texttt{/tikz/buffer gate} \indexkey{/tikz/buffer gate} & \tikz[baseline,circuit logic IEC] \node[/tikz/and gate,label=] {}; & \tikz[baseline,circuit logic US]  \node[/tikz/and gate] {}; &  \tikz[baseline,circuit logic CDH] \node[/tikz/and gate] {};
 \end{tabular}
 
 
@@ -1697,9 +1697,9 @@ Section~\ref{section-circuits-annotations}.
 
 \def\eelineexample#1#2{%
   \texttt{#1}\indexkey{#1}
-   &
+   \nextcell
   \tikz[baseline=-.5ex,circuit ee IEC] \draw (0,0) to [#1] (3,0);
-  &
+  \nextcell
   \relax\def\temp{#2}
   \ifx\temp\empty\else
   {\tikz[baseline=-.5ex,circuit ee IEC,set #2 graphic=var #2 IEC graphic]
@@ -1708,9 +1708,9 @@ Section~\ref{section-circuits-annotations}.
 }
 \def\eeendexample#1#2{%
   \texttt{#1}\indexkey{#1}
-   &
+  \nextcell
   \tikz[baseline=-.5ex,circuit ee IEC] \draw (0,0) to [#1={at end}] (1.5,0)(3,0);
-  &
+  \nextcell
   \relax\def\temp{#2}
   \ifx\temp\empty\else
   {\tikz[baseline=-.5ex,circuit ee IEC,set #2 graphic=var #2 IEC graphic]
@@ -1719,12 +1719,12 @@ Section~\ref{section-circuits-annotations}.
 }
 \def\unitexample#1{%
   \texttt{#1}\indexkey{#1}
-  &
+  \nextcell
   \tikz [baseline,inner sep=0pt] \node[#1=1] {};\\
 }
 \def\annotationexample#1{%
   \texttt{#1}\indexkey{#1}
-  &
+  \nextcell
   \tikz[baseline=-.5ex,circuit ee IEC]
     \draw (0,0) to [resistor={#1}] (2,0)
                 to [diode   ={#1'}] (4,0);\\

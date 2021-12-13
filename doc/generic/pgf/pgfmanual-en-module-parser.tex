@@ -98,37 +98,28 @@ There are \the\mycount\ a's.
   optional \meta{arguments} string. The argument string can contain up to nine
   argument specifications of the following types:
 
-  \begingroup
-  \def\argdesc#1#2%
-    {%
-      \par
-      \begingroup
-      \setbox0\hbox{\texttt #1}\makebox[1.5em][l]{\usebox0}%
-      \ifdim\wd0>1.5em\\\null\hspace{1.5em}\fi
-      \parbox[t]{\dimexpr\linewidth-1.5em\relax}{#2}%
-      \endgroup
-    }%
-    \argdesc{m}%
+  \begin{itemize}
+    \item \texttt{m} \quad
       {a normal mandatory argument}%
-    \argdesc{r\meta{delim}}%
+    \item \texttt{r}\meta{delim} \quad
       {a mandatory argument which is read up to the \meta{delim}}%
-    \argdesc{o}%
+    \item \texttt{o} \quad
       {an optional argument in |[]| defaulting to a special mark}%
-    \argdesc{O\marg{default}}%
+    \item \texttt{O}\marg{default} \quad
       {like |o| but defaulting to \meta{default}}%
-    \argdesc{d\meta{delim1}\meta{delim2}}%
+    \item \texttt{d}\meta{delim1}\meta{delim2} \quad
       {%
         an optional argument in \meta{delim1} and \meta{delim2} defaulting to a
         special mark%
       }%
-    \argdesc{D\meta{delim1}\meta{delim2}\marg{default}}%
+    \item \texttt{D}\meta{delim1}\meta{delim2}\marg{default} \quad
       {like |d| but defaulting to \meta{default}}%
-    \argdesc{t\meta{token}}%
+    \item \texttt{t}\meta{token} \quad
       {%
         tests whether the next letter is \meta{token}, if so gobbles it and
         the argument is set to a special mark.%
       }%
-  \endgroup
+\end{itemize}
 
   So if you want to define an \meta{action} that takes two mandatory arguments
   you use |[mm]|, if it should take an optional star, one optional argument in

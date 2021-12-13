@@ -154,11 +154,11 @@ This section describes the package |pgffor|, which is loaded automatically by
     |...| statement have \emph{exactly} the same pattern, except that, instead
     of dots, they have a number or a character:
 
-    |\foreach \x in {2^1,2^...,2^7} {$\x$, }| yields \foreach \x in {2^1,2^...,2^7} {$\x$, }
+    |\foreach \x in {2^1,2^...,2^7} {$\x$, }| yields \begin{lateximage}\foreach \x in {2^1,2^...,2^7} {$\x$, }\end{lateximage}
 
-    |\foreach \x in {0\pi,0.5\pi,...\pi,3\pi} {$\x$, }| yields \foreach \x in {0\pi,0.5\pi,...\pi,3\pi} {$\x$, }
+    |\foreach \x in {0\pi,0.5\pi,...\pi,3\pi} {$\x$, }| yields \begin{lateximage}\foreach \x in {0\pi,0.5\pi,...\pi,3\pi} {$\x$, }\end{lateximage}
 
-    |\foreach \x in {A_1,..._1,H_1} {$\x$, }| yields \foreach \x in {A_1,..._1,H_1} {$\x$, }
+    |\foreach \x in {A_1,..._1,H_1} {$\x$, }| yields \begin{lateximage}\foreach \x in {A_1,..._1,H_1} {$\x$, }\end{lateximage}
 
 
     \textbf{Special handling of pairs.}
@@ -311,11 +311,11 @@ This section describes the package |pgffor|, which is loaded automatically by
         \meta{variable}. However, the optional |as |\meta{macro} statement can
         be used to store the result in \meta{macro}.
         %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \foreach \x [evaluate=\x] in {2^0,2^...,2^8}{$\x$, }
 \end{codeexample}
 
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \foreach \x [evaluate=\x as \xeval] in {2^0,2^...,2^8}{$\x=\xeval$, }
 \end{codeexample}
 
@@ -340,7 +340,7 @@ This section describes the package |pgffor|, which is loaded automatically by
         the \meta{macro} to be initially defined as \meta{value}.
         %
 \begin{codeexample}[]
-\foreach \x [remember=\x as \lastx (initially A)] in {B,...,H}{$\overrightarrow{\lastx\x}$, }
+\foreach \x [remember=\x as \lastx (initially A)] in {B,...,H}{\lastx$\to$\x, }
 \end{codeexample}
         %
     \end{key}

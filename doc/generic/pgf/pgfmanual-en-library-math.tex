@@ -213,7 +213,7 @@ do the same assignment when the variable is indexed.
     \emph{not} \TeX\ registers. In addition the variables should \emph{not} be
     indexed.
     %
-\begin{codeexample}[preamble={\usetikzlibrary{math}}]
+\begin{codeexample}[preamble={\usetikzlibrary{math}},pre={\begin{lateximage}},post={\end{lateximage}}]
 \tikzmath{
    integer \x, \y, \z;
    \x = 4*5+6;
@@ -306,7 +306,7 @@ following keyword.
             comma, it \emph{must} be surrounded by braces, for example,
             |{mod(5, 2)}|.
             %
-\begin{codeexample}[pre={\pgfmathsetseed{1}},preamble={\usetikzlibrary{math}}]
+\begin{codeexample}[pre={\pgfmathsetseed{1}\begin{lateximage}},preamble={\usetikzlibrary{math}},post={\end{lateximage}}]
 \tikzmath{
   int \x, \v;
   \v=1;
@@ -329,7 +329,7 @@ following keyword.
             |for| statement. This includes the values assigned to the
             \meta{variable}.
             %
-\begin{codeexample}[preamble={\usetikzlibrary{math}}]
+\begin{codeexample}[preamble={\usetikzlibrary{math}},pre={\begin{lateximage}},post={\end{lateximage}}]
 \tikzmath{
   int \x, \y;
   \y = 0;
@@ -404,7 +404,7 @@ You can add functions by using the following keywords:
     Although \meta{definition} can take any statements accepted by |\tikzmath|,
     it is not advisable try to define functions inside other functions.
     %
-\begin{codeexample}[pre={\pgfmathsetseed{1}},preamble={\usetikzlibrary{math}}]
+\begin{codeexample}[pre={\pgfmathsetseed{1}\begin{lateximage}},preamble={\usetikzlibrary{math}},post={\end{lateximage}}]
 \tikzmath{
   function product(\x,\y) {
     return \x*\y;
@@ -437,7 +437,7 @@ options. Firstly, the following keyword can be used:
     in real programming languages). The \meta{code} is executed inside a \TeX\
     group.
     %
-\begin{codeexample}[pre={\pgfmathsetseed{1}},preamble={\usetikzlibrary{math}}]
+\begin{codeexample}[pre={\pgfmathsetseed{1}\begin{lateximage}},preamble={\usetikzlibrary{math}},post={\end{lateximage}}]
 \tikzmath{
   int \x, \y, \z;
   \x = random(2, 5);
@@ -457,7 +457,7 @@ is executed inside a \TeX\ group. Unlike the |print| keyword, the brace
 notation can be used in functions so that |tikz| path commands can be safely
 executed inside a |tikzpicture|.
 %
-\begin{codeexample}[preamble={\usetikzlibrary{math}}]
+\begin{codeexample}[pre={\begin{lateximage}},preamble={\usetikzlibrary{math}},post={\end{lateximage}}]
 \begin{tikzpicture}
 \draw [help lines] grid (3,2);
 \tikzmath{

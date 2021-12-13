@@ -22,7 +22,7 @@
 \newcommand\fadingindex[1]{%
   \index{#1@\protect\texttt{#1} fading}%
   \index{Fadings!#1@\protect\texttt{#1}}%
-  \texttt{#1}&
+  \texttt{#1}\nextcell
   \begin{tikzpicture}[baseline=5mm-.5ex]
     \fill [black!20] (0,0) rectangle (1,1);
     \path [pattern=checkerboard,pattern color=black!30] (0,0) rectangle (1,1);

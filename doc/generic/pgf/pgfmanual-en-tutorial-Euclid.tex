@@ -508,7 +508,7 @@ The second proposition in the Elements is the following:
 \end{tikzpicture}
 
 
-\subsubsection{Using Partway Calculations for the Construction of \emph{D}}
+\subsubsection{Using Partway Calculations for the Construction of D}
 
 Euclid's construction starts with ``referencing'' Proposition~I for the
 construction of the point~$D$. Now, while we could simply repeat the
@@ -604,15 +604,15 @@ straight line to \meta{q}.
 
 We know that the point $G$ is on the way from $B$ to $F$. The distance is given
 by the radius of the circle~$H$. Here is the code for computing $H$:
-%
-{\ifpgfmanualexternalize\tikzexternaldisable\fi
-\begin{codeexample}[
+% TODO example doesn't compile, using code only
+% {\ifpgfmanualexternalize\tikzexternaldisable\fi
+\begin{codeexample}[code only,
     preamble={\usetikzlibrary{calc,through}},
     pre={\begin{tikzpicture}
   \coordinate [label=left:$A$]  (A) at (0,0);
   \coordinate [label=right:$B$] (B) at (0.75,0.25);
   \coordinate [label=above:$C$] (C) at (1,1.5);
-  \draw (A) -- (B) -- (C);
+  \draw (A) -- (B) -- (C);}
   \coordinate [label=above:$D$] (D) at
     ($ (A) ! .5 ! (B) ! {sin(60)*2} ! 90:(B) $) {};
   \draw (D) -- ($ (D) ! 3.5 ! (B) $) coordinate [label=below:$F$] (F);
@@ -628,8 +628,8 @@ by the radius of the circle~$H$. Here is the code for computing $H$:
 However, there is a simpler way: We can simply name the path of the circle and
 of the line in question and then use |name intersections| to compute the
 intersections.
-%
-\begin{codeexample}[
+% TODO example doesn't compile, using code only
+\begin{codeexample}[code only,
     preamble={\usetikzlibrary{calc,intersections,through}},
     pre={\begin{tikzpicture}
   \coordinate [label=left:$A$]  (A) at (0,0);
@@ -647,7 +647,7 @@ intersections.
   \path [name intersections={of=H and B--F,by={[label=left:$G$]G}}];
   \fill[red,opacity=.5] (G) circle (2pt);
 \end{codeexample}
-}%
+% }%
 
 
 \subsubsection{The Complete Code}

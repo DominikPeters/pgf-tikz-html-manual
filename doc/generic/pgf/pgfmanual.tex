@@ -12,5 +12,17 @@
 % pgf version is defined in \pgfversion in file
 % generic/pgf/utilities/pgfrcs.code.tex
 
+\usepackage[latexmk,mathjax,HomeHTMLFilename=index]{lwarp}
+\CSSFilename{style.css}
+\MathJaxFilename{javascript.txt}
+\begin{warpMathJax}
+    \CustomizeMathJax{
+    \newcommand{\meta}[1]{\langle\textit{#1}\rangle}
+    }
+\end{warpMathJax}
+\setcounter{FileDepth}{1}
+
 \input{pgfmanual.cfg}
+% \input{pgfmanual-pdftex.cfg}
+
 \input{pgfmanual-en-main.tex}

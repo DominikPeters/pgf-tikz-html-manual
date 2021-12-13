@@ -295,7 +295,7 @@ automatically).
 
 \def\polarexample#1#2#3#4#5{%
   \texttt{#1}%
-  \indexkey{/tikz/data visualization/scientific polar axes/#1}&
+  \indexkey{/tikz/data visualization/scientific polar axes/#1}\nextcell
   \tikz [baseline]{\path(-2.25cm,0)(2.25cm,0); \datavisualization [
     scientific polar axes={clean, #1},
     angle axis={ticks={#2}},
@@ -306,7 +306,7 @@ automatically).
     data point [angle=#4, radius=1]
     data point [angle=#5, radius=1.5];
     \path ([yshift=-1em]current bounding box.south);
-  }&
+  }\nextcell
   \tikz [baseline]{\path(-2.25cm,0)(2.25cm,0); \datavisualization [
     scientific polar axes={outer ticks, #1},
     angle axis={ticks={#2}},
