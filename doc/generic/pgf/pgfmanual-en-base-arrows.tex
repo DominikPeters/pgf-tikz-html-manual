@@ -687,8 +687,8 @@ the present section we have a look at how this works.
 Most arrow keys, like |length| or |width'|, simple set a \TeX\ dimension
 register to a certain value. For example, |length| sets the value of the \TeX\
 dimension register |\pgfarrowlength|. Note that |length| takes several values
-as input with a complicated semantics as explained for the |length| key on
-page~\pageref{length-arrow-key}. All of these settings are not important for
+as input with a complicated semantics as explained for the |length| key in
+section~\ref{length-arrow-key}. All of these settings are not important for
 the setup code: When it gets executed, the code behind the |length| key will
 have computed a simple number that is stored in |\pgfarrowlength|. Indeed,
 inside the setup code you do not have access to the exact value given to the
@@ -918,7 +918,7 @@ you need to make \pgfname\ ``aware'' of this using the following key:
 
 \begin{command}{\pgfarrowslinewidthdependent\marg{dimension}\marg{line width factor}\marg{outer factor}}
     This command takes three parameters and does the ``line width dependent
-    computation'' described on page~\pageref{length-arrow-key} for the |length|
+    computation'' described in section~\ref{length-arrow-key} for the |length|
     key. The result is returned in |\pgf@x|.
 
     The idea is that you can setup line-width dependent keys like |length| or

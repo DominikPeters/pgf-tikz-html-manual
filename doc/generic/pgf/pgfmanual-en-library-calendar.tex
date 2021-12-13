@@ -76,7 +76,7 @@ say, the |\draw| command).
     %
     \begin{key}{/tikz/dates=\meta{start date}| to |\meta{end date}}
         This option specifies the date range. Both the start and end date are
-        specified and described on page~\pageref{calendar-date-format}. In
+        specified and described in section~\ref{calendar-date-format}. In
         short: You can provide ISO-format type dates like |2006-01-02|, you can
         replace the day of month by |last| to refer to the last day of a month
         (so |2006-02-last| is the same as |2006-02-28|), and you can add a plus
@@ -249,8 +249,7 @@ say, the |\draw| command).
         means numerically with leading space, |0| means numerically with
         leading zeros, |t| means textual, and |.| means textual, abbreviated).
         For example |\%d0| gives the day with a leading zero (for more details
-        see the description of |\pgfcalendarshorthand| on
-        page~\pageref{pgfcalendarshorthand}).
+        see the description of |\pgfcalendarshorthand| in section~\ref{pgfcalendarshorthand}).
 
         Let us redefine the |day text| so that it yields the day with a leading
         zero:
@@ -359,7 +358,7 @@ say, the |\draw| command).
 
             The command |\ifdate| and, thereby, |\pgfcalendarifdate| are used
             to evaluate the \meta{conditions}, see
-            page~\pageref{pgfcalendarifdate} for a complete list of possible
+            section~\ref{pgfcalendarifdate} for a complete list of possible
             tests. The most useful tests are: Tests like |Monday| and so on,
             |workday| for the days Monday to Friday, |weekend| for Saturday and
             Sunday, |equals| for testing whether the current date equals a
@@ -534,7 +533,7 @@ inadvertently ``leak outside''.
 \end{codeexample}
 
 In the above code we used the |\ifdate|\marg{condition}\marg{then
-code}\marg{else code} command, which is described on page~\pageref{ifdate} in
+code}\marg{else code} command, which is described in section~\ref{ifdate} in
 detail and which has much the same effect as
 |if (|\meta{condition}|)|\marg{then code}| else |\marg{else code}, but works in
 normal code.
