@@ -124,30 +124,30 @@ An overview of what happens is illustrated by the following call graph:
     \draw[livespan] (tex) -- (6,-6.5);
     \draw[livespan] (interface) -- (13,-6.5);
     % first command: \graph{  -- generates new graph in lua interface
-    \node (tikz-begin-graph) at (0,3) [object node] {|\graph[... layout]{|}; %}
-    \node (tex-begin-graph) at (6,3) [object node] {|\pgfgdbeginscope|};
-    \node (interface-new-graph) at (13,3) [object node] {|beginGraphDrawingScope(|...|)|};
+    \node (tikz-begin-graph) at (0,3) [object node] {\texttt{\textbackslash{}graph[... layout]\{}; %}
+    \node (tex-begin-graph) at (6,3) [object node] {\texttt{\textbackslash{}pgfgdbeginscope}};
+    \node (interface-new-graph) at (13,3) [object node] {\texttt{beginGraphDrawingScope(...)}};
     \draw [p] (tikz-begin-graph.east) -- (tex-begin-graph.west);
     \draw [p] (tex-begin-graph.east) -- (interface-new-graph.west);
     % second command: a -> b   -- generates two nodes in lua
     % and one edge
-    \node (tikz-node) at (0,2) [object node] {|a -> b;|};
-    \node (tex-node) at (6,2) [object node, double copy shadow] {|\pgfnode|};
+    \node (tikz-node) at (0,2) [object node] {\texttt{a -> b;}};
+    \node (tex-node) at (6,2) [object node, double copy shadow] {\texttt{\textbackslash{}pgfnode}};
     \draw[p] (tikz-node.east) -- (tex-node.west);
 
-    \node (interface-add-node) at (13,2) [object node, double copy shadow] {|createVertex(|...|)|};
+    \node (interface-add-node) at (13,2) [object node, double copy shadow] {\texttt{createVertex(...)}};
     \draw[p] (tex-node.east) -- (interface-add-node.west);
 
-    \node (tex-add-edge) at (6,1) [object node, double copy shadow] {|\pgfgdedge|};
-    \node (interface-add-edge) at (13,1) [object node, double copy shadow] {|createEdge(|...|)|};
+    \node (tex-add-edge) at (6,1) [object node, double copy shadow] {\texttt{\textbackslash{}pgfgdedge}};
+    \node (interface-add-edge) at (13,1) [object node, double copy shadow] {\texttt{createEdge(...)}};
     \draw[p] (tikz-node.east) -- (1.5,2) -- (1.5,1) -- (tex-add-edge.west);
     \draw[p] (tex-add-edge.east) -- (interface-add-edge.west);
 
     % scope ends -- cloes graph, layouts it and draws it
-    \node (tikz-end) at (0,0) [object node] {|};|};
-    \node (tex-end) at (6,0) [object node] {|\pgfgdendscope|};
-    \node (interface-draw-graph) at (13,0) [object node] {|runGraphDrawingAlgorithm()|};
-    \node (interface-finish-graph) at (13,-2) [object node] {|endGraphDrawingScope()|};
+    \node (tikz-end) at (0,0) [object node] {\texttt{\};}};
+    \node (tex-end) at (6,0) [object node] {\texttt{\textbackslash{}pgfgdendscope}};
+    \node (interface-draw-graph) at (13,0) [object node] {\texttt{runGraphDrawingAlgorithm()}};
+    \node (interface-finish-graph) at (13,-2) [object node] {\texttt{endGraphDrawingScope()}};
 
     \node (invoke-algorithm) at (15.5,-1) [object node] {invoke algorithm};
     \draw[p] (tikz-end.east) -- (tex-end.west);
@@ -156,12 +156,12 @@ An overview of what happens is illustrated by the following call graph:
     \draw[p] (tex-end.east) -- (9.5,0) -- (9.5,-2) -- (interface-finish-graph.west);
 
     % begin shipout
-    \node (tex-begin-shipout) at (6,-3) [object node] {|\pgfgdcallbackbeginshipout|};
+    \node (tex-begin-shipout) at (6,-3) [object node] {\texttt{\textbackslash{}pgfgdcallbackbeginshipout}};
 
-    \node (tex-puttexbox) at (6,-4) [object node, double copy shadow] {|\pgfgdcallbackrendernode|};
-    \node (tex-putedge) at (6,-5) [object node, double copy shadow] {|\pgfgddefaultedgecallback|};
+    \node (tex-puttexbox) at (6,-4) [object node, double copy shadow] {\texttt{\textbackslash{}pgfgdcallbackrendernode}};
+    \node (tex-putedge) at (6,-5) [object node, double copy shadow] {\texttt{\textbackslash{}pgfgddefaultedgecallback}};
 
-    \node (tex-end-shipout) at (6,-6) [object node] {|\pgfgdcallbackendshipout|};
+    \node (tex-end-shipout) at (6,-6) [object node] {\texttt{\textbackslash{}pgfgdcallbackendshipout}};
 
     \draw [p] (interface-finish-graph.-170) |- (tex-begin-shipout.east);
     \draw [p] (interface-finish-graph.-170) |- (tex-puttexbox.east);

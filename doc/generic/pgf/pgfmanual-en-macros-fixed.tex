@@ -1332,14 +1332,14 @@
 \def\manual@action@length#1/#2/#3\relax{%
   \draw [red,|<->|,semithick,xshift=#2] ([yshift=4pt]current bounding
   box.north -| -#1,0) coordinate (last length) -- node
-  [above=-2pt] {|length|} ++(#1,0);
+  [above=-2pt] {\texttt{length}} ++(#1,0);
 }
 \def\manual@action@width#1/#2/#3\relax{%
-  \draw [overlay, red,|<->|,semithick] (.5,-#1/2) -- node [below,sloped] {|width|} (.5,#1/2);
+  \draw [overlay, red,|<->|,semithick] (.5,-#1/2) -- node [below,sloped] {\texttt{width}} (.5,#1/2);
 }
 \def\manual@action@inset#1/#2/#3\relax{%
   \draw [red,|<->|,semithick,xshift=#2] ([yshift=-4pt]current bounding
-  box.south -| last length) -- node [below] {|inset|} ++(#1,0);
+  box.south -| last length) -- node [below] {\texttt{inset}} ++(#1,0);
 }
 
 \newenvironment{arrowexamples}

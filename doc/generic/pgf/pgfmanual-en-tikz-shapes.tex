@@ -1187,12 +1187,12 @@ list is given in Section~\ref{section-the-shapes}).
 \medskip\noindent
 \begin{tikzpicture}
   \path node[minimum height=2cm,minimum width=5cm,fill=blue!25](x) {Big node};
-  \fill (x.north)      circle (2pt) node[above] {|north|}
-        (x.north east) circle (2pt) node[above] {|north east|}
-        (x.north west) circle (2pt) node[above] {|north west|}
-        (x.west) circle (2pt)       node[left]  {|west|}
-        (x.east) circle (2pt)       node[right] {|east|}
-        (x.base) circle (2pt)       node[below] {|base|};
+  \fill (x.north)      circle (2pt) node[above] {\texttt{north}}
+        (x.north east) circle (2pt) node[above] {\texttt{north east}}
+        (x.north west) circle (2pt) node[above] {\texttt{north west}}
+        (x.west) circle (2pt)       node[left]  {\texttt{west}}
+        (x.east) circle (2pt)       node[right] {\texttt{east}}
+        (x.base) circle (2pt)       node[below] {\texttt{base}};
 \end{tikzpicture}
 
 Now, when you place a node at a certain coordinate, you can ask \tikzname\ to
