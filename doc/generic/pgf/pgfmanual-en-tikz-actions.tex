@@ -1109,7 +1109,7 @@ Text after image.
     The following example has once the relative long label $-1$ and once the
     shorter label $1$. Horizontal alignment is established with |trim left|:
     %
-\begin{codeexample}[pre={\vbox\bgroup\hsize=5cm},post=\egroup,width=8cm]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \begin{tikzpicture}
     \draw (0,1) -- (0,0) -- (1,1) -- cycle;
     \fill (0,0) circle (2pt);

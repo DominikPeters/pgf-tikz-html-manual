@@ -124,7 +124,7 @@ An overview of what happens is illustrated by the following call graph:
     \draw[livespan] (tex) -- (6,-6.5);
     \draw[livespan] (interface) -- (13,-6.5);
     % first command: \graph{  -- generates new graph in lua interface
-    \node (tikz-begin-graph) at (0,3) [object node] {\texttt{\textbackslash{}graph[... layout]\{}; %}
+    \node (tikz-begin-graph) at (0,3) [object node] {\texttt{\textbackslash{}graph[... layout]\{}}; 
     \node (tex-begin-graph) at (6,3) [object node] {\texttt{\textbackslash{}pgfgdbeginscope}};
     \node (interface-new-graph) at (13,3) [object node] {\texttt{beginGraphDrawingScope(...)}};
     \draw [p] (tikz-begin-graph.east) -- (tex-begin-graph.west);
