@@ -508,7 +508,7 @@
   \begin{pgfmanualentry}
     \pgfmanualentryheadline{%
       \pgfmanualpdflabel{#1}{}%
-      \definitionspan{\textbf{Shape} \texttt{\declare{#1}}}%
+      \definitionspan{\textbf{Shape} \texttt{\InlineClass{keyname}{\declare{#1}}}}%
     }%
     \index{#1@\protect\texttt{#1} shape}%
     \index{Shapes!#1@\protect\texttt{#1}}
@@ -733,7 +733,7 @@
       \firsttimetrue%
       \pgfmanualdecomposecount=0\relax%
       \decompose#1/\nil%
-        \definitionspan{\texttt{\declare{#1}}}%
+        \definitionspan{\texttt{\InlineClass{keyname}{\declare{#1}}}}%
         \defaultspan{(\extrakeytext no value)}}%
     \fi
   \fi%
@@ -755,7 +755,7 @@
         \firsttimetrue%
         \pgfmanualdecomposecount=0\relax%
         \decompose#1/\nil%
-        \definitionspan{\texttt{\declare{#1}=}#2}%
+        \definitionspan{\texttt{\InlineClass{keyname}{\declare{#1}}=}#2}%
         \defaultspan{(\extrakeytext no default)}}%
     \fi%
   \fi%
@@ -769,7 +769,7 @@
     \firsttimetrue%
     \pgfmanualdecomposecount=0\relax%
     \decompose#1/\nil%
-    \definitionspan{\texttt{\declare{#1}\opt{=}}\opt{#2}}%
+    \definitionspan{\texttt{\InlineClass{keyname}{\declare{#1}}\opt{=}}\opt{#2}}%
     \defaultspan{(\extrakeytext default \texttt{#3})}}%
 }
 
@@ -781,7 +781,7 @@
     \firsttimetrue%
     \pgfmanualdecomposecount=0\relax%
     \decompose#1/\nil%
-    \definitionspan{\texttt{\declare{#1}=}#2}%
+    \definitionspan{\texttt{\InlineClass{keyname}{\declare{#1}}=}#2}%
     \defaultspan{(\extrakeytext no default, initially \texttt{#3})}}%
 }
 
@@ -793,7 +793,7 @@
     \firsttimetrue%
     \pgfmanualdecomposecount=0\relax%
     \decompose#1/\nil%
-    \definitionspan{\texttt{\declare{#1}}}%
+    \definitionspan{\texttt{\InlineClass{keyname}{\declare{#1}}}}%
     \defaultspan{(\extrakeytext initially \texttt{#2})}}%
 }
 
@@ -1694,9 +1694,6 @@
   \aftergroup\pgfmanual@do@this%
   \begingroup%
   \code@executetrue%
-  % \code@executefalse%
-  % \pgfmanual@setup@codetrue%
-  %%%
   \pgfqkeys{/codeexample}{every codeexample,#1}%
   \pgfmanualswitchoncolors%
   \ifcodeexamplefromfile\begingroup\fi
@@ -1730,90 +1727,51 @@
         \commenthandler%
         \xdef\code@temp{#1}% removes returns and comments
       }%
+      \BlockClassSingle{hidden}{%
       \edef\pgfmanualmcatcode{\the\catcode`\^^M}%
       \catcode`\^^M=9\relax%
       \expandafter\scantokens\expandafter{\code@temp}%
       \catcode`\^^M=\pgfmanualmcatcode%
+      }%
     }%
   \fi%
-  \begin{BlockClass}{example}%
-    \ifcode@execute%
-      % \setbox\codeexamplebox=\hbox{%
-        % \else%
-        %   \global\let\code@temp\code@render%
-        %   \colorbox{graphicbackground}{\color{black}\ignorespaces%
-        %     \code@render}%
-        % \fi%
-      % }%
-      % \ifdim\wd\codeexamplebox>\codeexamplewidth%
-      %   \def\code@start{\par}%
-      %   \def\code@flushstart{}\def\code@flushend{}%
-      %   \def\code@mid{\parskip2pt\par\noindent}%
-      %   \def\code@width{\linewidth-6pt}%
-      %   \def\code@end{}%
-      % \else%
-      %   \def\code@start{%
-      %     \linewidth=\textwidth%
-      %     \parshape \@ne 0pt \linewidth
-      %     \leavevmode%
-      %     \hbox\bgroup}%
-      %   \def\code@flushstart{\hfill}%
-      %   \def\code@flushend{\hbox{}}%
-      %   \def\code@mid{\hskip6pt}%
-      %   \def\code@width{\linewidth-12pt-\codeexamplewidth}%
-      %   \def\code@end{\egroup}%
-      % \fi%
-      % \code@start%
-      % \noindent%
-      % \begin{minipage}[t]{\codeexamplewidth}\raggedright
-      \begin{BlockClass}{example-image}%
-      %   \hrule width0pt%
-      %   \footnotesize\vskip-1em%
-      %   \code@flushstart\box\codeexamplebox\code@flushend%
-      \ifx\code@render\pgfutil@empty%
-        {% 
-          {%
-            \returntospace%
-            \commenthandler%
-            \xdef\code@temp{#1}% removes returns and comments
+  \ifcode@hidden\else
+    \begin{BlockClass}{example}%
+      \ifcode@execute%
+        \begin{BlockClass}{example-image}%
+        \ifx\code@render\pgfutil@empty%
+          {% 
+            {%
+              \returntospace%
+              \commenthandler%
+              \xdef\code@temp{#1}% removes returns and comments
+            }%
+            \edef\pgfmanualmcatcode{\the\catcode`\^^M}%
+            \catcode`\^^M=9\relax%
+            \code@pre\expandafter\scantokens\expandafter{\code@temp\ignorespaces}\code@post\ignorespaces
+            % \expandafter\scantokens\expandafter{\code@temp}%
+            \catcode`\^^M=\pgfmanualmcatcode%
           }%
-          \edef\pgfmanualmcatcode{\the\catcode`\^^M}%
-          \catcode`\^^M=9\relax%
-          \code@pre\expandafter\scantokens\expandafter{\code@temp\ignorespaces}\code@post\ignorespaces
-          % \expandafter\scantokens\expandafter{\code@temp}%
-          \catcode`\^^M=\pgfmanualmcatcode%
-        }%
-      \fi
-      %   \vskip0pt%
-      %   \leavevmode%
-      %   \box\codeexampleboxanim%
-      %   \vskip-1ex
-      %   \leavevmode%
-      % \end{minipage}%
-      \end{BlockClass}% % end example-image
-      % \def\code@mid{\hskip6pt}%
-      \def\code@mid{}%
-      % \def\code@width{\linewidth-12pt-\codeexamplewidth}%
-      \def\code@width{\linewidth-6pt}%
-      \def\code@end{}%
-    \else%
-      \def\code@mid{\par}
-      \def\code@width{\linewidth-6pt}
-      \def\code@end{}
-    \fi%
-    \code@mid%
-    \pgfkeysvalueof{/codeexample/prettyprint/base color}%
-    \begin{BlockClass}{example-code}%
-      % \begin{minipage}[t]{\code@width}%
-        % \colorbox{codebackground}{%
-          \pgfmanualdolisting{#1}%
-        % }
-      % \end{minipage}%
-    \end{BlockClass}% % end example-code
-    \code@end%
-    \par%
-    \medskip
-  \end{BlockClass}% % end example
+        \fi
+        \end{BlockClass}% % end example-image
+        \def\code@mid{}%
+        \def\code@width{\linewidth-6pt}%
+        \def\code@end{}%
+      \else%
+        \def\code@mid{}
+        \def\code@width{\linewidth-6pt}
+        \def\code@end{}
+      \fi%
+      \code@mid%
+      \pgfkeysvalueof{/codeexample/prettyprint/base color}%
+      \begin{BlockClass}{example-code}%
+            \pgfmanualdolisting{#1}%
+      \end{BlockClass}% % end example-code
+      \code@end%
+      \par%
+      \medskip
+    \end{BlockClass}% % end example
+  \fi
   \endcodeexample\endgroup%
 }
 
