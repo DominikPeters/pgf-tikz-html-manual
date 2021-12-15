@@ -1,81 +1,176 @@
 @import url("lwarp.css");
 
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1a458f;
+  color: #fff;
+  height: 2em;
+  padding: 0.5em;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+header h1 {
+  font-size: 1.5em;
+  margin: 0;
+  padding: 0 0.5em;
+}
+
+.textbody h1 {
+  display: none;
+}
+
 .example {
-    display: flex;
-    align-items: stretch;
-    margin: 1em;
+  display: flex;
+  align-items: stretch;
+  margin: 1em;
 }
 .example-image {
-    background-color: rgb(245,245,204);
-    /* padding: 0.5em; */
+  background-color: rgb(245, 245, 204);
+  /* padding: 0.5em; */
 }
 .example-image p {
-    margin: 0;
-    padding: 0.5em;
+  margin: 0;
+  padding: 0.5em;
 }
-/* .example-image img {
-    min-width: 150px;
-} */
-.example-image p:hover {
+/* .example-image p:hover {
     background-color: rgb(245,245,204);
     transform-origin: top left;
     transform: scale(2);
-}
+} */
 .example-code {
-    padding: 0 1em;
-    background: #E5E5FF; 
-    font-family: monospace;
+  padding: 0 1em;
+  background: #e5e5ff;
+  font-family: monospace;
 }
 .example-code a {
-    color: inherit;
-    background-color: rgba(255,255,255,0.2);
-    text-decoration: underline;
-    text-decoration-color: rgba(255,255,255,0.6);
+  color: inherit;
+  background-color: rgba(255, 255, 255, 0.2);
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.6);
 }
 .example-code a:hover {
-    background-color: rgba(255,255,255,0.6);
-    text-decoration-color: blue;
+  background-color: rgba(255, 255, 255, 0.6);
+  text-decoration-color: blue;
 }
-.example-code>p>br:first-child {
-    display: none; /* hide the first <br> which is spurious */
+.example-code > p > br:first-child {
+  display: none; /* hide the first <br> which is spurious */
 }
 .example-code-comment {
-    color: #444;
+  color: #444;
 }
 .c-preamble {
-    color: #444;
+  color: #444;
 }
 .angle {
-    display: inline;
-    font-size: 140%;
-    line-height: 0.5;
-    vertical-align: -2px;
+  display: inline;
+  font-size: 140%;
+  line-height: 0.5;
+  vertical-align: -2px;
 }
-kbd, span.texttt, p span.text {
-    font-family: monospace !important;
-    font-size: 120% !important;
-    line-height: 0.8;
+kbd,
+span.texttt,
+p span.text {
+  font-family: monospace !important;
+  font-size: 120% !important;
+  line-height: 0.8;
 }
 .manualentry {
-    margin-left: 40px;
+  margin-left: 40px;
 }
 .entryheadline {
-    margin-left: -40px;
+  margin-left: -40px;
 }
-.entryheadline p {
-    display: flex;
-    justify-content: space-between;
-}
+
 .entryheadline p > a {
-    position: absolute;
+  position: absolute; /* ignore in flex layout */
 }
-.hl-def{
-    /* nothing */
+
+table {
+  margin: 1ex;
+}
+
+/* added added added */
+
+.bodyandsidetoc {
+  display: flex;
+}
+.sidetoccontainer {
+  order: 1;
+  float: none;
+  position: sticky;
+  overflow: scroll;
+  top: 3em;
+  height: 100vh;
+}
+
+main.bodycontainer {
+  order: 2;
+}
+
+#local-toc-container {
+  order: 3;
+  position: sticky;
+  overflow: scroll;
+  height: 100vh;
+}
+
+nav.sidetoc .sidetoccontents p {
+  margin: 0 0.5em;
+  font-size: 110%;
+}
+
+.sidetoccontents > p.current-part {
+  background-color: rgb(219, 221, 243);
+}
+
+.sidetoccontents > p.current {
+  background-color: rgb(195, 199, 241);
+}
+
+.sidetoccontents p a {
+  display: block;
+  padding: 0.6em 0.3em;
+}
+
+.sidetoccontents p:hover {
+  background-color: rgb(174, 178, 240);
+}
+
+.sidetoccontents .toc-intro-link {
+  text-indent: 0;
+  margin-left: 0;
+}
+
+.bodycontainer {
+  float: none;
+}
+
+.hl-def {
+  margin-right: 2em; /* space to default */
 }
 .hl-default {
-    margin-left: 2em;
-    color: rgb(49, 50, 58);
+  margin-left: auto; /* push to the right */
+  color: rgb(49, 50, 58);
 }
-table {
-    margin: 1ex;
+.entryheadline p {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.entryheadline p > a.anchor-link {
+  position: static; /* do not ignore in flex layout */
+  margin-left: 0.5em;
+}
+
+.entryheadline p > a.anchor-link:hover {
+  background-color: rgb(201, 204, 243);
+}
+
+#local-toc-container a.current {
+  background-color: rgb(195, 199, 241);
 }
