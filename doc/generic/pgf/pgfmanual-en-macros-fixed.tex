@@ -1617,6 +1617,9 @@
   multipage/.code=  {\code@executefalse\pgfmanual@multipage@codetrue},
   pre/.store in=\code@pre,
   post/.store in=\code@post,
+  % Dominik: extra values for imagecodeexample
+  imagewidth/.store in=\code@imagewidth,
+  imagesource/.store in=\code@imagesource,
   % #1 is the *complete* environment contents as it shall be
   % typeset. In particular, the catcodes are NOT the normal ones.
   typeset listing/.code=  {#1},
@@ -1678,6 +1681,8 @@
 
 \let\code@pre\pgfutil@empty
 \let\code@post\pgfutil@empty
+\let\code@imagewidth\pgfutil@empty
+\let\code@imagesource\pgfutil@empty
 \let\code@render\pgfutil@empty
 \let\code@preamble\pgfutil@empty
 \def\code@catcode@hook{}
@@ -1774,6 +1779,60 @@
   \fi
   \endcodeexample\endgroup%
 }
+
+%%%%%%% IMAGE IMPORT VERSION *********
+\def\imagecodeexample[#1]{%
+  \global\let\pgfmanual@do@this\relax%
+  \aftergroup\pgfmanual@do@this%
+  \begingroup%
+  \code@executetrue%
+  \pgfqkeys{/codeexample}{every codeexample,#1}%
+  \pgfmanualswitchoncolors%
+  \ifcodeexamplefromfile\begingroup\fi
+  \codeexample@tabinit% assigns \codeexample@tabinit@[catcode,replacementchars]
+  \parindent0pt
+  \begingroup%
+  \par% this \par is not inside \ifcode@hidden because we want to switch to vmode
+  \ifcode@hidden\else
+    \medskip%
+  \fi
+  \let\do\@makeother%
+  \dospecials%
+  \obeylines%
+  \@vobeyspaces%
+  \catcode`\%=13%
+  \catcode`\^^M=13%
+  \code@catcode@hook%
+  \codeexample@tabinit@catcode
+  \relax%
+  \ifcodeexamplefromfile%
+    \expandafter\do@codeexamplefromfile%
+  \else%
+    \expandafter\find@example%
+  \fi}
+\def\endofcodeexample#1{%
+  \endgroup%
+  \begin{BlockClass}{example}%
+    \begin{BlockClass}{example-image}%
+    \includegraphics[width=\code@imagewidth]{\code@imagesource}%
+    \end{BlockClass}% % end example-image
+    \def\code@mid{}%
+    \def\code@width{\linewidth-6pt}%
+    \def\code@end{}%
+    \code@mid%
+    \pgfkeysvalueof{/codeexample/prettyprint/base color}%
+    \begin{BlockClass}{example-code}%
+          \pgfmanualdolisting{#1}%
+    \end{BlockClass}% % end example-code
+    \code@end%
+    \par%
+    \medskip
+  \end{BlockClass}% % end example
+  \endcodeexample\endgroup%
+}
+%%%%%%% END IMAGE IMPORT VERSION *********
+
+
 
 \def\endcodeexample{\endgroup}
 \newbox\codeexampleboxanim
