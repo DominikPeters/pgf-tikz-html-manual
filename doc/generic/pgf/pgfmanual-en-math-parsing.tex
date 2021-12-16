@@ -479,20 +479,10 @@ recognized:
 
 The following functions are recognized:
 
-\medskip
-\def\mathlink#1{\hyperlink{math:#1}{\tt#1}}
-\begin{tikzpicture}
-\foreach \f [count=\i from 0] in
-{abs,acos,add,and,array,asin,atan,atan2,bin,ceil,cos,
- cosec,cosh,cot,deg,depth,dim,div,divide,e,equal,factorial, false,
- floor,frac,gcd,greater,height,hex,Hex,int,ifthenelse,iseven,isodd,isprime,
- less,ln,log10,log2,max,min,mod,Mod,multiply,
- neg,not,notequal,notgreater,notless,
- oct,or,pi,pow,rad,rand,random,real,rnd,round,
- scalar,sec,sign,sin,sinh,sqrt,subtract,tan,tanh,true, veclen,width}
-\node [anchor=base west] at ({int(\i/12)*2.5cm},{-mod(\i,12)*1.1*\baselineskip}) {\mathlink{\f}};
-\end{tikzpicture}
-\bigskip
+\def\mathlink#1{\declare{#1}}
+\begin{itemize}
+\item \mathlink{abs}, \mathlink{acos}, \mathlink{add}, \mathlink{and}, \mathlink{array}, \mathlink{asin}, \mathlink{atan}, \mathlink{atan2}, \mathlink{bin}, \mathlink{ceil}, \mathlink{cos}, \mathlink{cosec}, \mathlink{cosh}, \mathlink{cot}, \mathlink{deg}, \mathlink{depth}, \mathlink{dim}, \mathlink{div}, \mathlink{divide}, \mathlink{e}, \mathlink{equal}, \mathlink{factorial}, \mathlink{false}, \mathlink{floor}, \mathlink{frac}, \mathlink{gcd}, \mathlink{greater}, \mathlink{height}, \mathlink{hex}, \mathlink{Hex}, \mathlink{int}, \mathlink{ifthenelse}, \mathlink{iseven}, \mathlink{isodd}, \mathlink{isprime}, \mathlink{less}, \mathlink{ln}, \mathlink{log10}, \mathlink{log2}, \mathlink{max}, \mathlink{min}, \mathlink{mod}, \mathlink{Mod}, \mathlink{multiply}, \mathlink{neg}, \mathlink{not}, \mathlink{notequal}, \mathlink{notgreater}, \mathlink{notless}, \mathlink{oct}, \mathlink{or}, \mathlink{pi}, \mathlink{pow}, \mathlink{rad}, \mathlink{rand}, \mathlink{random}, \mathlink{real}, \mathlink{rnd}, \mathlink{round}, \mathlink{scalar}, \mathlink{sec}, \mathlink{sign}, \mathlink{sin}, \mathlink{sinh}, \mathlink{sqrt}, \mathlink{subtract}, \mathlink{tan}, \mathlink{tanh}, \mathlink{true}, \mathlink{veclen}, \mathlink{width}
+\end{itemize}
 
 Each function has a \pgfname{} command associated with it (which is also shown
 with the function below). In general, the command is simply the name of the
