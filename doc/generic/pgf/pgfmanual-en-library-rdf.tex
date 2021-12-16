@@ -910,7 +910,7 @@ Let us now have a look at the result. If the above is processed using \TeX\ and
 transformed to \textsc{svg} code, the following results (reformatted and
 slightly simplified):
 %
-\begin{codeexample}[multipage]
+\begin{lstlisting}
 <g id="pgf3"  prefix=" automata: http://www.tcs.uni-luebeck.de/ontologies/automata/ ">
   <!-- The automaton -->
   <g about="#pgf3" property="rdf:type" resource="automata:types/automaton" />
@@ -977,8 +977,9 @@ slightly simplified):
     ...
   </g>
 </g>
-\end{codeexample}
+\end{lstlisting}
 
+\iffalse
 When this code is processed by some \textsc{rdf}a tool, the following graph
 will result where the blue nodes represent resources:
 
@@ -989,12 +990,12 @@ will result where the blue nodes represent resources:
 \fi
 
 {
-  \newbox\myboxa
-  \setbox\myboxa=\hbox{\tiny {\tikz\node[circle, draw=red, fill=white] {$q_0$};}}
-  \newbox\myboxb
-  \setbox\myboxb=\hbox{\tiny {\tikz\node[circle, draw,fill=white] {$q_1$};}}
-  \newbox\myboxc
-  \setbox\myboxc=\hbox{\tiny {\tikz\node[circle, draw,fill=white, double] {$q_2$};}}
+  % \newbox\myboxa
+  % \setbox\myboxa=\hbox{\tiny {\tikz\node[circle, draw=red, fill=white] {$q_0$};}}
+  % \newbox\myboxb
+  % \setbox\myboxb=\hbox{\tiny {\tikz\node[circle, draw,fill=white] {$q_1$};}}
+  % \newbox\myboxc
+  % \setbox\myboxc=\hbox{\tiny {\tikz\node[circle, draw,fill=white, double] {$q_2$};}}
   \catcode`\_=11
   \begin{tikzpicture}[font=\tiny\ttfamily, > = {Stealth [round, sep]}]
   \graph [layered layout, sibling sep=1mm, sibling distance=0pt,
@@ -1007,14 +1008,14 @@ will result where the blue nodes represent resources:
     pgf3/\#pgf3[resource]   -- /"automata:\\relations/\\hasAsStateContainer"[predicate] -> pgf4[resource];
     pgf5/\#pgf5[resource]   -- /"rdf:type"[predicate] -> rdf:Seq[resource];
     pgf3/\#pgf3[resource]   -- /"atuomata:\\relations/\\hasAsTransitionContainer"[predicate] -> pgf5[resource];
-    pgf6/\#pgf6[resource]   -- /"rdf:value"[predicate] -> /[as={\box\myboxa},resource];
+    pgf6/\#pgf6[resource]   -- /"rdf:value"[predicate] -> /[as={\hbox{\tiny {\tikz\node[circle, draw=red, fill=white] {$q_0$};}}},resource];
     pgf6/\#pgf6[resource]   -- /"rdf:type"[predicate] -> state/"automata:\\types/state"[resource];
     pgf4/\#pgf4[resource]   -- /"rdf:_1"[predicate] -> pgf6[resource];
     pgf6/\#pgf6[resource]   -- /"rdf:type"[predicate] -> initial/"automata:\\properties/\\initial"[resource];
-    pgf7/\#pgf7[resource]   -- /"rdf:value"[predicate] ->  /[as={\box\myboxb},resource];
+    pgf7/\#pgf7[resource]   -- /"rdf:value"[predicate] ->  /[as={\tiny {\tikz\node[circle, draw,fill=white] {$q_1$};}},resource];
     pgf7/\#pgf7[resource]   -- /"rdf:type"[predicate] -> state/"automata:\\types/state"[resource];
     pgf4/\#pgf4[resource]   -- /"rdf:_2"[predicate] -> pgf7[resource];
-    pgf12/\#pgf12[resource] -- /"rdf:value"[predicate] -> /[as={\box\myboxc},resource];
+    pgf12/\#pgf12[resource] -- /"rdf:value"[predicate] -> /[as={\tiny {\tikz\node[circle, draw,fill=white, double] {$q_2$};}},resource];
     pgf12/\#pgf12[resource] -- /"rdf:type"[predicate] -> state/"automata:\\types/state"[resource];
     pgf4/\#pgf4[resource]   -- /"rdf:_3"[predicate] -> pgf12[resource];
     pgf12/\#pgf12[resource] -- /"rdf:type"[predicate] -> final/"automata:\\properties/\\final"[resource];
@@ -1038,3 +1039,4 @@ will result where the blue nodes represent resources:
 }
 
 \endgroup
+\fi

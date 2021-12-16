@@ -606,32 +606,10 @@ We know that the point $G$ is on the way from $B$ to $F$. The distance is given
 by the radius of the circle~$H$. Here is the code for computing $H$:
 % TODO example doesn't compile, using code only
 % {\ifpgfmanualexternalize\tikzexternaldisable\fi
-\begin{codeexample}[code only,
+\begin{codeexample}[
     preamble={\usetikzlibrary{calc,through}},
-    pre={\begin{tikzpicture}
-  \coordinate [label=left:$A$]  (A) at (0,0);
-  \coordinate [label=right:$B$] (B) at (0.75,0.25);
-  \coordinate [label=above:$C$] (C) at (1,1.5);
-  \draw (A) -- (B) -- (C);}
-  \coordinate [label=above:$D$] (D) at
-    ($ (A) ! .5 ! (B) ! {sin(60)*2} ! 90:(B) $) {};
-  \draw (D) -- ($ (D) ! 3.5 ! (B) $) coordinate [label=below:$F$] (F);
-  \draw (D) -- ($ (D) ! 2.5 ! (A) $) coordinate [label=below:$E$] (E);},
-    post={\end{tikzpicture}},
 ]
-  \node (H) [label=135:$H$,draw,circle through=(C)] at (B) {};
-  \path let \p1 = ($ (B) - (C) $) in
-    coordinate [label=left:$G$] (G) at ($ (B) ! veclen(\x1,\y1) ! (F) $);
-  \fill[red,opacity=.5] (G) circle (2pt);
-\end{codeexample}
-
-However, there is a simpler way: We can simply name the path of the circle and
-of the line in question and then use |name intersections| to compute the
-intersections.
-% TODO example doesn't compile, using code only
-\begin{codeexample}[code only,
-    preamble={\usetikzlibrary{calc,intersections,through}},
-    pre={\begin{tikzpicture}
+\begin{tikzpicture}
   \coordinate [label=left:$A$]  (A) at (0,0);
   \coordinate [label=right:$B$] (B) at (0.75,0.25);
   \coordinate [label=above:$C$] (C) at (1,1.5);
@@ -639,13 +617,34 @@ intersections.
   \coordinate [label=above:$D$] (D) at
     ($ (A) ! .5 ! (B) ! {sin(60)*2} ! 90:(B) $) {};
   \draw (D) -- ($ (D) ! 3.5 ! (B) $) coordinate [label=below:$F$] (F);
-  \draw (D) -- ($ (D) ! 2.5 ! (A) $) coordinate [label=below:$E$] (E);},
-    post={\end{tikzpicture}},
+  \draw (D) -- ($ (D) ! 2.5 ! (A) $) coordinate [label=below:$E$] (E);
+  \node (H) [label=135:$H$,draw,circle through=(C)] at (B) {};
+  \path let \p1 = ($ (B) - (C) $) in
+    coordinate [label=left:$G$] (G) at ($ (B) ! veclen(\x1,\y1) ! (F) $);
+  \fill[red,opacity=.5] (G) circle (2pt);
+\end{tikzpicture}
+\end{codeexample}
+
+However, there is a simpler way: We can simply name the path of the circle and
+of the line in question and then use |name intersections| to compute the
+intersections.
+\begin{codeexample}[
+    preamble={\usetikzlibrary{calc,intersections,through}},
 ]
+\begin{tikzpicture}
+  \coordinate [label=left:$A$]  (A) at (0,0);
+  \coordinate [label=right:$B$] (B) at (0.75,0.25);
+  \coordinate [label=above:$C$] (C) at (1,1.5);
+  \draw (A) -- (B) -- (C);
+  \coordinate [label=above:$D$] (D) at
+    ($ (A) ! .5 ! (B) ! {sin(60)*2} ! 90:(B) $) {};
+  \draw (D) -- ($ (D) ! 3.5 ! (B) $) coordinate [label=below:$F$] (F);
+  \draw (D) -- ($ (D) ! 2.5 ! (A) $) coordinate [label=below:$E$] (E);
   \node (H) [name path=H,label=135:$H$,draw,circle through=(C)] at (B) {};
   \path [name path=B--F] (B) -- (F);
   \path [name intersections={of=H and B--F,by={[label=left:$G$]G}}];
   \fill[red,opacity=.5] (G) circle (2pt);
+\end{tikzpicture}
 \end{codeexample}
 % }%
 

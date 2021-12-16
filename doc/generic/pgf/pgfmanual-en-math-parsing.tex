@@ -11,6 +11,10 @@
 \section[math-parsing]{Mathematical Expressions}
 \label{pgfmath-syntax}
 
+\begin{warpMathJax}
+    \CustomizeMathJax{\newcommand{\mvar}[1]{#1}}
+\end{warpMathJax}
+
 The easiest way of using \pgfname's mathematical engine is to provide a
 mathematical expression given in familiar infix notation, for example,
 |1cm+4*2cm/5.5| or |2*3+3*sin(30)|. This expression can be parsed by the
@@ -515,7 +519,7 @@ some notable exceptions.
 
 \begin{math-function}{neg(\mvar{x})}
 \mathcommand
-    This returns $-\mvar{x}$.
+    This returns $-x$.
     %
 \begin{codeexample}[]
 \pgfmathparse{neg(50)} \pgfmathresult
@@ -565,7 +569,7 @@ some notable exceptions.
 
 \begin{math-function}{sqrt(\mvar{x})}
 \mathcommand
-    Calculates $\sqrt{\textrm{\mvar{x}}}$.
+    Calculates $\sqrt{x}$.
     %
 \begin{codeexample}[]
 \pgfmathparse{sqrt(10)} \pgfmathresult
@@ -620,7 +624,7 @@ some notable exceptions.
 \begin{math-function}{ln(\mvar{x})}
 \mathcommand
 { \catcode`\^=7
-    An approximation for $\ln(\textrm{\mvar{x}})$. This uses an algorithm of
+    An approximation for $\ln(x)$. This uses an algorithm of
     Rouben Rostamian, and coefficients suggested by Alain Matthes.
 }
 \begin{codeexample}[]
@@ -635,7 +639,7 @@ some notable exceptions.
 
 \begin{math-function}{log10(\mvar{x})}
 \mathcommand[logten(\mvar{x})]
-    An approximation for $\log_{10}(\textrm{\mvar{x}})$.
+    An approximation for $\log_{10}(x)$.
     %
 \begin{codeexample}[]
 \pgfmathparse{log10(100)} \pgfmathresult
@@ -645,7 +649,7 @@ some notable exceptions.
 
 \begin{math-function}{log2(\mvar{x})}
 \mathcommand[logtwo(\mvar{x})]
-    An approximation for $\log_2(\textrm{\mvar{x}})$.
+    An approximation for $\log_2(x)$.
     %
 \begin{codeexample}[]
 \pgfmathparse{log2(128)} \pgfmathresult
@@ -671,7 +675,7 @@ some notable exceptions.
 \mathcommand
     This evaluates \mvar{x} modulo \mvar{y}, using truncated division. The sign
     of the result is the same as the sign of
-    $\frac{\textrm{\mvar{x}}}{\textrm{\mvar{y}}}$.
+    $\frac{x}{y}$.
     %
 \begin{codeexample}[]
 \pgfmathparse{mod(20,6)} \pgfmathresult
@@ -1049,7 +1053,7 @@ some notable exceptions.
 
 \begin{math-function}{equal(\mvar{x},\mvar{y})}
 \mathcommand
-    This returns |1| if $\mvar{x}=\mvar{y}$ and |0| otherwise.
+    This returns |1| if $x=y$ and |0| otherwise.
     %
 \begin{codeexample}[]
 \pgfmathparse{equal(20,20)} \pgfmathresult
@@ -1069,7 +1073,7 @@ some notable exceptions.
 
 \begin{math-function}{less(\mvar{x},\mvar{y})}
 \mathcommand
-    This returns |1| if $\mvar{x}<\mvar{y}$ and |0| otherwise.
+    This returns |1| if $x<\mvar{y}$ and |0| otherwise.
     %
 \begin{codeexample}[]
 \pgfmathparse{less(20,25)} \pgfmathresult
@@ -1079,7 +1083,7 @@ some notable exceptions.
 
 \begin{math-function}{notequal(\mvar{x},\mvar{y})}
 \mathcommand
-    This returns |0| if $\mvar{x}=\mvar{y}$ and |1| otherwise.
+    This returns |0| if $x=\mvar{y}$ and |1| otherwise.
     %
 \begin{codeexample}[]
 \pgfmathparse{notequal(20,25)} \pgfmathresult
@@ -1089,7 +1093,7 @@ some notable exceptions.
 
 \begin{math-function}{notgreater(\mvar{x},\mvar{y})}
 \mathcommand
-    This returns |1| if $\mvar{x}\leq\mvar{y}$ and |0| otherwise.
+    This returns |1| if $x\leq\mvar{y}$ and |0| otherwise.
     %
 \begin{codeexample}[]
 \pgfmathparse{notgreater(20,25)} \pgfmathresult
@@ -1099,7 +1103,7 @@ some notable exceptions.
 
 \begin{math-function}{notless(\mvar{x},\mvar{y})}
 \mathcommand
-    This returns |1| if $\mvar{x}\geq\mvar{y}$ and |0| otherwise.
+    This returns |1| if $x\geq\mvar{y}$ and |0| otherwise.
     %
 \begin{codeexample}[]
 \pgfmathparse{notless(20,25)} \pgfmathresult

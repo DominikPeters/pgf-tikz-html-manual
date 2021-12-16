@@ -339,7 +339,7 @@ def rewrite_svg_links(soup):
     for tag in soup.find_all("a"):
         if tag.has_attr('href') and "svg" in tag['href']:
             img = tag.img
-            if "inlineimage" in img['class']:
+            if img and "inlineimage" in img['class']:
                 object = soup.new_tag('object')
                 object['data'] = img['src']
                 object['type'] = "image/svg+xml"
