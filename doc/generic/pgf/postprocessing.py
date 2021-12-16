@@ -1,12 +1,17 @@
+from xml.dom import minidom
 from bs4 import BeautifulSoup
 from shutil import copyfile, copytree
 import re
 import os
+import datetime
 import subprocess
 
+# mkdir processed
+os.makedirs("processed", exist_ok=True)
 copyfile("style.css", "processed/style.css")
 copyfile("lwarp.css", "processed/lwarp.css")
 copyfile("pgfmanual.js", "processed/pgfmanual.js")
+copytree("pgfmanual-images", "processed/pgfmanual-images", dirs_exist_ok=True)
 
 ## table of contents and anchor links
 def rearrange_heading_anchors(soup):
@@ -47,12 +52,16 @@ def make_page_toc(soup):
     toc = soup.new_tag('div')
     toc['class'] = 'sidetoccontents'
     toc_nav.append(toc)
-    heading_tags = ["h4", "h5", "h6"]
+    heading_tags = ["h5", "h6"]
     for tag in soup.find_all(heading_tags):
         # print(f"{tag.name} -> {tag.text.strip()} -> {tag.get('id')}")
         item = soup.new_tag('p')
         a = soup.new_tag('a', href=f"#{tag.get('id')}")
-        a.string = tag.text.strip()
+        a.string = tag.text.strip().split("\u2003")[1]
+        if tag.name == "h5":
+            a['class'] = 'tocsubsection'
+        elif tag.name == "h6":
+            a['class'] = 'tocsubsubsection'
         item.append(a)
         toc.append(item)
         pass
@@ -66,6 +75,8 @@ def add_class(tag, c):
 
 ## shorten sidetoc
 def shorten_sidetoc_and_add_part_header(soup):
+    container = soup.find(class_="sidetoccontainer")
+    container['id'] = "chapter-toc-container"
     sidetoc = soup.find(class_="sidetoccontents")
     if soup.h4 is None:
         my_file_id = soup.h2['id']    
@@ -80,16 +91,28 @@ def shorten_sidetoc_and_add_part_header(soup):
         if entry.name != 'p':
             continue
         # Skip home link
-        if entry.a['href'] == "index.html":
+        # if entry.a['href'] == "index.html":
+        #     continue
+        if "linkhome" in entry.a['class']:
+            entry.a.decompose()
             continue
         if len(entry.a['href'].split('#')) < 2:
             print(f"WARNING: {entry.a['href']}")
         filename = entry.a['href'].split('#')[0]
         file_id = entry.a['href'].split('#')[1]
         entry.a['href'] = filename.replace(".html", "") # get rid of autosec in toc, not needed
-        # Skip intro link because it doesn't have a part
-        if file_id == "autosec-7":
-            entry.a['class'].append('toc-intro-link')
+        # get rid of sectionnumber
+        new_a = soup.new_tag('a', href=entry.a['href'])
+        new_a['class'] = entry.a['class']
+        contents = entry.a.contents[2:]
+        contents[0] = contents[0][1:] # delete tab
+        if contents[-1] == ' Zeichenprogramm':
+            contents = contents[:2] + ['Z']
+        new_a.extend(contents)
+        entry.a.replace_with(new_a)
+        # Skip introduction link because it doesn't have a part
+        if entry.a['href'] == "index-0":
+            entry.a['class'] = ['linkintro']
             continue
         if "tocpart" in entry.a['class']:
             element = {
@@ -108,7 +131,8 @@ def shorten_sidetoc_and_add_part_header(soup):
                 "tag": entry,
                 "file_id": file_id,
             }
-            last_part['children'].append(element)
+            if last_part:
+                last_part['children'].append(element)
             if file_id == my_file_id:
                 assert 'class' not in entry
                 entry['class'] = ["current"]
@@ -124,11 +148,13 @@ def shorten_sidetoc_and_add_part_header(soup):
             for section in part['children']:
                 add_class(section['tag'], "current-part")
             if is_a_section:
-                contents = part['tag'].a.contents[1:]
-                contents[1].replace("\u2003", "")
                 h2 = soup.new_tag('h2')
-                h2.contents = contents
                 h2['class'] = ['inserted']
+                # contents = part['tag'].a.contents[1:]
+                # h2.append(contents[1].replace("\u2003", ""))
+                part_name = str(part['tag'].a.string)
+                assert part_name is not None
+                h2.append(part_name)
                 soup.h1.insert_after(h2)
 
 ## make anchor tags to definitions
@@ -164,6 +190,7 @@ def make_entryheadline_anchor_links(soup):
 def write_to_file(soup, filename):
     with open(filename, "w") as file:
         html = soup.encode(formatter="html5").decode("utf-8")
+        html = html.replace("index-0","/")
         lines = html.splitlines()
         new_lines = []
         for line in lines:
@@ -205,6 +232,13 @@ def remove_useless_elements(soup):
     soup.find(class_="topnavigation").decompose()
     soup.find(class_="botnavigation").decompose()
 
+def addClipboardButtons(soup):
+    for example in soup.find_all(class_="example-code"):
+        button = soup.new_tag('button', type="button")
+        button['class'] = "clipboardButton"
+        button.string = "copy"
+        example.insert(0,button)
+
 def add_header(soup):
     header = soup.new_tag('header')
     h1 = soup.new_tag('h1')
@@ -216,10 +250,10 @@ def add_header(soup):
     link.append(k)
     link.append("Z Manual")
     header.append(h1)
-    search_input = soup.new_tag('input', type="search", placeholder="Search")
+    search_input = soup.new_tag('input', type="search", placeholder="Search..")
     search_input['class'] = "search-input"
     header.append(search_input)
-    soup.body.insert(0, header)
+    soup.find(class_="bodyandsidetoc").insert(0, header)
 
     # import search elements
     link = soup.new_tag('link', rel="stylesheet", href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css")
@@ -245,8 +279,55 @@ def add_header(soup):
     """)
     soup.body.append(script)
 
+def add_footer(soup):
+    footer = soup.new_tag('footer')
+    footer_left = soup.new_tag('div', class_="footer-left")
+    # Link to github
+    link = soup.new_tag('a', href="https://github.com/pgf-tikz/pgf")
+    link.string = "Github"
+    footer_left.append(link)
+    footer_left.append(" · ")
+    # Link to license
+    link = soup.new_tag('a', href="/license")
+    link.string = "License"
+    footer_left.append(link)
+    footer_left.append(" · ")
+    # Link to CTAN
+    link = soup.new_tag('a', href="https://ctan.org/pkg/pgf")
+    link.string = "CTAN"
+    footer_left.append(link)
+    footer_left.append(" · ")
+    # Link to PDF version
+    link = soup.new_tag('a', href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf")
+    link.string = "PDF version"
+    footer_left.append(link)
+    footer_left.append(" · ")
+    # Link to About the HTML version
+    link = soup.new_tag('a', href="https://github.com/DominikPeters/pgf-tikz-html-manual")
+    link.string = "About this HTML version"
+    footer_left.append(link)
+    #
+    footer.append(footer_left)
+    footer_right = soup.new_tag('div', class_="footer-right")
+    today = datetime.date.today().isoformat()
+    em = soup.new_tag('em')
+    em.append("Manual last updated: " + today)
+    footer_right.append(em)
+    footer.append(footer_right)
+    soup.find(class_="bodyandsidetoc").append(footer)
 
-os.makedirs("processed", exist_ok=True)
+def write_svg_dimensions(soup):
+    for tag in soup.find_all("img"):
+        if "svg" in tag['src']:
+            with open(tag['src'], "r") as svgfile:
+                svg = minidom.parse(svgfile)
+                width_pt = svg.documentElement.getAttribute("width").replace("pt", "")
+                height_pt = svg.documentElement.getAttribute("height").replace("pt", "")
+                width_px = float(width_pt) * 1.33333
+                height_px = float(height_pt) * 1.33333
+                tag['width'] = "{:.3f}".format(width_px)
+                tag['height'] = "{:.3f}".format(height_px)
+
 for filename in sorted(os.listdir(".")):
     if filename.endswith(".html"):
         if filename in ["description.html", "pgfmanual_html.html"]:
@@ -255,24 +336,29 @@ for filename in sorted(os.listdir(".")):
             print(f"Processing {filename}")
             with open(filename, "r") as fp:
                 soup = BeautifulSoup(fp, 'html5lib')
-                if filename == "index.html":
+                if filename == "home.html":
                     remove_html_from_links(filename, soup)
                     remove_mathjax_if_possible(filename, soup)
-                    add_header(soup)
+                    # add_header(soup)
+                    # add_footer(soup)
                     write_to_file(soup, "processed/"+filename)
                     continue
-                rearrange_heading_anchors(soup)
+                add_footer(soup)
                 shorten_sidetoc_and_add_part_header(soup)
+                rearrange_heading_anchors(soup)
                 make_page_toc(soup)
                 remove_mathjax_if_possible(filename, soup)
                 make_entryheadline_anchor_links(soup)
                 remove_html_from_links(filename, soup)
                 remove_useless_elements(soup)
+                addClipboardButtons(soup)
+                write_svg_dimensions(soup)
                 add_header(soup)
-                write_to_file(soup, "processed/"+filename)
-
-
-copytree("pgfmanual-images", "processed/pgfmanual-images", dirs_exist_ok=True)
+                soup.find(class_="bodyandsidetoc")['class'].append("grid-container")
+                if filename == "index-0.html":
+                    write_to_file(soup, "processed/index.html")
+                else:
+                    write_to_file(soup, "processed/"+filename)
 
 
 # prettify

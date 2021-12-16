@@ -1,26 +1,184 @@
 @import url("lwarp.css");
 
+:root {
+  --header-height: 40px;
+}
+
+@media screen and (min-width: 640px) {
+  :root {
+    --header-height: 60px;
+  }
+}
+
+:target {
+  scroll-margin-top: calc(60px + var(--header-height));
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "header"
+    "left"
+    "content"
+    "footer";
+}
+
+@media screen and (min-width: 640px) {
+  .grid-container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      "header header"
+      "left content"
+      "footer footer";
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .grid-container {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas:
+      "header header header"
+      "left content right"
+      "footer footer footer";
+  }
+}
+
 header {
+  grid-area: header;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #1a458f;
   color: #fff;
-  height: 2em;
-  padding: 0.5em;
+  height: var(--header-height);
+  /* width: 100vw; */
+  padding: 0;
+  margin: 0;
   position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 5;
+}
+
+div.sidetoccontainer {
+  float: none;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.sidetoctitle:first-child {
+  display: none;
+}
+
+#chapter-toc-container {
+  grid-area: left;
+  background-color: rgb(242, 242, 242);
+  border-right: 1px solid #ccc;
+  width: 100%;
+}
+
+#local-toc-container {
+  display: none;
+}
+
+@media screen and (min-width: 640px) {
+  #chapter-toc-container {
+    width: 11em;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  #local-toc-container {
+    grid-area: right;
+    display: block;
+    width: 13em;
+  }
+  #chapter-toc-container {
+    width: 17em;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  #chapter-toc-container {
+    width: 19em;
+  }
+  #local-toc-container {
+    width: 19em;
+  }
+}
+
+main.bodycontainer {
+  grid-area: content;
+  float: none;
+  width: 100%;
+  padding-bottom: 40px;
+}
+
+nav {
+  position: sticky;
+  top: var(--header-height);
+  padding: 0;
+  margin: 0;
+  max-height: calc(100vh - var(--header-height));
+  overflow: scroll;
+}
+
+footer {
+  grid-area: footer;
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  font-size: 1em;
 }
 
 header h1 {
-  font-size: 1.5em;
+  font-size: 1.1em;
   margin: 0;
-  padding: 0 0.5em;
+  margin-left: 0.4em;
+}
+
+header h1 a,
+header h1 a:visited,
+header h1 a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.search-input {
+  margin-right: 0.3em;
+  width: 10em;
+  font-size: 0.9em;
+  padding: 1px 3px;
+}
+
+@media screen and (min-width: 640px) {
+  header h1 {
+    font-size: 1.5em;
+    margin-left: 1em;
+  }
+  
+  .search-input {
+    margin-right: 1em;
+    width: 14em;
+    font-size: 105%;
+    padding: 3px 5px;
+  }
 }
 
 .textbody h1 {
   display: none;
+}
+
+h2.inserted {
+  display: none;
+}
+
+h4 {
+  margin-top: 0;
 }
 
 .example {
@@ -36,16 +194,36 @@ header h1 {
   margin: 0;
   padding: 0.5em;
 }
-/* .example-image p:hover {
-    background-color: rgb(245,245,204);
-    transform-origin: top left;
-    transform: scale(2);
-} */
+.example-image img {
+  width: 100%;
+}
 .example-code {
   padding: 0 1em;
   background: #e5e5ff;
   font-family: monospace;
+  position: relative;
 }
+.clipboardButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.4em;
+  border: 0;
+  font-size: 78%;
+  text-align: center;
+  min-width: 3.5em;
+  color: #444;
+  cursor: pointer;
+  visibility: hidden;
+  background-color: #bbbbfc8a;
+}
+.clipboardButton:hover {
+  background-color: #c0c0ff;
+}
+.example-code:hover .clipboardButton {
+  visibility: visible;
+}
+
 .example-code a {
   color: inherit;
   background-color: rgba(255, 255, 255, 0.2);
@@ -93,60 +271,44 @@ table {
   margin: 1ex;
 }
 
-/* added added added */
-
-.bodyandsidetoc {
-  display: flex;
-}
-.sidetoccontainer {
-  order: 1;
-  float: none;
-  position: sticky;
-  overflow: scroll;
-  top: 3em;
-  height: 100vh;
-}
-
-main.bodycontainer {
-  order: 2;
-}
-
-#local-toc-container {
-  order: 3;
-  position: sticky;
-  overflow: scroll;
-  height: 100vh;
-}
-
 nav.sidetoc .sidetoccontents p {
-  margin: 0 0.5em;
+  margin: 0;
   font-size: 110%;
 }
 
-.sidetoccontents > p.current-part {
+nav.sidetoc .sidetoccontents > p.current-part {
   background-color: rgb(219, 221, 243);
 }
 
-.sidetoccontents > p.current {
+nav.sidetoc .sidetoccontents > p.current {
   background-color: rgb(195, 199, 241);
 }
 
-.sidetoccontents p a {
+nav.sidetoc .sidetoccontents a {
   display: block;
-  padding: 0.6em 0.3em;
+  padding: 0.5em 0.3em;
+  text-indent: -0.5em;
+  font-weight: bold;
+  font-size: 0.85em;
 }
 
 .sidetoccontents p:hover {
   background-color: rgb(174, 178, 240);
 }
 
-.sidetoccontents .toc-intro-link {
-  text-indent: 0;
-  margin-left: 0;
+nav.sidetoc .sidetoccontents a.tocpart,
+nav.sidetoc .sidetoccontents a.linkhome,
+nav.sidetoc .sidetoccontents a.linkintro,
+nav.sidetoc .sidetoccontents a.tocsubsection {
+  margin-left: 1em;
 }
 
-.bodycontainer {
-  float: none;
+nav.sidetoc .sidetoccontents a.tocsection,
+nav.sidetoc .sidetoccontents a.tocsubsubsection {
+  font-weight: normal;
+  margin-left: 1.3em;
+  padding-left: 1.3em;
+  border-left: 1px solid rgb(75, 78, 114);
 }
 
 .hl-def {
@@ -173,4 +335,62 @@ nav.sidetoc .sidetoccontents p {
 
 #local-toc-container a.current {
   background-color: rgb(195, 199, 241);
+}
+
+
+
+/* Home page */
+
+.manual-title-block {
+  text-align: center;
+  border: 1px solid black;
+  margin: 0 auto;
+  padding: 1em 0;
+  max-width: 838px;
+}
+
+.manual-title {
+  font-size: 2.5em;
+}
+
+.manual-version {
+  font-size: 1.5em;
+}
+
+.manual-author {
+  font-size: 1.3em;
+  font-style: italic;
+  margin: 1em 0 0.3em 0;
+}
+
+.manual-authorship-explanation,
+.manual-html-explanation {
+  margin: 0 auto;
+  max-width: 40em;
+  font-size: 1em;
+}
+
+.manual-html-explanation {
+  margin-top: 0.5em;
+}
+
+.titlepagepic {
+  margin: 0 auto;
+  margin-top: 1em;
+  max-width: 842px;
+  object-fit: scale-down;
+}
+
+.titlepagepic img {
+  height: auto;
+}
+
+.dedication {
+  margin: 0 auto;
+  padding: 1em 0;
+  max-width: 840px;
+}
+
+.dedicationsignature {
+  text-align: right;
 }
