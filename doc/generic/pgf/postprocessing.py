@@ -12,6 +12,7 @@ copyfile("style.css", "processed/style.css")
 copyfile("lwarp.css", "processed/lwarp.css")
 copyfile("pgfmanual.js", "processed/pgfmanual.js")
 copytree("pgfmanual-images", "processed/pgfmanual-images", dirs_exist_ok=True)
+copytree("standalone", "processed/standalone", dirs_exist_ok=True)
 
 ## table of contents and anchor links
 def rearrange_heading_anchors(soup):
@@ -316,17 +317,33 @@ def add_footer(soup):
     footer.append(footer_right)
     soup.find(class_="bodyandsidetoc").append(footer)
 
+def _add_dimensions(tag, svgfilename):
+    with open(svgfilename, "r") as svgfile:
+        svg = minidom.parse(svgfile)
+        width_pt = svg.documentElement.getAttribute("width").replace("pt", "")
+        height_pt = svg.documentElement.getAttribute("height").replace("pt", "")
+        width_px = float(width_pt) * 1.33333
+        height_px = float(height_pt) * 1.33333
+        tag['width'] = "{:.3f}".format(width_px)
+        tag['height'] = "{:.3f}".format(height_px)
+
 def write_svg_dimensions(soup):
     for tag in soup.find_all("img"):
-        if "svg" in tag['src']:
-            with open(tag['src'], "r") as svgfile:
-                svg = minidom.parse(svgfile)
-                width_pt = svg.documentElement.getAttribute("width").replace("pt", "")
-                height_pt = svg.documentElement.getAttribute("height").replace("pt", "")
-                width_px = float(width_pt) * 1.33333
-                height_px = float(height_pt) * 1.33333
-                tag['width'] = "{:.3f}".format(width_px)
-                tag['height'] = "{:.3f}".format(height_px)
+        if "svg" in tag['src']: 
+            _add_dimensions(tag, tag['src'])
+    for tag in soup.find_all("object"):
+        if "svg" in tag['data']: 
+            _add_dimensions(tag, tag['data'])
+
+def rewrite_svg_links(soup):
+    for tag in soup.find_all("a"):
+        if tag.has_attr('href') and "svg" in tag['href']:
+            img = tag.img
+            if "inlineimage" in img['class']:
+                object = soup.new_tag('object')
+                object['data'] = img['src']
+                object['type'] = "image/svg+xml"
+                tag.replace_with(object)
 
 for filename in sorted(os.listdir(".")):
     if filename.endswith(".html"):
@@ -352,6 +369,7 @@ for filename in sorted(os.listdir(".")):
                 remove_html_from_links(filename, soup)
                 remove_useless_elements(soup)
                 addClipboardButtons(soup)
+                rewrite_svg_links(soup)
                 write_svg_dimensions(soup)
                 add_header(soup)
                 soup.find(class_="bodyandsidetoc")['class'].append("grid-container")

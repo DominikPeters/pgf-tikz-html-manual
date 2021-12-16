@@ -1254,6 +1254,7 @@ The final method of changing the transformation matrix is to animate a
 
 \begin{codeexample}[
     width=2cm,
+    animation list={0.5,1,1.5,2},
     preamble={\usepgfmodule{animations}
 \usetikzlibrary{views}},
 ]
@@ -1312,7 +1313,7 @@ also the key |end|, allow you to specify answers to these questions.
     will run, relative to the moment when the graphic is displayed from 3\,s to
     4\,s.
     %
-\begin{codeexample}[preamble={\usepgfmodule{animations}},width=3cm]
+\begin{codeexample}[preamble={\usepgfmodule{animations}},width=3cm,animation list={0.5,1,1.5,2},]
 \tikz [very thick] {
   \pgfanimateattribute{rotate}{
     whom = node, begin = 2s, end = 4s,

@@ -1741,7 +1741,8 @@
     }%
   \fi%
   \ifcode@hidden\else
-    \begin{BlockClass}{example}%
+  \begin{BlockClass}{example}%
+    \ifx\code@imagesource\pgfutil@empty
       \ifcode@execute%
         \begin{BlockClass}{example-image}%
         \ifx\code@render\pgfutil@empty%
@@ -1759,80 +1760,25 @@
           }%
         \fi
         \end{BlockClass}% % end example-image
-        \def\code@mid{}%
-        \def\code@width{\linewidth-6pt}%
-        \def\code@end{}%
-      \else%
-        \def\code@mid{}
-        \def\code@width{\linewidth-6pt}
-        \def\code@end{}
       \fi%
-      \code@mid%
-      \pgfkeysvalueof{/codeexample/prettyprint/base color}%
-      \begin{BlockClass}{example-code}%
-            \pgfmanualdolisting{#1}%
-      \end{BlockClass}% % end example-code
-      \code@end%
-      \par%
-      \medskip
-    \end{BlockClass}% % end example
-  \fi
-  \endcodeexample\endgroup%
-}
-
-%%%%%%% IMAGE IMPORT VERSION *********
-\def\imagecodeexample[#1]{%
-  \global\let\pgfmanual@do@this\relax%
-  \aftergroup\pgfmanual@do@this%
-  \begingroup%
-  \code@executetrue%
-  \pgfqkeys{/codeexample}{every codeexample,#1}%
-  \pgfmanualswitchoncolors%
-  \ifcodeexamplefromfile\begingroup\fi
-  \codeexample@tabinit% assigns \codeexample@tabinit@[catcode,replacementchars]
-  \parindent0pt
-  \begingroup%
-  \par% this \par is not inside \ifcode@hidden because we want to switch to vmode
-  \ifcode@hidden\else
-    \medskip%
-  \fi
-  \let\do\@makeother%
-  \dospecials%
-  \obeylines%
-  \@vobeyspaces%
-  \catcode`\%=13%
-  \catcode`\^^M=13%
-  \code@catcode@hook%
-  \codeexample@tabinit@catcode
-  \relax%
-  \ifcodeexamplefromfile%
-    \expandafter\do@codeexamplefromfile%
-  \else%
-    \expandafter\find@example%
-  \fi}
-\def\endofcodeexample#1{%
-  \endgroup%
-  \begin{BlockClass}{example}%
-    \begin{BlockClass}{example-image}%
-    \includegraphics[width=\code@imagewidth]{\code@imagesource}%
-    \end{BlockClass}% % end example-image
-    \def\code@mid{}%
-    \def\code@width{\linewidth-6pt}%
-    \def\code@end{}%
-    \code@mid%
+    \else%
+      \begin{BlockClass}{example-image}%
+        \includegraphics{\code@imagesource}%
+      \end{BlockClass}%
+    \fi%
+    \def\code@width{\linewidth-6pt}
     \pgfkeysvalueof{/codeexample/prettyprint/base color}%
     \begin{BlockClass}{example-code}%
           \pgfmanualdolisting{#1}%
     \end{BlockClass}% % end example-code
-    \code@end%
     \par%
     \medskip
   \end{BlockClass}% % end example
+  \fi
   \endcodeexample\endgroup%
 }
-%%%%%%% END IMAGE IMPORT VERSION *********
 
-
+% \input{pgfmanual-en-macros-imagecode.tex}
 
 \def\endcodeexample{\endgroup}
 \newbox\codeexampleboxanim

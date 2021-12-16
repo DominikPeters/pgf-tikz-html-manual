@@ -477,20 +477,7 @@ braces:
     Just as for nodes, you can use the attribute--colon syntax to add an
     animation to a pic:
     %
-\begin{codeexample}[
-    preamble={\usetikzlibrary{animations}},
-    animation list={0.5,1,1.5,2},
-    pre={\tikzset{
-  seagull/.pic={
-    % Code for a "seagull". Do you see it?...
-    \coordinate (-left wing) at (-3mm,0);
-    \coordinate (-head)      at (0,0);
-    \coordinate (-right wing) at (3mm,0);
-    %
-    \draw (-left wing) to [bend left] (0,0) (-head) to [bend left] (-right wing);
-  }
-}},
-]
+\begin{codeexample}[preamble={\usetikzlibrary{animations}}, animation list={0.5,1,1.5,2}, pre={\tikzset{seagull/.pic={\coordinate (-left wing) at (-3mm,0);\coordinate (-head) at (0,0); \coordinate (-right wing) at (3mm,0); \draw (-left wing) to [bend left] (0,0) (-head) to [bend left] (-right wing);  }}},]
 \tikz {
   \pic :rotate={0s="0", 20s="90"} {seagull};
   \pic at (1.5,1.5)               {seagull};

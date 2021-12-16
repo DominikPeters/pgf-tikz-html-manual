@@ -71,7 +71,7 @@ Adding an animation to a \tikzname\ picture is done as follows:
 As a simple example, let us move a circle within thirty seconds by three
 centimeters to the left:
 %
-\begin{codeexample}[width=2cm,preamble={\usetikzlibrary{animations}}]
+\begin{codeexample}[width=2cm,preamble={\usetikzlibrary{animations}},animation list={0.5,1,1.5,2},]
 \tikz \draw :xshift = {0s = "0cm", 30s = "-3cm", repeats} (0,0) circle (5mm);
 \end{codeexample}
 
@@ -288,7 +288,7 @@ creating these timelines.
     styles for this key path and use them. For instance, we can define a
     |shake| animation like this:
     %
-\begin{codeexample}[width=4cm,preamble={\usetikzlibrary{animations}}]
+\begin{codeexample}[width=4cm,preamble={\usetikzlibrary{animations}},animation list={0.5,1,1.5,2},]
 \tikzset{
   animate/shake/.style = {myself:xshift = { begin on=click,
       0s = "0mm", 50ms = "#1", 150ms = "-#1", 250ms = "#1", 300ms = "0mm" }}}
@@ -2135,7 +2135,7 @@ to these questions.
     will run, relative to the moment when the graphic is displayed from 3\,s to
     4\,s.
     %
-\begin{codeexample}[preamble={\usetikzlibrary{animations}}]
+\begin{codeexample}[preamble={\usetikzlibrary{animations}},animation list={0.5,1,1.5,2},]
 \tikz \node [fill = green!50!black, text = white]
     :rotate = { 1s = "0", 5s = "90", begin = 2s, end = 4s }
   {Click me};
@@ -2172,7 +2172,7 @@ the moment a specific \emph{event} happens using the following key:
         referenced object is the node with the label |2| since it is the most
         recently referenced node with \meta{id} |X|.
         %
-\begin{codeexample}[width=3cm,preamble={\usetikzlibrary{animations}}]
+\begin{codeexample}[width=3cm,preamble={\usetikzlibrary{animations}},animation list={0.5,1,1.5,2},]
 \tikz [very thick] {
   \node (X) at (1,1.2)  [fill = blue!20, draw = blue, circle] {1};
   \node (X) at (1,0.4)  [fill = orange!20, draw = orange, circle] {2};
@@ -2188,7 +2188,7 @@ the moment a specific \emph{event} happens using the following key:
         the next) object with the given \meta{id}, not to a previous one. This,
         in the next example, the referenced node is the one with label |3|.
         %
-\begin{codeexample}[width=3cm,preamble={\usetikzlibrary{animations}}]
+\begin{codeexample}[width=3cm,preamble={\usetikzlibrary{animations}},animation list={0.5,1,1.5,2},]
 \tikz [very thick] {
   \node (X) at (1,1.2)  [fill = blue!20, draw = blue, circle] {1};
   \node (X) at (1,0.4)  [fill = blue!20, draw = blue, circle] {2};
@@ -2217,7 +2217,7 @@ the moment a specific \emph{event} happens using the following key:
             when the user clicks on the triggering object with a mouse (or
             something equivalent).
             %
-\begin{codeexample}[width=2cm,preamble={\usetikzlibrary{animations}}]
+\begin{codeexample}[width=2cm,preamble={\usetikzlibrary{animations}},animation list={0.5,1,1.5,2},]
 \tikz \node :rotate = { 0s="0", 2s="90", begin on = {click}}
   [fill = blue!20, draw = blue, circle, ultra thick] {Here!};
 \end{codeexample}
@@ -2227,7 +2227,7 @@ the moment a specific \emph{event} happens using the following key:
             Shorthand for |event=mousedown|. The event gets triggered when the
             user presses a mouse button down on the object.
             %
-\begin{codeexample}[width=2cm,preamble={\usetikzlibrary{animations}}]
+\begin{codeexample}[width=2cm,preamble={\usetikzlibrary{animations}},animation list={0.5,1,1.5,2},]
 \tikz \node :rotate = { 0s="0", 2s="90", begin on = {mouse down}}
   [fill = blue!20, draw = blue, circle, ultra thick] {Here!};
 \end{codeexample}
@@ -2237,7 +2237,7 @@ the moment a specific \emph{event} happens using the following key:
             Shorthand for |event=mouseup| and gets triggered, of course, when a
             pressed button is released on the object.
             %
-\begin{codeexample}[width=2cm,preamble={\usetikzlibrary{animations}}]
+\begin{codeexample}[width=2cm,preamble={\usetikzlibrary{animations}},animation list={0.5,1,1.5,2}]
 \tikz \node :rotate = { 0s="0", 2s="90", begin on = {mouse up} }
   [fill = blue!20, draw = blue, circle, ultra thick] {Here!};
 \end{codeexample}
@@ -2247,7 +2247,7 @@ the moment a specific \emph{event} happens using the following key:
             Shorthand for |event=mouseover|. The event gets triggered the
             moment the mouse cursor moves over the object.
             %
-\begin{codeexample}[width=2cm,preamble={\usetikzlibrary{animations}}]
+\begin{codeexample}[width=2cm,preamble={\usetikzlibrary{animations}},animation list={0.5,1,1.5,2}]
 \tikz \node :rotate = { 0s="0", 2s="90", begin on = {mouse over} }
   [fill = blue!20, draw = blue, circle, ultra thick] {Here!};
 \end{codeexample}
@@ -2258,7 +2258,7 @@ the moment a specific \emph{event} happens using the following key:
             times, namely each time the mouse moves while being ``over'' the
             object.
             %
-\begin{codeexample}[width=2cm,preamble={\usetikzlibrary{animations}}]
+\begin{codeexample}[width=2cm,preamble={\usetikzlibrary{animations}},animation list={0.5,1,1.5,2}]
 \tikz \node :rotate = { 0s="0", 2s="90", begin on = {mouse move} }
   [fill = blue!20, draw = blue, circle, ultra thick] {Here!};
 \end{codeexample}
@@ -2268,7 +2268,7 @@ the moment a specific \emph{event} happens using the following key:
             Shorthand for |event=mouseout|. The opposite of |mouse over|:
             triggered when the mouse leaves the object.
             %
-\begin{codeexample}[width=2cm,preamble={\usetikzlibrary{animations}}]
+\begin{codeexample}[width=2cm,preamble={\usetikzlibrary{animations}},animation list={0.5,1,1.5,2}]
 \tikz \node :rotate = { 0s="0", 2s="90", begin on = {mouse out} }
   [fill = blue!20, draw = blue, circle, ultra thick] {Here!};
 \end{codeexample}
@@ -2280,7 +2280,7 @@ the moment a specific \emph{event} happens using the following key:
             |of whom|. This means that the current animation will begin when
             some other animation begins.
             %
-\begin{codeexample}[width=2cm,preamble={\usetikzlibrary{animations}}]
+\begin{codeexample}[width=2cm,preamble={\usetikzlibrary{animations}},animation list={0.5,1,1.5,2}]
 \tikz \node [animate = {
       myself:rotate = { 0s="0", 2s="90", begin on = {begin, of next=anim}},
       myself:xshift = { 0s="0mm", 2s="5mm", begin on = {click}, name=anim}
@@ -2295,7 +2295,7 @@ the moment a specific \emph{event} happens using the following key:
             This means that the current animation will \emph{begin} when some
             other animation \emph{ends}.
             %
-\begin{codeexample}[width=2cm,preamble={\usetikzlibrary{animations}}]
+\begin{codeexample}[width=2cm,preamble={\usetikzlibrary{animations}},animation list={0.5,1,1.5,2}]
 \tikz \node [animate = {
     myself:rotate = { 0s="0", 2s="90", begin on = {end, of next=anim}},
     myself:xshift = { 0s="0mm", 2s="5mm", begin on = {click}, name=anim }
@@ -2370,7 +2370,7 @@ should happen:
         \item |false| means that once the animation has started once, it will
             never be restarted.
             %
-\begin{codeexample}[width=2cm,preamble={\usetikzlibrary{animations}}]
+\begin{codeexample}[width=2cm,preamble={\usetikzlibrary{animations}},animation list={0.5,1,1.5,2}]
 \tikz \node :rotate = { 0s="0", 2s="90",
                         restart = false, begin on = {click}}
     [fill = blue!20, draw = blue, circle, ultra thick] {Here!};
@@ -2380,7 +2380,7 @@ should happen:
         \item |when not active| means that the animation will restart when the
             event is triggered, but \emph{not} while the animation is running.
             %
-\begin{codeexample}[width=2cm,preamble={\usetikzlibrary{animations}}]
+\begin{codeexample}[width=2cm,preamble={\usetikzlibrary{animations}},animation list={0.5,1,1.5,2}]
 \tikz \node :rotate = { 0s="0", 2s="90",
                         restart = when not active, begin on = {click}}
     [fill = blue!20, draw = blue, circle, ultra thick] {Here!};
@@ -2684,12 +2684,11 @@ animation at different points in time and which can then be inserted alongside
 each other into the printed document. This approach has been used with the
 examples of animations in this manual.
 %
-% TODO broken
-% \begin{codeexample}[preamble={\usetikzlibrary{animations}}]
-% \foreach \t in {0.5, 1, 1.5, 2}
-%   \tikz [make snapshot of = \t]
-%     \fill :fill = {0s="black", 2s="red"} (0,0) circle [radius = 5mm];
-% \end{codeexample}
+\begin{codeexample}[preamble={\usetikzlibrary{animations}},animation list={0.5,1,1.5,2}]
+\foreach \t in {0.5, 1, 1.5, 2}
+  \tikz [make snapshot of = \t]
+    \fill :fill = {0s="black", 2s="red"} (0,0) circle [radius = 5mm];
+\end{codeexample}
 
 Creating snapshots is done using the following key:
 
