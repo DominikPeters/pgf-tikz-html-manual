@@ -22,6 +22,7 @@ function updateTOC() {
     li.parentElement.classList.remove("current");
     if (li.href.includes(current)) {
       li.parentElement.classList.add("current");
+      li.parentElement.scrollIntoView({block: "nearest"});
     }
   });
 }
@@ -60,4 +61,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
   };
 
   initClipboardButtons();
+});
+
+window.addEventListener("load", () => {
+  document.querySelector("#chapter-toc-container p.current").scrollIntoView({block: "nearest"});
 });

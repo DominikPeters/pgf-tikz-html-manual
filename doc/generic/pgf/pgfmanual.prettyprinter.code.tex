@@ -236,6 +236,8 @@
 \newif\ifpgfmanualprettyenabled
 \pgfmanualprettyenabledtrue
 
+\def\HTMLCodeSpace{\HTMLunicode{2007}}
+
 % User interface command to handle unmatched braces:
 %
 % It expands to '\}'  unless the preceding argument had unmatched braces.
@@ -402,7 +404,7 @@
                                     \def\pgfmanual@decidedAndPrinted{1}%
                                 \fi
                                 \ifx\pgfmanual@loc@TMPa\pgfmanual@pretty@activespace%
-                                    ~%
+                                    \HTMLCodeSpace%
                                     \def\pgfmanual@decidedAndPrinted{1}%
                                 \fi
                                 % \ifx\pgfmanual@loc@TMPa\pgfmanual@pretty@activetab%
@@ -925,7 +927,7 @@
                     \def\pgfmanual@decidedAndPrinted{1}%
                 \fi
                 \ifx\pgfmanual@loc@TMPa\pgfmanual@pretty@activespace%
-                    ~%
+                    \HTMLCodeSpace%
                     \def\pgfmanual@decidedAndPrinted{1}%
                 \fi
                 \if\pgfmanual@decidedAndPrinted0%

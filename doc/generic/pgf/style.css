@@ -115,6 +115,7 @@ main.bodycontainer {
   grid-area: content;
   float: none;
   width: 100%;
+  max-width: 100vw;
   padding-bottom: 40px;
 }
 
@@ -125,6 +126,7 @@ nav {
   margin: 0;
   max-height: calc(100vh - var(--header-height));
   overflow: scroll;
+  scroll-padding: 100px;
 }
 
 footer {
@@ -144,7 +146,7 @@ header h1 {
 header h1 a,
 header h1 a:visited,
 header h1 a:hover {
-  color: #fff;
+  color: #fff !important;
   text-decoration: none;
 }
 
@@ -160,7 +162,7 @@ header h1 a:hover {
     font-size: 1.5em;
     margin-left: 1em;
   }
-  
+
   .search-input {
     margin-right: 1em;
     width: 14em;
@@ -184,11 +186,11 @@ h4 {
 .example {
   display: flex;
   align-items: stretch;
+  flex-wrap: wrap;
   margin: 1em;
 }
 .example-image {
   background-color: rgb(245, 245, 204);
-  /* padding: 0.5em; */
 }
 .example-image p {
   margin: 0;
@@ -202,6 +204,7 @@ h4 {
   background: #e5e5ff;
   font-family: monospace;
   position: relative;
+  overflow-wrap: break-word;
 }
 .clipboardButton {
   position: absolute;
@@ -336,8 +339,6 @@ nav.sidetoc .sidetoccontents a.tocsubsubsection {
 #local-toc-container a.current {
   background-color: rgb(195, 199, 241);
 }
-
-
 
 /* Home page */
 
