@@ -253,31 +253,47 @@ def add_header(soup):
     link.append(k)
     link.append("Z Manual")
     header.append(h1)
-    search_input = soup.new_tag('input', type="search", placeholder="Search..")
-    search_input['class'] = "search-input"
-    header.append(search_input)
     soup.find(class_="bodyandsidetoc").insert(0, header)
 
-    # import search elements
-    link = soup.new_tag('link', rel="stylesheet", href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css")
+    # Docsearch 2
+    # search_input = soup.new_tag('input', type="search", placeholder="Search..")
+    # search_input['class'] = "search-input"
+    # header.append(search_input)
+
+    # link = soup.new_tag('link', rel="stylesheet", href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css")
+    # soup.head.append(link)
+
+    # script = soup.new_tag('script', src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js")
+    # soup.body.append(script)
+    # script = soup.new_tag('script')
+    # script.append("""
+    #   docsearch({
+    #     apiKey: 'ae66ec3fc9df4b52b4d6f24fc8508fd3',
+    #     indexName: 'tikz.dev',
+    #     appId: 'Q70NNMA9GC',
+    #     inputSelector: '.search-input',
+    #     // Set debug to true to inspect the dropdown
+    #     debug: false,
+    # });
+    # """)
+    # soup.body.append(script)
+
+    # Docsearch 3
+    search_input = soup.new_tag('div', id="search")
+    header.append(search_input)
+
+    link = soup.new_tag('link', rel="stylesheet", href="https://unpkg.com/@docsearch/css@alpha")
     soup.head.append(link)
 
-    script = soup.new_tag('script', src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js")
+    script = soup.new_tag('script', src="https://cdn.jsdelivr.net/npm/@docsearch/js@alpha")
     soup.body.append(script)
     script = soup.new_tag('script')
     script.append("""
       docsearch({
-        // Your Search API Key
         apiKey: 'ae66ec3fc9df4b52b4d6f24fc8508fd3',
-        // The index populated by the DocSearch scraper
         indexName: 'tikz.dev',
-        // Your Algolia Application ID
         appId: 'Q70NNMA9GC',
-        // Replace inputSelector with a CSS selector
-        // matching your search input
-        inputSelector: '.search-input',
-        // Set debug to true to inspect the dropdown
-        debug: false,
+        container: '#search',
     });
     """)
     soup.body.append(script)
