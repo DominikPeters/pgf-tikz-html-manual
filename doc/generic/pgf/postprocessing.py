@@ -126,6 +126,7 @@ def shorten_sidetoc_and_add_part_header(soup):
             if file_id == my_file_id:
                 assert 'class' not in entry
                 entry['class'] = ["current"]
+                soup.title.string = entry.a.get_text() + " - PGF/TikZ Manual"
                 my_part = element
         elif "tocsection" in entry.a['class']:
             element = {
@@ -137,6 +138,7 @@ def shorten_sidetoc_and_add_part_header(soup):
             if file_id == my_file_id:
                 assert 'class' not in entry
                 entry['class'] = ["current"]
+                soup.title.string = entry.a.get_text() + " - PGF/TikZ Manual"
                 my_part = last_part
         else:
             print(f"unknown class: {entry.a['class']}")
@@ -280,6 +282,16 @@ def add_header(soup):
     """)
     soup.body.append(script)
 
+def favicon(soup):
+    link = soup.new_tag('link', rel="icon", type="image/png", sizes="16x16", href="/favicon-16x16.png")
+    soup.head.append(link)
+    link = soup.new_tag('link', rel="icon", type="image/png", sizes="32x32", href="/favicon-32x32.png")
+    soup.head.append(link)
+    link = soup.new_tag('link', rel="apple-touch-icon", type="image/png", sizes="180x180", href="/apple-touch-icon.png")
+    soup.head.append(link)
+    link = soup.new_tag('link', rel="manifest", href="/site.webmanifest")
+    soup.head.append(link)
+
 def add_footer(soup):
     footer = soup.new_tag('footer')
     footer_left = soup.new_tag('div', class_="footer-left")
@@ -372,8 +384,10 @@ for filename in sorted(os.listdir(".")):
                 rewrite_svg_links(soup)
                 write_svg_dimensions(soup)
                 add_header(soup)
+                favicon(soup)
                 soup.find(class_="bodyandsidetoc")['class'].append("grid-container")
                 if filename == "index-0.html":
+                    soup.h4.decompose() # don't need header on start page
                     write_to_file(soup, "processed/index.html")
                 else:
                     write_to_file(soup, "processed/"+filename)
