@@ -155,7 +155,7 @@ def shorten_sidetoc_and_add_part_header(soup):
                 h2['class'] = ['inserted']
                 # contents = part['tag'].a.contents[1:]
                 # h2.append(contents[1].replace("\u2003", ""))
-                part_name = str(part['tag'].a.string)
+                part_name = part['tag'].a.get_text()
                 assert part_name is not None
                 h2.append(part_name)
                 soup.h1.insert_after(h2)
@@ -375,19 +375,12 @@ def rewrite_svg_links(soup):
 
 for filename in sorted(os.listdir(".")):
     if filename.endswith(".html"):
-        if filename in ["description.html", "pgfmanual_html.html"]:
+        if filename in ["description.html", "pgfmanual_html.html", "home.html"]:
             continue
         else:
             print(f"Processing {filename}")
             with open(filename, "r") as fp:
                 soup = BeautifulSoup(fp, 'html5lib')
-                if filename == "home.html":
-                    remove_html_from_links(filename, soup)
-                    remove_mathjax_if_possible(filename, soup)
-                    # add_header(soup)
-                    # add_footer(soup)
-                    write_to_file(soup, "processed/"+filename)
-                    continue
                 add_footer(soup)
                 shorten_sidetoc_and_add_part_header(soup)
                 rearrange_heading_anchors(soup)
@@ -404,6 +397,10 @@ for filename in sorted(os.listdir(".")):
                 soup.find(class_="bodyandsidetoc")['class'].append("grid-container")
                 if filename == "index-0.html":
                     soup.h4.decompose() # don't need header on start page
+                    meta = soup.new_tag('meta', content="Full online version of the documentation of PGF/TikZ, the TeX package for creating graphics.")
+                    meta['name'] = "description"
+                    soup.head.append(meta)
+                    soup.title.string = "PGF/TikZ Manual - Complete Online Documentation"
                     write_to_file(soup, "processed/index.html")
                 else:
                     write_to_file(soup, "processed/"+filename)
