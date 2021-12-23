@@ -13,3 +13,4 @@
 build/*
 .DS_Store
 *_html_inc.tex
+doc/generic/pgf/versions-pre-standalone/*

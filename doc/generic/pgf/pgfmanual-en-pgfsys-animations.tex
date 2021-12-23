@@ -161,9 +161,7 @@ driver implements):
     %
     Now the example, where the circle will disappear, when clicked:
     %
-\begin{codeexample}[
-    preamble={\usetikzlibrary{animations}},
-    animation list={0.5,1,1.5,2}]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-1.svg}]
 \animationexample{node}{}{
   \pgfsysanimkeytime{0}{1}{1}{0}{0}
   \pgfsysanimvalscalar{1}
@@ -217,7 +215,7 @@ The ``opposite'' of |\pgfsysanimate| is the following command:
             numerically stable.
     \end{enumerate}
     %
-\begin{codeexample}[width=5cm,preamble={\usetikzlibrary{animations}},animation list={0.5,1,1.5,2},]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-2.svg}]
 \foreach \t in {0.5,1,1.5,2} {
   \pgfsysanimsnapshot{\t}
   \tikz {
@@ -261,10 +259,7 @@ visibility, and opacity.
 
     Specify values with |\pgfsysanimvalscalar|.
     %
-\begin{codeexample}[
-    preamble={\usetikzlibrary{animations}},
-    animation list={0.5,1,1.5,2},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-3.svg}]
 \animationexample{node}{}{
   \pgfsysanimkeytime{0}{1}{1}{0}{0}
   \pgfsysanimvalscalar{1}
@@ -281,10 +276,7 @@ visibility, and opacity.
 
     Specify values with |\pgfsysanimvalscalar|.
     %
-\begin{codeexample}[
-    preamble={\usetikzlibrary{animations}},
-    animation list={0.5,1,1.5,2},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-4.svg}]
 \animationexample{node}{}{
   \pgfsysanimkeytime{0}{1}{1}{0}{0}
   \pgfsysanimvalscalar{1}
@@ -301,10 +293,7 @@ visibility, and opacity.
 
     Specify values with |\pgfsysanimvalscalar|.
     %
-\begin{codeexample}[
-    preamble={\usetikzlibrary{animations}},
-    animation list={0.5,1,1.5,2},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-5.svg}]
 \animationexample{node}{}{
   \pgfsysanimkeytime{0}{1}{1}{0}{0}
   \pgfsysanimvalscalar{1}
@@ -322,10 +311,7 @@ visibility, and opacity.
     Specify values with |\pgfsysanimvaltext|. However, only two values are
     allowed: |visible| and |hidden|.
     %
-\begin{codeexample}[
-    preamble={\usetikzlibrary{animations}},
-    animation list={-1,0,1,2,3},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-6.svg}]
 \animationexample{node}{}{
   \pgfsysanimkeytime{0}{1}{1}{0}{0}
   \pgfsysanimvaltext{hidden}
@@ -342,10 +328,7 @@ visibility, and opacity.
 
     Specify values with |\pgfsysanimvalcolorrgb| and friends.
     %
-\begin{codeexample}[
-    preamble={\usetikzlibrary{animations}},
-    animation list={0.5,1,1.5,2},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-7.svg}]
 \animationexample{node}{}{
   \pgfsysanimkeytime{0}{1}{1}{0}{0}
   \pgfsysanimvalcolorrgb{0}{0}{0}
@@ -362,10 +345,7 @@ visibility, and opacity.
 
     Specify values with |\pgfsysanimvalcolorrgb| and friends.
     %
-\begin{codeexample}[
-    preamble={\usetikzlibrary{animations}},
-    animation list={0.5,1,1.5,2},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-8.svg}]
 \animationexample{node}{}{
   \pgfsysanimkeytime{0}{1}{1}{0}{0}
   \pgfsysanimvalcolorrgb{0}{0}{0}
@@ -391,11 +371,7 @@ The following attributes influence paths and how they are rendered.
 
     Specify values with |\pgfsysanimvalpath|.
     %
-\begin{codeexample}[
-    preamble={\usetikzlibrary{animations}},
-    animation list={0.5,1,1.5,2},
-    animation bb={(0.9,-0.1)rectangle(2.1,1.1)},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-9.svg}]
 \animationexample{my path}{path}{
   \pgfsysanimkeytime{0}{1}{1}{0}{0}
   \pgfsysanimvalpath{\pgfsys@moveto{1cm}{0cm}%
@@ -490,11 +466,7 @@ The following attributes influence paths and how they are rendered.
         animations may use different arrow tips / markers. This allows you to
         animate (change) which arrow tip is used on a path over time.
         %
-\begin{codeexample}[
-    preamble={\usetikzlibrary{animations}},
-    animation list={0.5,1,1.5,2},
-    animation bb={(0.7,-0.3)rectangle(2.3,1.3)},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-10.svg}]
 % Declare a marker:
 \pgfsys@marker@declare\mymarker{%
   \pgfscope%
@@ -533,10 +505,7 @@ The following attributes influence paths and how they are rendered.
 
     Specify values with |\pgfsysanimvaldimension|.
     %
-\begin{codeexample}[
-    preamble={\usetikzlibrary{animations}},
-    animation list={0.5,1,1.5,2},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-11.svg}]
 \animationexample{node}{}{
   \pgfsysanimkeytime{0}{1}{1}{0}{0}
   \pgfsysanimvaldimension{1pt}
@@ -553,10 +522,7 @@ The following attributes influence paths and how they are rendered.
 
     Specify values with |\pgfsysanimvaldash|.
     %
-\begin{codeexample}[
-    preamble={\usetikzlibrary{animations}},
-    animation list={0.5,1,1.5,2},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-12.svg}]
 \animationexample{node}{}{
   \pgfsysanimkeytime{0}{1}{1}{0}{0}
   \pgfsysanimvaldash{1pt,10pt}{0pt}
@@ -566,10 +532,7 @@ The following attributes influence paths and how they are rendered.
 }
 \end{codeexample}
     %
-\begin{codeexample}[
-    preamble={\usetikzlibrary{animations}},
-    animation list={0.5,1,1.5,2},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-13.svg}]
 \animationexample{node}{}{
   \pgfsysanimkeytime{0}{1}{1}{0}{0}
   \pgfsysanimvaldash{1cm,1pt}{0pt}
@@ -579,10 +542,7 @@ The following attributes influence paths and how they are rendered.
 }
 \end{codeexample}
     %
-\begin{codeexample}[
-    preamble={\usetikzlibrary{animations}},
-    animation list={0.5,1,1.5,2},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-14.svg}]
 \animationexample{node}{}{
   \pgfsysanimkeytime{0}{1}{1}{0}{0}
   \pgfsysanimvaldash{3pt,1pt}{0pt}
@@ -694,42 +654,26 @@ first.
     \pgfsysanimate{rotate}
     \fill [ball color=blue,name=ball] (1,0) circle [radius=3mm]; } }
 
-\begin{codeexample}[
-    width=9.9cm,
-    preamble={\usetikzlibrary{animations}},
-    animation list={0.5,1,1.5,2},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-15.svg}]
 \animationcanvasexample
 {}
 {}
 \end{codeexample}
     %
-\begin{codeexample}[
-    width=9.9cm,
-    preamble={\usetikzlibrary{animations}},
-    animation list={0.5,1,1.5,2},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-16.svg}]
 \animationcanvasexample
 {\pgfsys@transformshift{10mm}{0mm}}
 {\pgfsys@transformshift{-10mm}{0mm}}
 \end{codeexample}
     %
-\begin{codeexample}[
-    width=9.9cm,
-    preamble={\usetikzlibrary{animations}},
-    animation list={0.5,1,1.5,2},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-17.svg}]
 \animationcanvasexample
 {\pgfsys@transformcm{0.5}{0.5}{-0.5}{0.5}
                     {0pt}{0pt}}
 {}
 \end{codeexample}
     %
-\begin{codeexample}[
-    width=9.9cm,
-    preamble={\usetikzlibrary{animations}},
-    animation list={0.5,1,1.5,2},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-18.svg}]
 \animationcanvasexample
 {\pgfsys@transformcm{0.5}{0.5}{-0.5}{0.5}
                     {0pt}{0pt}}
@@ -745,10 +689,7 @@ first.
 
     Specify values with |\pgfsysanimvaltranslate|.
     %
-\begin{codeexample}[
-    preamble={\usetikzlibrary{animations}},
-    animation list={0.5,1,1.5,2},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-19.svg}]
 \animationexample{node}{}{
   \pgfsysanimkeytime{0}{1}{1}{0}{0}
   \pgfsysanimvaltranslate{0cm}{0cm}%
@@ -766,10 +707,7 @@ first.
 
     Specify values with |\pgfsysanimvalscale|.
     %
-\begin{codeexample}[
-    preamble={\usetikzlibrary{animations}},
-    animation list={0.5,1,1.5,2},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-20.svg}]
 \animationexample{node}{}{
   \pgfsysanimkeytime{0}{1}{1}{0}{0}
   \pgfsysanimvalscale{1}{1}%
@@ -786,10 +724,7 @@ first.
 
     Specify values with |\pgfsysanimvalscalar|.
     %
-\begin{codeexample}[
-    preamble={\usetikzlibrary{animations}},
-    animation list={0.5,1,1.5,2},
-    ]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-21.svg}]
 \animationexample{node}{}{
   \pgfsysanimkeytime{0}{1}{1}{0}{0}
   \pgfsysanimvalscalar{0}%
@@ -807,10 +742,7 @@ first.
 
     Specify values with |\pgfsysanimvalscalar|.
     %
-\begin{codeexample}[
-    preamble={\usetikzlibrary{animations}},
-    animation list={0.5,1,1.5,2},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-22.svg}]
 \animationexample{node}{}{
   \pgfsysanimkeytime{0}{1}{1}{0}{0}
   \pgfsysanimvalscalar{0}%
@@ -854,24 +786,7 @@ first.
         simply be executed and must call |\pgfsys@lineto| and similar
         path-construction commands, but should not call other commands.
         %
-\begin{codeexample}[
-    preamble={\usetikzlibrary{animations}},
-    animation list={0.5,1,1.5,2},
-    render instead={
-\animationexample{node}{}{
-  \pgfsysanimkeymovealong{
-    \pgfsyssoftpath@movetotoken{0pt}{0pt}
-    \pgfsyssoftpath@linetotoken{0pt}{-5mm}
-    \pgfsyssoftpath@curvetosupportatoken{0pt}{-1cm}%
-    \pgfsyssoftpath@curvetosupportbtoken{0pt}{-1cm}%
-    \pgfsyssoftpath@curvetotoken{-5mm}{-1cm} }
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvalscalar{0}
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvalscalar{1}
-  \pgfsysanimate{motion}
-}
-  }]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-23.svg}]
 \animationexample{node}{}{
   \pgfsysanimkeymovealong{
     \pgfsyssoftpath@movetotoken{0pt}{0pt}
@@ -904,24 +819,7 @@ first.
         so that it points along the path as time progresses. This option is
         only applicable to motion animations.
         %
-\begin{codeexample}[
-    preamble={\usetikzlibrary{animations}},
-    animation list={0.5,1,1.5,2},
-    render instead={
-\animationexample{node}{}{
-  \pgfsysanimkeyrotatealong
-  \pgfsysanimkeymovealong{
-    \pgfsyssoftpath@movetotoken{0pt}{0pt}
-    \pgfsyssoftpath@linetotoken{0pt}{-5mm}
-    \pgfsyssoftpath@curvetosupportatoken{0pt}{-1cm}%
-    \pgfsyssoftpath@curvetosupportbtoken{0pt}{-1cm}%
-    \pgfsyssoftpath@curvetotoken{-5mm}{-1cm} }
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvalscalar{0}
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvalscalar{1}
-  \pgfsysanimate{motion}
-}}]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-24.svg}]
 \animationexample{node}{}{
   \pgfsysanimkeyrotatealong
   \pgfsysanimkeymovealong{%
@@ -949,12 +847,7 @@ first.
 
     Specify values with |\pgfsysanimvalviewbox|.
     %
-\begin{codeexample}[
-    width=5cm,
-    preamble={\usetikzlibrary{animations,views}},
-    animation list={0.5,1,1.5,2},
-    animation bb={(0.9,-2.1) rectangle (3.1,2.1)},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-25.svg}]
 \animationexample{my view}{view}{
   \pgfsysanimkeytime{0}{1}{1}{0}{0}
   \pgfsysanimvalviewbox{-10mm}{-20mm}{10mm}{20mm}%
@@ -1204,11 +1097,7 @@ that must be used).
     Specifies that the animation should repeat the specified \meta{number of
     times}, which may be a fractional number.
     %
-\begin{codeexample}[
-    width=6cm,
-    preamble={\usetikzlibrary{animations}},
-    animation list={1,2,3,4,5,6,7,8},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-26.svg}]
 \animationexample{node}{}{
   \pgfsysanimkeytime{0}{1}{1}{0}{0}
   \pgfsysanimvaltranslate{0cm}{0cm}
@@ -1225,11 +1114,7 @@ that must be used).
 \begin{command}{\pgfsys@animation@repeat@indefinite}
     Specifies that the animation should repeat indefinitely.
     %
-\begin{codeexample}[
-    width=6cm,
-    preamble={\usetikzlibrary{animations}},
-    animation list={1,2,3,4,5,6,7,8},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-27.svg}]
 \animationexample{node}{}{
   \pgfsysanimkeytime{0}{1}{1}{0}{0}
   \pgfsysanimvaltranslate{0cm}{0cm}
@@ -1247,11 +1132,7 @@ that must be used).
     Specifies that the animation should repeat until \meta{seconds} have
     elapsed.
     %
-\begin{codeexample}[
-    width=6cm,
-    preamble={\usetikzlibrary{animations}},
-    animation list={1,2,3,4,5,6,7,8},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-28.svg}]
 \animationexample{node}{}{
   \pgfsysanimkeytime{0}{1}{1}{0}{0}
   \pgfsysanimvaltranslate{0cm}{0cm}
@@ -1293,20 +1174,7 @@ possible beginnings (or endings).
     after the graphic is shown. For instance, in the next example the animation
     will start automatically after 5\,s \emph{or} when then button is pressed.
     %
-\begin{codeexample}[
-    width=6cm,
-    preamble={\usetikzlibrary{animations}},
-    animation list={1,2,3,4,5,6,7,8},
-render instead={
-\animationexample{node}{}{
-  \pgfsysanimkeytime{0}{1}{1}{0}{0}
-  \pgfsysanimvaltranslate{0cm}{0cm}
-  \pgfsysanimkeytime{2}{1}{1}{0}{0}
-  \pgfsysanimvaltranslate{0cm}{-1cm}
-  \pgfsysanimkeyoffset{5}{begin}
-  \pgfsysanimkeysnapshotstart{5}
-  \pgfsysanimate{translate} }
-    }]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-29.svg}]
 \animationexample{node}{}{
   \pgfsysanimkeytime{0}{1}{1}{0}{0}
   \pgfsysanimvaltranslate{0cm}{0cm}
@@ -1356,11 +1224,7 @@ render instead={
             onto the object, moved over the object, or moved off the object.
     \end{itemize}
     %
-\begin{codeexample}[
-    width=2cm,
-    preamble={\usetikzlibrary{animations}},
-    animation list={0.5,1,1.5,2}
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-30.svg}]
 \animationexample{node}{}{
   \pgfsysanimkeytime{0}{1}{1}{0}{0}
   \pgfsysanimvaltranslate{0cm}{0cm}
@@ -1370,11 +1234,7 @@ render instead={
   \pgfsysanimate{translate} }
 \end{codeexample}
     %
-\begin{codeexample}[
-    width=2cm,
-    preamble={\usetikzlibrary{animations}},
-    animation list={0.5,1,1.5,2}
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-31.svg}]
 \animationexample{node}{}{
   \pgfsysanimkeytime{0}{1}{1}{0}{0}
   \pgfsysanimvaltranslate{0cm}{0cm}
@@ -1384,11 +1244,7 @@ render instead={
   \pgfsysanimate{translate} }
 \end{codeexample}
     %
-\begin{codeexample}[
-    width=2cm,
-    preamble={\usetikzlibrary{animations}},
-    animation list={0.5,1,1.5,2}
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-32.svg}]
 \animationexample{node}{}{
   \pgfsysanimkeytime{0}{1}{1}{0}{0}
   \pgfsysanimvaltranslate{0cm}{0cm}
@@ -1398,11 +1254,7 @@ render instead={
   \pgfsysanimate{translate} }
 \end{codeexample}
     %
-\begin{codeexample}[
-    width=2cm,
-    preamble={\usetikzlibrary{animations}},
-    animation list={0.5,1,1.5,2}
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-33.svg}]
 \animationexample{node}{}{
   \pgfsysanimkeytime{0}{1}{1}{0}{0}
   \pgfsysanimvaltranslate{0cm}{0cm}
@@ -1412,11 +1264,7 @@ render instead={
   \pgfsysanimate{translate} }
 \end{codeexample}
     %
-\begin{codeexample}[
-    width=2cm,
-    preamble={\usetikzlibrary{animations}},
-    animation list={0.5,1,1.5,2}
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-34.svg}]
 \animationexample{node}{}{
   \pgfsysanimkeytime{0}{1}{1}{0}{0}
   \pgfsysanimvaltranslate{0cm}{0cm}
@@ -1434,11 +1282,7 @@ render instead={
     The animation begins (or end) with a certain offset when another animation
     has reached a certain repeat count.
     %
-\begin{codeexample}[
-    width=6cm,
-    preamble={\usetikzlibrary{animations}},
-    animation list={1,2,3,4,5,6,7,8},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-35.svg}]
 \animationexample{node}{}{
   \pgfsysanimkeytime{0}{1}{1}{0}{0}
   \pgfsysanimvaltranslate{0cm}{0cm}
@@ -1471,11 +1315,7 @@ render instead={
     event may not be supported by some browsers for security reasons (prevent
     key loggers).
     %
-\begin{codeexample}[
-    width=2cm,
-    preamble={\usetikzlibrary{animations}},
-    animation list={0.5,1,1.5,2}
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-36.svg}]
 \animationexample{node}{}{
   \pgfsysanimkeytime{0}{1}{1}{0}{0}
   \pgfsysanimvaltranslate{0cm}{0cm}
@@ -1497,11 +1337,7 @@ render instead={
     Defines that the animation can be restarted at any time. This is the
     default.
     %
-\begin{codeexample}[
-    width=2cm,
-    preamble={\usetikzlibrary{animations}},
-    animation list={0.5,1,1.5,2}
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-37.svg}]
 \animationexample{node}{}{
   \pgfsysanimkeytime{0}{1}{1}{0}{0}
   \pgfsysanimvaltranslate{0cm}{0cm}
@@ -1518,11 +1354,7 @@ render instead={
 \begin{command}{\pgfsys@animation@restart@never}
     Defines that the animation cannot be restarted once it has run.
     %
-\begin{codeexample}[
-    width=2cm,
-    preamble={\usetikzlibrary{animations}},
-    animation list={0.5,1,1.5,2}
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-38.svg}]
 \animationexample{node}{}{
   \pgfsysanimkeytime{0}{1}{1}{0}{0}
   \pgfsysanimvaltranslate{0cm}{0cm}
@@ -1539,11 +1371,7 @@ render instead={
 \begin{command}{\pgfsys@animation@restart@whennotactive}
     Defines that the animation cannot be restarted while it is running.
     %
-\begin{codeexample}[
-    width=2cm,
-    preamble={\usetikzlibrary{animations}},
-    animation list={0.5,1,1.5,2}
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-39.svg}]
 \animationexample{node}{}{
   \pgfsysanimkeytime{0}{1}{1}{0}{0}
   \pgfsysanimvaltranslate{0cm}{0cm}
@@ -1564,11 +1392,7 @@ render instead={
     at the end of the animation the last value of the attributes stays in
     effect.
     %
-\begin{codeexample}[
-    width=6cm,
-    preamble={\usetikzlibrary{animations}},
-    animation list={1,2,3,4,5,6,7,8},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-40.svg}]
 \animationexample{node}{}{
   \pgfsysanimkeytime{0}{1}{1}{0}{0}
   \pgfsysanimvaltranslate{0cm}{0cm}
@@ -1585,11 +1409,7 @@ render instead={
 \begin{command}{\pgfsys@animation@removeatend{}}
     The opposite of |\pgfsysanimkeyfreezeatend|. This is the default.
     %
-\begin{codeexample}[
-    width=6cm,
-    preamble={\usetikzlibrary{animations}},
-    animation list={1,2,3,4,5,6,7,8},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-41.svg}]
 \animationexample{node}{}{
   \pgfsysanimkeytime{0}{1}{1}{0}{0}
   \pgfsysanimvaltranslate{0cm}{0cm}
@@ -1616,11 +1436,7 @@ during each repeat the values can add up:
     Specifies that each repeat of an animation works as if the last values
     attained during previous repeats are added to the current value.
     %
-\begin{codeexample}[
-    width=6cm,
-    preamble={\usetikzlibrary{animations}},
-    animation list={1,2,3,4,5,6,7,8},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-42.svg}]
 \animationexample{node}{}{
   \pgfsysanimkeytime{0}{1}{1}{0}{0}
   \pgfsysanimvaltranslate{0cm}{0cm}
@@ -1639,11 +1455,7 @@ during each repeat the values can add up:
     Specifies that each repeat resets the to-be-animated value. This is the
     default.
     %
-\begin{codeexample}[
-    width=6cm,
-    preamble={\usetikzlibrary{animations}},
-    animation list={1,2,3,4,5,6,7,8},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-pgfsys-animations-animation-43.svg}]
 \animationexample{node}{}{
   \pgfsysanimkeytime{0}{1}{1}{0}{0}
   \pgfsysanimvaltranslate{0cm}{0cm}

@@ -32,10 +32,7 @@ a change of, say, the opacity of a path is also an animation. \pgfname\ allows
 you to specify such animations using a set of commands and keys that are
 documented in the following.
 %
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={0.5,1,1.5,2},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-1.svg}]
 \tikz {
   \pgfanimateattribute{opacity}{
     whom = node, begin on = {click}, entry = {0s}{1}, entry = {2s}{0} }
@@ -102,10 +99,7 @@ takes a to-be-animated attribute and options specifying the timeline:
     keys are used, ``outside'' the specified timeline the animation has no
     effect:
     %
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={0.5,1,1.5,2,2.5},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-2.svg}]
 \tikz {
   \pgfanimateattribute{opacity}{
     whom = node, begin on = {click}, entry = {0s}{1}, entry = {2s}{0} }
@@ -236,10 +230,7 @@ takes a to-be-animated attribute and options specifying the timeline:
         Assigns a name to the animation by which it can be referenced using the
         |of| and |of next| keys in another animation.
         %
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5,6},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-3.svg}]
 \tikz [very thick] {
   \pgfanimateattribute{rotate}{
     whom = node, begin on = {end, of next = my move animation, delay = 1s},
@@ -270,10 +261,7 @@ key:
     \meta{attribute} should have over time. At the \meta{time} specified, the
     \meta{attribute} will have the value specified as \meta{value}:
     %
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={.5,1,1.5,2},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-4.svg}]
 \tikz {
   \pgfanimateattribute{rotate}{
     whom = node, begin on = {click},
@@ -334,10 +322,7 @@ key:
     \begin{key}{/pgf/animations/exit control=\marg{time fraction}\marg{value fraction}}
         Same as |/tikz/animate/options/exit control|.
         %
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={0.333/\frac{1}{3},0.666/\frac{2}{3},1,1.333/1\frac{1}{3},1.666/1\frac{2}{3}},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-5.svg}]
 \tikz {
   \foreach \i in {0,0.125,...,1} \draw (-0.9,.9-\i) -- ++(1.8,0);
   \pgfanimateattribute{translate}{
@@ -365,10 +350,7 @@ key:
     \begin{key}{/pgf/animations/stay}
         Same as |/tikz/animate/options/stay|.
         %
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={0.5,1,1.5,2,2.5},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-6.svg}]
 \tikz {
   \foreach \i in {0,0.125,...,1} \draw (-0.9,.9-\i) -- ++(1.8,0);
   \pgfanimateattribute{translate}{
@@ -387,10 +369,7 @@ key:
     \begin{key}{/pgf/animations/jump}
         Same as |/tikz/animate/options/jump|.
         %
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={0.5,1,1.5,2},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-7.svg}]
 \tikz {
   \foreach \i in {0,0.125,...,1} \draw (-0.9,.9-\i) -- ++(1.8,0);
   \pgfanimateattribute{translate}{
@@ -417,10 +396,7 @@ can set this value directly:
     the timeline is not active. This makes it easy to specify the value of an
     attribute when the animation is ``not running''.
     %
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={-1,0,1,2,3},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-8.svg}]
 \tikz {
   \pgfanimateattribute{rotate}{
     whom = node, begin on = {click},
@@ -593,10 +569,7 @@ Let us start with creating a snapshot:
     (stroking) color, respectively. To animate both the fill and draw color,
     you need to create two animations, one for each.
     %
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={0.5,1,1.5,2},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-9.svg}]
 \tikz {
   \pgfanimateattribute{fill}{
     whom = node.background, begin on = {click},
@@ -608,10 +581,7 @@ Let us start with creating a snapshot:
 \end{animateattribute}
 
 \begin{animateattribute}{draw}
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={0.5,1,1.5,2},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-10.svg}]
 \tikz {
   \pgfanimateattribute{draw}{
     whom = node.background, begin on = {click},
@@ -626,11 +596,7 @@ in this scope'' for filling or stroking. However, when an object inside the
 scope has its color set explicitly, this color overrules the color of the
 scope:
 %
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={0.5,1,1.5,2},
-    animation bb={(1.5,-0.75) rectangle (3,0.75)},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-11.svg}]
 \tikz {
   \pgfanimateattribute{fill}{
     whom = example, begin on = {click, of next=node},
@@ -660,11 +626,7 @@ of the node's scope's color has no effect on the text color. Instead, you must
 choose \meta{name}|.text| as the target (or, if the node has more parts, use
 the name of the part as the identifier type instead of |text|).
 %
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={0.5,1,1.5,2},
-    animation bb={(1.1,-0.9) rectangle (2.9,0.9)},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-12.svg}]
 \tikz {
   \pgfanimateattribute{fill}{
     whom = example, begin on = {click, of next=node},
@@ -673,11 +635,7 @@ the name of the part as the identifier type instead of |text|).
   \node at (2,0) (example) [fill = blue!20, circle] {No effect}; }
 \end{codeexample}
 
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={0.5,1,1.5,2},
-    animation bb={(1.1,-0.9) rectangle (2.9,0.9)},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-13.svg}]
 \tikz {
   \pgfanimateattribute{fill}{
     whom = example.background, begin on = {click, of next=node},
@@ -686,11 +644,7 @@ the name of the part as the identifier type instead of |text|).
   \node at (2,0) (example) [fill = blue!20, circle] {Effect}; }
 \end{codeexample}
 
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={0.5,1,1.5,2},
-    animation bb={(1.1,-0.9) rectangle (2.9,0.9)},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-14.svg}]
 \tikz {
   \pgfanimateattribute{fill}{
     whom = example.text, begin on = {click, of next=node},
@@ -704,10 +658,7 @@ drawing. You specify the opacity using a number between 0 (transparent) and 1
 (opaque).
 
 \begin{animateattribute}{fill opacity}
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={0.5,1,1.5,2},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-15.svg}]
 \tikz {
   \pgfanimateattribute{fill opacity}{
     whom = node, begin on = {click}, entry = {0s}{1}, entry = {2s}{0} }
@@ -717,10 +668,7 @@ drawing. You specify the opacity using a number between 0 (transparent) and 1
 \end{animateattribute}
 
 \begin{animateattribute}{draw opacity}
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={0.5,1,1.5,2},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-16.svg}]
 \tikz {
   \pgfanimateattribute{draw opacity}{
     whom = node, begin on = {click}, entry = {0s}{1}, entry = {2s}{0} }
@@ -736,10 +684,7 @@ drawing. You specify the opacity using a number between 0 (transparent) and 1
     which it is applied as a transparency group. In essence, ``this attribute
     does what you want'' at least in most situations.
     %
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={0.5,1,1.5,2},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-17.svg}]
 \tikz {
   \pgfanimateattribute{opacity}{
     whom = node, begin on = {click}, entry = {0s}{1}, entry = {2s}{0} }
@@ -755,10 +700,7 @@ drawing. You specify the opacity using a number between 0 (transparent) and 1
     rendered. The (only) two possible values for this attribute are |false| and
     |true|.
     %
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={1,2,3,4},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-18.svg}]
 \tikz {
   \pgfanimateattribute{visible}{
     whom = node, begin on = {click}, entry = {0s}{false}, entry = {2s}{false} }
@@ -776,11 +718,7 @@ drawing. You specify the opacity using a number between 0 (transparent) and 1
     you explicitly set the ``stage attribute'' to |true| the object ``enters''
     the stage and ``leaves'' once more when it is no longer ``on stage''.
     %
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={-1,0,1,2,3},
-    animation bb={(1.3,-0.7) rectangle (2.7,0.7)},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-19.svg}]
 \tikz {
   \pgfanimateattribute{stage}{
     whom = example, begin on = {click, of next=node},
@@ -798,10 +736,7 @@ drawing. You specify the opacity using a number between 0 (transparent) and 1
 You can animate the appearance of a path in the following ways:
 
 \begin{animateattribute}{line width}
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={0.5,1,1.5,2},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-20.svg}]
 \tikz [very thick] {
   \pgfanimateattribute{line width}{
     whom = node, begin on = {click}, entry = {0s}{1pt}, entry = {2s}{5mm} }
@@ -813,10 +748,7 @@ You can animate the appearance of a path in the following ways:
 \end{animateattribute}
 
 \begin{animateattribute}{dash}
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={0.5,1,1.5,2},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-21.svg}]
 \tikz {
   \pgfanimateattribute{dash}{
     whom = node, begin on = {click}, entry = {0s}{{{10pt}{1pt}}{0pt}},
@@ -825,10 +757,7 @@ You can animate the appearance of a path in the following ways:
 }
 \end{codeexample}
     %
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={0.5,1,1.5,2},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-22.svg}]
 \tikz {
   \pgfanimateattribute{dash}{
     whom = node, begin on = {click}, entry = {0s}{{{1cm}{1pt}}{0pt}},
@@ -853,10 +782,7 @@ You can animate the appearance of a path in the following ways:
 \begin{animateattribute}{path}
     You can animate the path itself:
     %
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={0.5,1,1.5,2},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-23.svg}]
 \tikz {
   \pgfanimateattribute{path}{
     whom = node.background.path, begin on = {click, of next=node},
@@ -916,11 +842,7 @@ You can animate the appearance of a path in the following ways:
     path values are specified (since the shortening is done immediately when a
     path value is parsed).
     %
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={0,1,2,3,4},
-    animation bb={(0.9,-0.1)rectangle(2.1,1.1)},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-24.svg}]
 \tikz {
   \pgfanimateattribute{path}{
     whom = p.path, begin on = {click, of next=node}, arrows = ->,
@@ -944,11 +866,7 @@ You can animate the appearance of a path in the following ways:
     there is no active animation, \emph{will} use the arrow tips. As a result,
     you can use this to animate a path with an arrow tip:
     %
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={0,1,2,3,4},
-    animation bb={(0.9,-0.1)rectangle(2.1,1.1)},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-25.svg}]
 \tikz {
   \pgfanimateattribute{path}{
     whom = p.path, begin on = {click, of next=node}, arrows = ->,
@@ -973,11 +891,7 @@ You can animate the appearance of a path in the following ways:
     tip). Just like the |arrows| key, this key must be given before the path
     entries are specified.
     %
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={0,1,2,3,4},
-    animation bb={(0.9,-0.1)rectangle(2.1,1.1)},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-26.svg}]
 \tikz {
   \pgfanimateattribute{path}{
     whom = p.path, begin on = {click, of next=node}, arrows = ->,
@@ -1027,10 +941,7 @@ transformation matrix directly:
 \begin{animateattribute}{scale}
     The |scale| attribute adds an animation of the scaling:
     %
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={0.5,1,1.5,2},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-27.svg}]
 \tikz [very thick] {
   \pgfanimateattribute{scale}{
     whom = node, begin on = {click},
@@ -1047,10 +958,7 @@ transformation matrix directly:
 \begin{animateattribute}{rotate}
     The |rotate| key adds an animation of the rotation:
     %
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={0.5,1,1.5,2},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-28.svg}]
 \tikz [very thick] {
   \pgfanimateattribute{rotate}{
     whom = node, begin on = {click},
@@ -1066,10 +974,7 @@ transformation matrix directly:
     The |xskew| and |yskew| keys (and also |skew x| and |skew y|, which are
     aliases) add an animation of the skew (given in degrees, not as a slant):
     %
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={0.5,1,1.5,2},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-29.svg}]
 \tikz [very thick] {
   \pgfanimateattribute{xskew}{
     whom = node, begin on = {click}, entry = {0s}{0}, entry = {2s}{45} }
@@ -1095,10 +1000,7 @@ transformation matrix directly:
 \begin{animateattribute}{translate}
     The |translate| key adds an animation of the translation (shift):
     %
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={0.5,1,1.5,2},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-30.svg}]
 \tikz [very thick] {
   \pgfanimateattribute{translate}{
     whom = node, begin on = {click},
@@ -1135,10 +1037,7 @@ For all of these attributes, the following key is of importance:
     origin of the transformation directly. Internally, however, all this key
     does is to create the above-mentioned scopes with the necessary shifts.
     %
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={0.5,1,1.5,2},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-31.svg}]
 \tikz [very thick] {
   \pgfanimateattribute{rotate}{
     whom = node, begin on = {click},
@@ -1153,10 +1052,7 @@ For all of these attributes, the following key is of importance:
     A second way of changing the canvas transformation matrix is to use the
     |motion| attribute:
     %
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={0.5,1,1.5,2},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-32.svg}]
 \tikz [very thick] {
   \pgfanimateattribute{motion}{
     whom = node, begin on = {click},
@@ -1178,10 +1074,7 @@ For all of these attributes, the following key is of importance:
         reference the start point of the path, a value of |1| references the
         end of the path and |0.5| referenced the point halfway along the path.
         %
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={0.25,0.5,0.75,1,1.25,1.5,1.75,2,2.25,2.5},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-33.svg}]
 \tikz [very thick] {
   \pgfanimateattribute{motion}{
     whom = node, begin on = {click},
@@ -1196,10 +1089,7 @@ For all of these attributes, the following key is of importance:
         When set to |true|, the |along| key additionally adds a rotation that
         varies in such a way that a tangent to the path always points right.
         %
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={0.5,1,1.5,2},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-34.svg}]
 \tikz [very thick] {
   \pgfanimateattribute{motion}{
     whom = node, begin on = {click},
@@ -1231,12 +1121,7 @@ The final method of changing the transformation matrix is to animate a
     the |view| attribute. The values passed to the |entry| key must be two
     \pgfname-points, each surrounded by parentheses.
     %
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}
-\usetikzlibrary{views}},
-    animation list={0.5,1,1.5,2},
-    animation bb={(1.1,-0.9) rectangle (2.9,0.9)},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-35.svg}]
 \tikz [very thick] {
   \pgfanimateattribute{view}{
     whom = me.view, begin on = {click, of next=node}, freeze at end,
@@ -1252,12 +1137,7 @@ The final method of changing the transformation matrix is to animate a
 }
 \end{codeexample}
 
-\begin{codeexample}[
-    width=2cm,
-    animation list={0.5,1,1.5,2},
-    preamble={\usepgfmodule{animations}
-\usetikzlibrary{views}},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-36.svg}]
 \tikz [very thick] {
   \pgfanimateattribute{view}{
     whom = me.view, begin on = {click, of next=n1}, freeze at end,
@@ -1313,7 +1193,7 @@ also the key |end|, allow you to specify answers to these questions.
     will run, relative to the moment when the graphic is displayed from 3\,s to
     4\,s.
     %
-\begin{codeexample}[preamble={\usepgfmodule{animations}},width=3cm,animation list={0.5,1,1.5,2},]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-37.svg}]
 \tikz [very thick] {
   \pgfanimateattribute{rotate}{
     whom = node, begin = 2s, end = 4s,
@@ -1335,10 +1215,7 @@ following key governs what should happen:
     ``stays put''. When set to |false|, which is the initial value, once an
     animation ends, its effect will be removed ``as if it never happened''.
     %
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={0,1,2,3,4},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-38.svg}]
 \tikz [very thick] {
   \pgfanimateattribute{rotate}{
     whom = node, begin on = {click}, freeze at end = false,
@@ -1346,10 +1223,7 @@ following key governs what should happen:
   \node (node) [fill = blue!20, draw = blue, circle] {Here!}; }
 \end{codeexample}
     %
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={0,1,2,3,4},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-39.svg}]
 \tikz [very thick] {
   \pgfanimateattribute{rotate}{
     whom = node, begin on = {click}, freeze at end,
@@ -1401,10 +1275,7 @@ that the timeline should be repeated a certain number of times or indefinitely.
     \begin{itemize}
         \item Empty, in which case the timeline repeats forever.
             %
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={1,2,3,4,5},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-40.svg}]
 \tikz [very thick] {
   \pgfanimateattribute{rotate}{
     whom = node, begin on = {click}, repeats,
@@ -1415,10 +1286,7 @@ that the timeline should be repeated a certain number of times or indefinitely.
         \item A \meta{number} (like |2| or |3.25|), in which case the timeline
             repeats \meta{number} times.
             %
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={1,2,3,4,5},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-41.svg}]
 \tikz [very thick] {
   \pgfanimateattribute{rotate}{
     whom = node, begin on = {click}, repeats = 1.75,
@@ -1430,10 +1298,7 @@ that the timeline should be repeated a certain number of times or indefinitely.
             which case the timeline repeats however often necessary so that it
             stops exactly after \meta{time}.
             %
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={1,2,3,4,5},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-42.svg}]
 \tikz [very thick] {
   \pgfanimateattribute{rotate}{
     whom = node, begin on = {click}, repeats = for 3.5s,
@@ -1458,10 +1323,7 @@ that the timeline should be repeated a certain number of times or indefinitely.
             contrast, when the repeats are accumulating, the scope will move by
             5\,cm over 5\,s in total.
             %
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={1,2,3,4,5},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-43.svg}]
 \tikz [very thick] {
   \pgfanimateattribute{rotate}{
     whom = node, begin on = {click}, repeats = accumulating,
@@ -1469,10 +1331,7 @@ that the timeline should be repeated a certain number of times or indefinitely.
   \node (node) [fill = blue!20, draw = blue, circle] {Click me!}; }
 \end{codeexample}
             %
-\begin{codeexample}[
-    preamble={\usepgfmodule{animations}},
-    animation list={1,2,3,4,5},
-]
+\begin{codeexample}[imagesource={standalone/pgfmanual-en-base-animations-animation-44.svg}]
 \tikz [very thick] {
   \pgfanimateattribute{rotate}{
     whom = node, begin on = {click}, repeats = 2 accumulating,
