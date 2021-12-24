@@ -46,7 +46,7 @@
   }
 }
 
-.bodyandsidetoc > header {
+.bodyandsidetoc>header {
   grid-area: header;
   display: flex;
   justify-content: space-between;
@@ -97,6 +97,7 @@ div.sidetoccontainer {
     display: block;
     width: 13em;
   }
+
   #chapter-toc-container {
     width: 17em;
   }
@@ -106,6 +107,7 @@ div.sidetoccontainer {
   #chapter-toc-container {
     width: 19em;
   }
+
   #local-toc-container {
     width: 19em;
   }
@@ -153,19 +155,24 @@ header h1 a:hover {
 #search {
   margin-right: 1em;
 }
+
 @media screen and (min-width: 750px) {
-  #search > button {
+  #search>button {
     width: 13em;
   }
 }
+
 @media screen and (min-width: 1280px) {
-  #search > button {
+  #search>button {
     width: 19em;
   }
 }
+
 .DocSearch {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
+
 .DocSearch header {
   border-bottom: 0px;
 }
@@ -209,23 +216,29 @@ h4 {
   flex-wrap: wrap;
   margin: 1em;
 }
+
 .example-image {
   background-color: rgb(245, 245, 204);
 }
+
 .example-image p {
   margin: 0;
   padding: 0.5em;
 }
+
 .example-image img {
   width: 100%;
 }
+
 .example-code {
   padding: 0 1em;
   background: #e5e5ff;
   font-family: monospace;
   position: relative;
   overflow-wrap: break-word;
+  word-break: break-word;
 }
+
 .clipboardButton {
   position: absolute;
   top: 0;
@@ -240,9 +253,11 @@ h4 {
   visibility: hidden;
   background-color: #bbbbfc8a;
 }
+
 .clipboardButton:hover {
   background-color: #c0c0ff;
 }
+
 .example-code:hover .clipboardButton {
   visibility: visible;
 }
@@ -253,41 +268,52 @@ h4 {
   text-decoration: underline;
   text-decoration-color: rgba(255, 255, 255, 0.6);
 }
+
 .example-code a:hover {
   background-color: rgba(255, 255, 255, 0.6);
   text-decoration-color: blue;
 }
-.example-code > p > br:first-child {
-  display: none; /* hide the first <br> which is spurious */
+
+.example-code>p>br:first-child {
+  display: none;
+  /* hide the first <br> which is spurious */
 }
+
 .example-code-comment {
   color: #444;
 }
+
 .c-preamble {
   color: #444;
 }
+
 .angle {
   display: inline;
   font-size: 140%;
   line-height: 0.5;
   vertical-align: -2px;
 }
+
 kbd,
 span.texttt,
 p span.text {
   font-family: monospace !important;
   font-size: 120% !important;
   line-height: 0.8;
+  word-break: break-word;
 }
+
 .manualentry {
   margin-left: 40px;
 }
+
 .entryheadline {
   margin-left: -40px;
 }
 
-.entryheadline p > a {
-  position: absolute; /* ignore in flex layout */
+.entryheadline p>a {
+  position: absolute;
+  /* ignore in flex layout */
 }
 
 table {
@@ -299,11 +325,11 @@ nav.sidetoc .sidetoccontents p {
   font-size: 110%;
 }
 
-nav.sidetoc .sidetoccontents > p.current-part {
+nav.sidetoc .sidetoccontents>p.current-part {
   background-color: rgb(219, 221, 243);
 }
 
-nav.sidetoc .sidetoccontents > p.current {
+nav.sidetoc .sidetoccontents>p.current {
   background-color: rgb(195, 199, 241);
 }
 
@@ -335,24 +361,29 @@ nav.sidetoc .sidetoccontents a.tocsubsubsection {
 }
 
 .hl-def {
-  margin-right: 2em; /* space to default */
+  margin-right: 2em;
+  /* space to default */
 }
+
 .hl-default {
-  margin-left: auto; /* push to the right */
+  margin-left: auto;
+  /* push to the right */
   color: rgb(49, 50, 58);
 }
+
 .entryheadline p {
   display: flex;
   justify-content: space-between;
   position: relative;
 }
 
-.entryheadline p > a.anchor-link {
-  position: static; /* do not ignore in flex layout */
+.entryheadline p>a.anchor-link {
+  position: static;
+  /* do not ignore in flex layout */
   margin-left: 0.5em;
 }
 
-.entryheadline p > a.anchor-link:hover {
+.entryheadline p>a.anchor-link:hover {
   background-color: rgb(201, 204, 243);
 }
 
