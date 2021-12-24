@@ -194,6 +194,11 @@
 \RequirePackage{fancyvrb}
 
 \dimendef\prevdepth=0%
+
+% Promote `Missing character` reports to full errors
+% require texlive 2021 or above
+\tracinglostchars=3
+
 \graphicspath{{../../images/}}
 \input{./pgfmanual-en-macros-fixed}
 % \input{pgfmanual-en-macros}
@@ -397,6 +402,5 @@
 
 %%% Local Variables:
 %%% mode: latex
-%%% TeX-master: "~/pgf/doc/generic/pgf/version-for-luatex/en/pgfmanual"
-%%% coding: iso-latin-1-unix
+%%% TeX-master: "pgfmanual"
 %%% End:
