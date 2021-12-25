@@ -36,11 +36,11 @@ provides at least%
     integer. That means it supports a significantly larger data range than an
     IEEE double precision number -- but if a future \TeX\ version may provide
     low-level access to doubles, this may change.}%
-the IEEE double precision data range, $\pgfmathprintnumber{-1e+324}, \dotsc,
-\pgfmathprintnumber{+1e324}$. The absolute smallest number bigger than zero is
-$\pgfmathprintnumber{1e-324}$. The FPU's relative precision is at least
-$\pgfmathprintnumber{1e-4}$ although operations like addition have a relative
-precision of $\pgfmathprintnumber{1e-6}$.
+the IEEE double precision data range, $-1 \cdot 10^{324}, \dotsc,
+1\cdot 10^{324}$. The absolute smallest number bigger than zero is
+$1 \cdot 10^{-324}$. The FPU's relative precision is at least
+$1 \cdot 10^{-4}$ although operations like addition have a relative
+precision of $1 \cdot 10^{-6}$.
 
 Note that the library has not really been tested together with any drawing
 operations. It should be used to work with arbitrary input data which is then
