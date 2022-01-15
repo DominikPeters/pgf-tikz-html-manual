@@ -3,6 +3,8 @@
 This is a browsable [HTML version](https://tikz.dev) of the package documentation for [PGF/TikZ](https://github.com/pgf-tikz/pgf), whose [PDF version](https://pgf-tikz.github.io/pgf/pgfmanual.pdf) is 1300+ pages long. 
 It is built using the incredibly powerful [`lwarp`](https://ctan.org/pkg/lwarp?lang=en) package by [Brian Dunn](https://bdtechconcepts.com/LaTeX-HTML-Converter-The-Lwarp-package.html).
 
+[<img src="https://user-images.githubusercontent.com/3543224/149638481-c98fccbb-d779-41cc-bd2d-7d0f5705c645.png" alt="Screenshot of tikz.dev" width="500">](https://tikz.dev)
+
 The documentation is produced using the following steps.
 
 1. Separately compile examples that use animation with [`dvisvgm`](https://dvisvgm.de/) in `standalone` [files](https://github.com/DominikPeters/pgf-tikz-html-manual/tree/master/doc/generic/pgf/standalone), produced by a [python script](https://github.com/DominikPeters/pgf-tikz-html-manual/blob/master/doc/generic/pgf/make-standalones.py).
