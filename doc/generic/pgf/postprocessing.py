@@ -6,6 +6,10 @@ import os
 import datetime
 import subprocess
 
+def kilobytes(filename):
+    st = os.stat(filename)
+    return st.st_size / 1000
+
 # mkdir processed
 os.makedirs("processed", exist_ok=True)
 copyfile("style.css", "processed/style.css")
@@ -18,7 +22,17 @@ copytree("standalone", "processed/standalone", dirs_exist_ok=True)
 def rearrange_heading_anchors(soup):
     heading_tags = ["h4", "h5", "h6"]
     for tag in soup.find_all(heading_tags):
-        # print(f"{tag.name} -> {tag.text.strip()} -> {tag.get('id')}")
+        # add paragraph links
+        if tag.name in ["h5", "h6"]:
+            for entry in tag.children:
+                if "class" in entry.attrs and "sectionnumber" in entry["class"]:
+                    anchor = "sec-" + entry.text.strip().split("\u2003")[0]
+                    entry["id"] = anchor
+                    link = soup.new_tag('a', href=f"#{anchor}")
+                    link['class'] = 'anchor-link'
+                    link.append("¶")
+                    tag.append(link)
+                    break
         # find human-readable link target and re-arrange anchor
         for sibling in tag.next_siblings:
             if sibling.name is None:
@@ -55,10 +69,11 @@ def make_page_toc(soup):
     toc_nav.append(toc)
     heading_tags = ["h5", "h6"]
     for tag in soup.find_all(heading_tags):
-        # print(f"{tag.name} -> {tag.text.strip()} -> {tag.get('id')}")
+        anchor = tag.find(class_="sectionnumber").get('id')
         item = soup.new_tag('p')
-        a = soup.new_tag('a', href=f"#{tag.get('id')}")
-        a.string = tag.text.strip().split("\u2003")[1]
+        # a = soup.new_tag('a', href=f"#{tag.get('id')}")
+        a = soup.new_tag('a', href=f"#{anchor}")
+        a.string = tag.text.strip().split("\u2003")[1].replace("¶", "")
         if tag.name == "h5":
             a['class'] = 'tocsubsection'
         elif tag.name == "h6":
@@ -219,6 +234,8 @@ def remove_mathjax_if_possible(filename, soup):
             for tag in soup.find_all('script'):
                 if "Lwarp MathJax emulation code" in tag.string:
                     tag.decompose()
+        else:
+            soup.find(id="MathJax-script").attrs['async'] = None
 
 def remove_html_from_links(filename, soup):
     for tag in soup.find_all("a"):
@@ -244,7 +261,7 @@ def addClipboardButtons(soup):
 
 def add_header(soup):
     header = soup.new_tag('header')
-    h1 = soup.new_tag('h1')
+    h1 = soup.new_tag('strong')
     link = soup.new_tag('a', href="/")
     h1.append(link)
     link.append("PGF/Ti")
@@ -350,15 +367,26 @@ def _add_dimensions(tag, svgfilename):
         svg = minidom.parse(svgfile)
         width_pt = svg.documentElement.getAttribute("width").replace("pt", "")
         height_pt = svg.documentElement.getAttribute("height").replace("pt", "")
-        width_px = float(width_pt) * 1.33333
-        height_px = float(height_pt) * 1.33333
-        tag['width'] = "{:.3f}".format(width_px)
-        tag['height'] = "{:.3f}".format(height_px)
+    width_px = float(width_pt) * 1.33333
+    height_px = float(height_pt) * 1.33333
+    # very large SVGs are pathological and empty, delete them
+    tag['width'] = "{:.3f}".format(width_px)
+    tag['height'] = "{:.3f}".format(height_px)
+    return (width_px, height_px)
 
-def write_svg_dimensions(soup):
+def process_images(soup):
     for tag in soup.find_all("img"):
         if "svg" in tag['src']: 
-            _add_dimensions(tag, tag['src'])
+            width_px, height_px = _add_dimensions(tag, tag['src'])
+            if height_px > 10000:
+                tag.decompose()
+                continue
+            tag["loading"] = "lazy"
+            # replace all SVGs by PNGs except if that's a big filesize penalty
+            # doing this because the SVGs are missing some features like shadows
+            png_filename = tag['src'].replace("svg", "png")
+            if kilobytes(png_filename) < 5 * kilobytes(tag['src']):
+                tag['src'] = png_filename
     for tag in soup.find_all("object"):
         if "svg" in tag['data']: 
             _add_dimensions(tag, tag['data'])
@@ -372,6 +400,13 @@ def rewrite_svg_links(soup):
                 object['data'] = img['src']
                 object['type'] = "image/svg+xml"
                 tag.replace_with(object)
+
+def semantic_tags(soup):
+    for example in soup.find_all(class_="example"):
+        example.name = "figure"
+    for examplecode in soup.find_all(class_="example-code"):
+        p = examplecode.find("p")
+        p.name = "code"
 
 for filename in sorted(os.listdir(".")):
     if filename.endswith(".html"):
@@ -391,9 +426,10 @@ for filename in sorted(os.listdir(".")):
                 remove_useless_elements(soup)
                 addClipboardButtons(soup)
                 rewrite_svg_links(soup)
-                write_svg_dimensions(soup)
+                process_images(soup)
                 add_header(soup)
                 favicon(soup)
+                semantic_tags(soup)
                 soup.find(class_="bodyandsidetoc")['class'].append("grid-container")
                 if filename == "index-0.html":
                     soup.h4.decompose() # don't need header on start page

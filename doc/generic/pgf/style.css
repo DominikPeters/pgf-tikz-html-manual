@@ -1,4 +1,1800 @@
-@import url("lwarp.css");
+/*
+  CSS stylesheet for the LaTeX Lwarp package
+  Copyright 2016-2021 Brian Dunn — BD Tech Concepts LLC
+*/
+
+/* a fix for older browsers: */
+header,
+section,
+footer,
+aside,
+nav,
+main,
+article,
+figure {
+  display: block;
+}
+
+A:link {
+  color: #000080;
+  text-decoration: none;
+}
+A:visited {
+  color: #800000;
+}
+A:hover {
+  color: #000080;
+  text-decoration: underline;
+}
+A:active {
+  color: #800000;
+}
+
+a.tocbook {
+  display: inline-block;
+  margin-left: 0em;
+  font-weight: bold;
+  margin-top: 1ex;
+  margin-bottom: 1ex;
+}
+a.tocpart {
+  display: inline-block;
+  margin-left: 0em;
+  font-weight: bold;
+}
+a.tocchapter {
+  display: inline-block;
+  margin-left: 0em;
+  font-weight: bold;
+}
+a.tocsection {
+  display: inline-block;
+  margin-left: 1em;
+  text-indent: -0.5em;
+  font-weight: bold;
+}
+a.tocsubsection {
+  display: inline-block;
+  margin-left: 2em;
+  text-indent: -0.5em;
+}
+a.tocsubsubsection {
+  display: inline-block;
+  margin-left: 3em;
+  text-indent: -0.5em;
+}
+a.tocparagraph {
+  display: inline-block;
+  margin-left: 4em;
+  text-indent: -0.5em;
+}
+a.tocsubparagraph {
+  display: inline-block;
+  margin-left: 5em;
+  text-indent: -0.5em;
+}
+a.tocfigure {
+  margin-left: 0em;
+}
+a.tocsubfigure {
+  margin-left: 2em;
+}
+a.toctable {
+  margin-left: 0em;
+}
+a.tocsubtable {
+  margin-left: 2em;
+}
+a.toctheorem {
+  margin-left: 0em;
+}
+a.toclstlisting {
+  margin-left: 0em;
+}
+
+body {
+  font-family: "DejaVu Serif", "Bitstream Vera Serif", "Lucida Bright", Georgia,
+    serif;
+  background: #faf7f4;
+  color: black;
+  margin: 0em;
+  padding: 0em;
+  font-size: 100%;
+  line-height: 1.2;
+}
+
+p {
+  margin: 1.5ex 0em 1.5ex 0em;
+}
+table p {
+  margin: 0.5ex 0em 0.5ex 0em;
+}
+
+/* Holds a section number */
+span.sectionnumber {
+  margin-right: 0em;
+}
+
+/* Inserted in front of index lines */
+span.indexitem {
+  margin-left: 0em;
+}
+span.indexsubitem {
+  margin-left: 2em;
+}
+span.indexsubsubitem {
+  margin-left: 4em;
+}
+div.indexheading {
+  margin-top: 2ex;
+  font-weight: bold;
+}
+
+div.hidden,
+span.hidden {
+  display: none;
+}
+
+kbd,
+span.texttt,
+p span.texttt {
+  font-family: "DejaVu Mono", "Bitstream Vera Mono", "Lucida Console",
+    "Nimbus Mono L", "Liberation Mono", "FreeMono", "Andale Mono", "Courier New",
+    monospace;
+  font-size: 100%;
+}
+
+pre {
+  padding: 3pt;
+}
+
+span.strong,
+span.textbf,
+div.strong,
+div.textbf,
+table td.tdbfseries {
+  font-weight: bold;
+}
+
+span.textit,
+div.textit,
+table td.tditshape {
+  font-style: italic;
+}
+
+table td.tdbfit {
+  font-weight: bold;
+  font-style: italic;
+}
+
+span.textnormal,
+div.textnormal {
+  font-weight: normal;
+  font-style: normal;
+  font-variant: normal;
+  font-variant-numeric: normal;
+  font-family: "DejaVu Serif", "Bitstream Vera Serif", "Lucida Bright", Georgia,
+    serif;
+}
+
+span.textmd,
+div.textmd {
+  font-weight: normal;
+}
+
+span.textup,
+div.textup {
+  font-style: normal;
+  font-variant: normal;
+  font-variant-numeric: normal;
+}
+
+span.textsc,
+div.textsc {
+  font-variant: small-caps;
+  font-variant-numeric: oldstyle-nums;
+}
+
+span.textulc,
+div.textulc {
+  font-variant: normal;
+  font-variant-numeric: normal;
+}
+
+span.textsl,
+div.textsl {
+  font-style: oblique;
+}
+
+span.textrm,
+div.textrm {
+  font-family: "DejaVu Serif", "Bitstream Vera Serif", "Lucida Bright", Georgia,
+    serif;
+}
+
+span.textsf,
+div.textsf {
+  font-family: "DejaVu Sans", "Bitstream Vera Sans", Geneva, Verdana, sans-serif;
+}
+
+/* nfssext-cfr lining figures */
+span.textln,
+div.textln {
+  font-variant-numeric: lining-nums;
+}
+
+/* nfssext-cfr proportional figures */
+span.textp,
+div.textp {
+  font-variant-numeric: proportional-nums;
+}
+
+/* nfssext-cfr tabular figures */
+span.textt,
+div.textt {
+  font-variant-numeric: tabular-nums;
+}
+
+/* nfssext-cfr font weights */
+span.textdb,
+div.textdb {
+  font-weight: 500;
+}
+
+span.textsb,
+div.textsb {
+  font-weight: 600;
+}
+
+span.texteb,
+div.texteb {
+  font-weight: 800;
+}
+
+span.textub,
+div.textub {
+  font-weight: 900;
+}
+
+span.textlg,
+div.textlg {
+  font-weight: 300;
+}
+
+span.textel,
+div.textel {
+  font-weight: 200;
+}
+
+span.textul,
+div.textul {
+  font-weight: 100;
+}
+
+span.textcircled {
+  border: 1px solid black;
+  border-radius: 1ex;
+}
+
+span.underline {
+  text-decoration: underline;
+  text-decoration-skip: auto;
+}
+
+span.overline {
+  text-decoration: overline;
+  text-decoration-skip: auto;
+}
+
+div.hrule {
+  border-top: 1px solid silver;
+}
+
+pre.tabbing {
+  font-family: "Linux Libertine Mono O", "Lucida Console", "Droid Sans Mono",
+    "DejaVu Mono", "Bitstream Vera Mono", "Liberation Mono", "FreeMono",
+    "Andale Mono", "Nimbus Mono L", "Courier New", monospace;
+}
+
+blockquote {
+  display: block;
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+
+html body {
+  margin: 0;
+  line-height: 1.2;
+}
+
+body div {
+  margin: 0ex;
+}
+
+div.book,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span.paragraph,
+span.subparagraph {
+  font-family: "Linux Libertine O", "Hoefler Text", "Garamond", "Bembo",
+    "Janson", "TeX Gyre Pagella", "Palatino", "Liberation Serif",
+    "Nimbus Roman No 9 L", "FreeSerif", Times, "Times New Roman", serif;
+  font-style: normal;
+  font-weight: bold;
+  text-align: left;
+}
+
+h1 {
+  /* title of the entire website, used on each page */
+  text-align: center;
+  font-size: 2.5em;
+  padding: 0.4ex 0em 0ex 0em;
+}
+
+div.book {
+  text-align: center;
+  font-size: 2.325em;
+  padding: 0.4ex 0em 0ex 0em;
+}
+
+h2 {
+  font-size: 2.25em;
+}
+h3 {
+  font-size: 2em;
+}
+h4 {
+  font-size: 1.75em;
+}
+h5 {
+  font-size: 1.5em;
+}
+h6 {
+  font-size: 1.25em;
+}
+span.paragraph {
+  font-size: 1em;
+  font-variant: normal;
+  margin-right: 1em;
+}
+span.subparagraph {
+  font-size: 1em;
+  font-variant: normal;
+  margin-right: 1em;
+}
+
+div.minisec {
+  font-family: "DejaVu Sans", "Bitstream Vera Sans", Geneva, Verdana, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  text-align: left;
+}
+
+h1 {
+  margin: 0ex 0em 0ex 0em;
+  line-height: 1.3;
+  text-align: center;
+}
+
+h2 {
+  margin: 1ex 0em 1ex 0em;
+  line-height: 1.3;
+  text-align: center;
+}
+
+h3 {
+  margin: 3ex 0em 1ex 0em;
+  line-height: 1.3;
+}
+
+h4 {
+  margin: 3ex 0em 1ex 0em;
+  line-height: 1.3;
+}
+
+h5 {
+  margin: 3ex 0em 1ex 0em;
+  line-height: 1.3;
+}
+
+h6 {
+  margin: 3ex 0em 1ex 0em;
+  line-height: 1.3;
+}
+
+div.titlepage {
+  text-align: center;
+}
+
+.footnotes {
+  text-align: left;
+  font-size: 0.85em;
+  margin: 3ex 2em 0ex 2em;
+  border-top: 1px solid silver;
+}
+
+
+div.bodywithoutsidetoc main.bodycontainer {
+  float: none;
+  width: 100%;
+}
+
+section.textbody div.footnotes {
+  margin: 3ex 2em 0.5ex 2em;
+  border-bottom: 2px solid silver;
+}
+
+.footnoteheader {
+  border-top: 2px solid silver;
+  margin-top: 3ex;
+  padding-top: 1ex;
+  font-weight: bold;
+}
+
+.mpfootnotes {
+  text-align: left;
+  font-size: 0.85em;
+  margin-left: 1em;
+  border-top: 1px solid silver;
+}
+
+/* Remove footnote top border in the title page. */
+div.titlepage div.mpfootnotes {
+  border-top: none;
+}
+
+ul,
+ol {
+  margin: 1ex 1em 1ex 0em;
+  line-height: 1.2;
+}
+
+body dir,
+body menu {
+  margin: 3ex 1em 3ex 0em;
+  line-height: 1.2;
+}
+
+li {
+  margin: 0ex 0em 1ex 0em;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+}
+
+.programlisting {
+  font-family: "DejaVu Mono", "Bitstream Vera Mono", "Lucida Console",
+    "Nimbus Mono L", "Liberation Mono", "FreeMono", "Andale Mono", "Courier New",
+    monospace;
+  margin: 1ex 0ex 1ex 0ex;
+  padding: 0.5ex 0pt 0.5ex 0pt;
+  overflow-x: auto;
+}
+
+section.textbody > pre.programlisting {
+  border-top: 1px solid silver;
+  border-bottom: 1px solid silver;
+}
+
+div.displaymath {
+  text-align: center;
+}
+
+div.displaymathnumbered {
+  text-align: right;
+  margin-left: 5%;
+  margin-right: 5%;
+  min-width: 2.5in;
+}
+
+@media all and (min-width: 400px) {
+  div.displaymathnumbered {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+}
+
+@media all and (min-width: 800px) {
+  div.displaymathnumbered {
+    margin-right: 20%;
+  }
+}
+
+@media all and (min-width: 1200px) {
+  div.displaymathnumbered {
+    margin-right: 30%;
+  }
+}
+
+.inlineprogramlisting {
+  font-family: "DejaVu Mono", "Bitstream Vera Mono", "Lucida Console",
+    "Nimbus Mono L", "Liberation Mono", "FreeMono", "Andale Mono", "Courier New",
+    monospace;
+  overflow-x: auto;
+}
+
+span.listinglabel {
+  display: inline-block;
+  font-size: 70%;
+  width: 4em;
+  text-align: right;
+  margin-right: 2em;
+}
+
+div.abstract {
+  margin: 2em 5% 2em 5%;
+  padding: 1ex 1em 1ex 1em;
+  /*  font-weight: bold ; */
+  font-size: 90%;
+  text-align: left;
+}
+
+div.abstract dl {
+  line-height: 1.5;
+}
+div.abstract dt {
+  color: #304070;
+}
+
+div.abstracttitle {
+  font-family: "URW Classico", Optima, "Linux Biolinum O", "Linux Libertine O",
+    "Liberation Serif", "Nimbus Roman No 9 L", "FreeSerif", "Hoefler Text",
+    Times, "Times New Roman", serif;
+  font-weight: bold;
+  font-size: 1.25em;
+  text-align: center;
+}
+
+span.abstractrunintitle {
+  font-family: "URW Classico", Optima, "Linux Biolinum O", "Linux Libertine O",
+    "Liberation Serif", "Nimbus Roman No 9 L", "FreeSerif", "Hoefler Text",
+    Times, "Times New Roman", serif;
+  font-weight: bold;
+}
+
+.verbatim {
+  overflow-x: auto;
+}
+
+.alltt {
+  overflow-x: auto;
+}
+
+.bverbatim {
+  margin: 1ex 0pt 1ex 0pt;
+  padding: 0.5ex 0pt 0.5ex 0pt;
+  overflow-x: auto;
+}
+
+.lverbatim {
+  margin: 1ex 0pt 1ex 0pt;
+  padding: 0.5ex 0pt 0.5ex 0pt;
+  overflow-x: auto;
+}
+
+.fancyvrb {
+  font-size: 0.85em;
+  margin: 3ex 0pt 3ex 0pt;
+}
+
+.fancyvrblabel {
+  font-size: 0.85em;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 1ex;
+  margin-bottom: 1ex;
+}
+
+.verse {
+  font-family: "Linux Libertine Mono O", "Lucida Console", "Droid Sans Mono",
+    "DejaVu Mono", "Bitstream Vera Mono", "Liberation Mono", "FreeMono",
+    "Andale Mono", "Nimbus Mono L", "Courier New", monospace;
+  margin-left: 1em;
+}
+
+div.singlespace {
+  line-height: 1.2;
+}
+div.onehalfspace {
+  line-height: 1.5;
+}
+div.doublespace {
+  line-height: 2;
+}
+
+
+/* Minipage environments, vertically aligned to top, center, bottom: */
+.minipage,
+.fminipage,
+.fcolorminipage {
+  /* display: inline-block ; */
+  /* Mini pages which follow each other will be tiled. */
+  text-align: left;
+  margin: 0.25em 0.25em 0.25em 0.25em;
+  padding: 0.25em 0.25em 0.25em 0.25em;
+  display: inline-flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.inlineminipage {
+  display: inline-block;
+  text-align: left;
+}
+
+/* Paragraphs in the flexbox did not collapse their margins. */
+/* Have not yet researched this. */
+.minipage p {
+  margin: 0.75ex 0em 0.75ex 0em;
+}
+
+.fboxBlock .minipage,
+.colorbox .minipage,
+.colorboxBlock .minipage,
+.fcolorbox .minipage,
+.fcolorboxBlock .minipage {
+  border: none;
+  background: none;
+}
+
+.fbox,
+.fboxBlock {
+  border: 1px solid black;
+  padding: 4pt;
+}
+
+.fbox,
+.fboxBlock,
+.fcolorbox,
+.fcolorboxBlock,
+.colorbox,
+.colorboxBlock,
+.fminipage,
+.fcolorminipage {
+  display: inline-block;
+}
+
+.shadowbox,
+.shabox {
+  border: 1px solid black;
+  box-shadow: 3px 3px 3px #808080;
+  border-radius: 0px;
+  padding: 0.4ex 0.3em 0.4ex 0.3em;
+  margin: 0pt 0.3ex 0pt 0.3ex;
+  display: inline-block;
+}
+
+.doublebox {
+  border: 3px double black;
+  border-radius: 0px;
+  padding: 0.4ex 0.3em 0.4ex 0.3em;
+  margin: 0pt 0.3ex 0pt 0.3ex;
+  display: inline-block;
+}
+
+.ovalbox,
+.Ovalbox {
+  border: 1px solid black;
+  border-radius: 1ex;
+  padding: 0.4ex 0.3em 0.4ex 0.3em;
+  margin: 0pt 0.3ex 0pt 0.3ex;
+  display: inline-block;
+}
+
+.Ovalbox {
+  border-width: 2px;
+}
+
+.framebox {
+  border: 1px solid black;
+  border-radius: 0px;
+  padding: 0.3ex 0.2em 0ex 0.2em;
+  margin: 0pt 0.1ex 0pt 0.1ex;
+  display: inline-block;
+}
+
+
+dl {
+  margin: 1ex 2em 1ex 0em;
+  line-height: 1.3;
+}
+
+dl dt {
+  display: block;
+  float: left;
+  font-weight: bold;
+  padding-right: 1em;
+}
+
+dl dd {
+  display: block;
+}
+
+dl dd:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+dl dd p {
+  margin-top: 0em;
+}
+
+dd ul,
+dd ol,
+dd dl {
+  clear: both;
+}
+
+nav {
+  font-family: "URW Classico", Optima, "Linux Biolinum O", "DejaVu Sans",
+    "Bitstream Vera Sans", Geneva, Verdana, sans-serif;
+  margin-bottom: 4ex;
+}
+
+nav p {
+  line-height: 1.2;
+  margin-top: 0.5ex;
+  margin-bottom: 0.5ex;
+  font-size: 0.9em;
+}
+
+img,
+img.hyperimage,
+img.borderimage {
+  max-width: 600px;
+  border: 1px solid silver;
+  box-shadow: 3px 3px 3px #808080;
+  padding: 0.5%;
+  margin: 0.5%;
+  background: none;
+}
+
+img.inlineimage {
+  padding: 0px;
+  box-shadow: none;
+  border: none;
+  background: none;
+  margin: 0px;
+  display: inline-block;
+  border-radius: 0px;
+}
+
+img.logoimage {
+  max-width: 300px;
+  box-shadow: 3px 3px 3px #808080;
+  border: 1px solid black;
+  background: none;
+  padding: 0;
+  margin: 0.5ex;
+  border-radius: 10px;
+}
+
+.section {
+  /*
+    To have each section float relative to each other:
+*/
+  /*
+    display: block ;
+    float: left ;
+    position: relative ;
+    background: white ;
+    border: 1px solid silver ;
+    padding: .5em ;
+*/
+  margin: 0ex 0.5em 0ex 0.5em;
+  padding: 0;
+}
+
+figure {
+  margin: 5ex auto 5ex auto;
+  padding: 1ex 1em 1ex 1em;
+  overflow-x: auto;
+}
+
+figure figure {
+  margin: 0pt;
+}
+
+figure div.minipage p {
+  font-size: 85%;
+}
+
+figure.subfigure,
+figure.subtable {
+  display: inline-block;
+  margin: 3ex 1em 3ex 1em;
+}
+
+div.figurecaption .minipage {
+  margin: 0;
+  padding: 0;
+}
+
+/* for subcaptions: */
+figure div.minipage div.figurecaption {
+  max-width: 100%; /* fallback if min() does not work */
+  max-width: min(30em, 100%);
+}
+
+div.minipage figure {
+  border: none;
+  box-shadow: none;
+}
+div.minipage figure.table {
+  margin: 0ex;
+}
+div.minipage div.footnotes {
+  margin: 1ex 2em 0ex 2em;
+}
+
+div.floatrow {
+  text-align: center;
+}
+
+div.floatrow figure {
+  display: inline-block;
+  margin: 1ex 2%;
+}
+
+div.floatfoot {
+  font-size: 0.85em;
+  border-top: 1px solid silver;
+  line-height: 1.2;
+}
+
+/* Center if only one line, "start" align if more than one line: */
+div.figurecaption,
+.lstlistingtitle {
+  font-size: 0.85em;
+  font-weight: bold;
+  text-align: start;
+  margin: 1ex auto;
+  width: max-content;
+  max-width: 100%;
+}
+
+/* A marginblock is small, so always center and don't mess with the width. */
+div.marginblock div.figurecaption {
+  width: 100%;
+  text-align: center;
+}
+
+figure.subfigure div.figurecaption,
+figure.subtable div.figurecaption {
+  border-bottom: none;
+  background: none;
+}
+
+div.nonfloatcaption {
+  margin: 1ex auto 1ex auto;
+  font-size: 0.85em;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* For a \RawCaption inside a minipage inside a figure's floatrow: */
+figure div.floatrow div.minipage div.figurecaption {
+  border: none;
+  background: none;
+}
+
+/* For packages such as float, rotfloat, and algorithm2e: */
+
+figure.boxed,
+figure.boxruled {
+  border: 1px solid black;
+}
+
+figure.ruled {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  border-left: 0px;
+  border-right: 0px;
+  border-radius: 0px;
+  background: none;
+  box-shadow: none;
+}
+
+figure.ruled div.figurecaption,
+figure.boxruled div.figurecaption {
+  border-top: 1px solid silver;
+  border-bottom: 1px solid silver;
+}
+
+table {
+  margin: 1ex auto 1ex auto;
+  border-collapse: separate;
+  border-spacing: 0px;
+  line-height: 1.3;
+}
+
+table > tbody > tr.hline > td {
+  border-top: 1px solid #808080;
+  margin-top: 0ex;
+  margin-bottom: 0ex;
+} /* for \hline */
+
+tr.tbrule td {
+  border-top: 1px solid black;
+  margin-top: 0ex;
+  margin-bottom: 0ex;
+} /* for \toprule, \bottomrule */
+
+td {
+  padding: 0.5ex 0.5em 0.5ex 0.5em;
+}
+
+table td.tdl {
+  text-align: left;
+  vertical-align: middle;
+}
+table td.tdc {
+  text-align: center;
+  vertical-align: middle;
+}
+table td.tdat {
+  text-align: center;
+  vertical-align: middle;
+  padding: 0px;
+  margin: 0px;
+}
+table td.tdbang {
+  text-align: center;
+  vertical-align: middle;
+}
+table td.tdr {
+  text-align: right;
+  vertical-align: middle;
+}
+table td.tdp {
+  text-align: left;
+  vertical-align: bottom;
+}
+table td.tdm {
+  text-align: left;
+  vertical-align: middle;
+}
+table td.tdb {
+  text-align: left;
+  vertical-align: top;
+}
+
+table td.tvertbarl {
+  border-left: 1px solid black;
+}
+table td.tvertbarldouble {
+  border-left: 4px double black;
+}
+table td.tvertbarr {
+  border-right: 1px solid black;
+}
+table td.tvertbarrdouble {
+  border-right: 4px double black;
+}
+
+table td.tvertbarldash {
+  border-left: 1px dashed black;
+}
+table td.tvertbarldoubledash {
+  border-left: 2px dashed black;
+}
+table td.tvertbarrdash {
+  border-right: 1px dashed black;
+}
+table td.tvertbarrdoubledash {
+  border-right: 2px dashed black;
+}
+
+table td.tdcenter {
+  text-align: center;
+}
+table td.tdleft {
+  text-align: left;
+}
+table td.tdright {
+  text-align: right;
+}
+
+/* for cmidrules: */
+table td.tdrule {
+  border-top: 1px solid #a0a0a0;
+}
+
+table td.tdrulel {
+  border-top-left-radius: 0.5em;
+  border-top: 1px solid #a0a0a0;
+}
+
+table td.tdruler {
+  border-top-right-radius: 0.5em;
+  border-top: 1px solid #a0a0a0;
+}
+
+table td.tdrulelr {
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+  border-top: 1px solid #a0a0a0;
+}
+
+/* Margins of paragraphs inside table cells: */
+td.tdp p,
+td.tdprule p,
+td.tdP p,
+td.tdPrule p {
+  padding-top: 1ex;
+  padding-bottom: 1ex;
+  margin: 0ex;
+}
+td.tdm p,
+td.tmbrule p,
+td.tdM p,
+td.tdMrule p {
+  padding-top: 1ex;
+  padding-bottom: 1ex;
+  margin: 0ex;
+}
+td.tdb p,
+td.tdbrule p,
+td.tdB p,
+td.tdBrule p {
+  padding-top: 1ex;
+  padding-bottom: 1ex;
+  margin: 0ex;
+}
+
+td.tdp,
+td.tdprule,
+td.tdP,
+td.tdPrule {
+  padding: 0ex 0.5em 0ex 0.5em;
+}
+td.tdm,
+td.tdmrule,
+td.tdM,
+td.tdMrule {
+  padding: 0ex 0.5em 0ex 0.5em;
+}
+td.tdb,
+td.tdbrule,
+td.tdB,
+td.tdBrule {
+  padding: 0ex 0.5em 0ex 0.5em;
+}
+
+/* table notes: */
+.tnotes {
+  margin: 0ex 5% 1ex 5%;
+  padding: 0.5ex 1em 0.5ex 1em;
+  font-size: 0.8em;
+  text-align: left;
+}
+
+.minipage .tnotes {
+  margin: 0pt;
+  padding: 0pt;
+}
+
+.tnotes dl dt p {
+  margin-bottom: 0px;
+}
+
+.tnoteitemheader {
+  margin-right: 1em;
+}
+
+/* for colortbl and cell color */
+div.cellcolor {
+  width: 100%;
+  padding: 0.5ex 0.5em 0.5ex 0.5em;
+  margin: -0.5ex -0.5em -0.5ex -0.5em;
+}
+
+/* for lyluatex */
+span.lyluatex {
+  display: inline-block;
+}
+
+div.lyluatex p span.lateximagesource img {
+  display: block;
+  margin-top: 3ex;
+  margin-bottom: 3ex;
+}
+
+/* for bigdelim */
+.ldelim,
+.rdelim {
+  font-size: 200%;
+}
+
+/* center, flushleft, flushright environments */
+div.center {
+  text-align: center;
+}
+div.center table {
+  margin-left: auto;
+  margin-right: auto;
+}
+div.flushleft {
+  text-align: left;
+}
+div.flushleft table {
+  margin-left: 0em;
+  margin-right: auto;
+}
+div.flushright {
+  text-align: right;
+}
+div.flushright table {
+  margin-left: auto;
+  margin-right: 0em;
+}
+
+/* Fancybox */
+div.Btrivlist table tr td {
+  padding: 0.2ex 0em;
+}
+
+/* program listing callouts: */
+span.callout {
+  font-family: "DejaVu Sans", "Bitstream Vera Sans", Geneva, Verdana, sans-serif;
+  border-radius: 0.5em;
+  background-color: black;
+  color: white;
+  padding: 0px 0.25em 0px 0.25em;
+  margin: 0;
+  font-weight: bold;
+  font-size: 0.72em;
+}
+
+div.programlisting pre.verbatim span.callout {
+  font-size: 0.85em;
+}
+
+span.verbatim {
+  font-family: "DejaVu Mono", "Bitstream Vera Mono", "Lucida Console",
+    "Nimbus Mono L", "Liberation Mono", "FreeMono", "Andale Mono", "Courier New",
+    monospace;
+}
+
+div.titlehead {
+  text-align: left;
+  font-style: normal;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 0.8em;
+  margin: 1ex 0em 1ex 0em;
+}
+
+div.subject {
+  text-align: center;
+  font-style: normal;
+  font-weight: bold;
+  font-style: normal;
+  font-size: 0.8em;
+  margin: 1ex 0em 1ex 0em;
+}
+
+div.published {
+  text-align: center;
+  font-variant: normal;
+  font-style: italic;
+  font-size: 1em;
+  margin: 1ex 0em 1ex 0em;
+}
+
+div.subtitle {
+  text-align: center;
+  font-variant: normal;
+  font-style: italic;
+  font-size: 1.25em;
+  margin: 1ex 0em 1ex 0em;
+}
+
+div.subtitle p {
+  margin: 1ex;
+}
+
+div.author {
+  text-align: center;
+  font-variant: normal;
+  font-style: normal;
+  font-size: 1em;
+  margin: 1ex 0em 1ex 0em;
+}
+
+div.oneauthor {
+  display: inline-block;
+  margin: 0ex 1em 0ex 1em;
+}
+
+/*
+div.author table {
+    margin: 1ex auto 0ex auto ;
+    background: none ;
+}
+
+div.author table tbody tr td { padding: .25ex ; }
+*/
+
+span.affiliation {
+  font-size: 0.85em;
+  font-variant: small-caps;
+}
+
+div.titledate {
+  text-align: center;
+  font-size: 0.85em;
+  font-style: italic;
+  margin: 1ex 0em 1ex 0em;
+}
+
+nav.topnavigation {
+  text-align: left;
+  padding: 0.5ex 1em 0.5ex 1em;
+  /*     margin: 2ex 0em 3ex 0em ; */
+  margin: 0;
+  border-bottom: 1px solid silver;
+  border-top: 1px solid silver;
+  clear: both;
+}
+
+nav.botnavigation {
+  text-align: left;
+  padding: 0.5ex 1em 0.5ex 1em;
+  /*     margin: 3ex 0em 2ex 0em ; */
+  margin: 0;
+  border-top: 1px solid silver;
+  border-bottom: 1px solid silver;
+  clear: both;
+}
+
+header {
+  line-height: 1.2;
+  font-size: 1em;
+  border-bottom: 1px solid silver;
+  margin: 0px;
+  padding: 2ex 1em 2ex 1em;
+  text-align: left;
+}
+
+footer {
+  font-size: 0.85em;
+  line-height: 1.2;
+  margin-top: 1ex;
+  border-top: 1px solid silver;
+  padding: 2ex 1em 2ex 1em;
+  clear: both;
+  text-align: left;
+}
+
+/* for \LinkHome, \LinkPrevious, and \LinkNext: */
+a.linkhome {
+  font-weight: bold;
+  font-size: 1em;
+}
+
+div.lateximagesource {
+  padding: 0px;
+  margin: 0px;
+  display: none;
+}
+
+img.lateximage {
+  padding: 0pt;
+  margin: 0pt;
+  box-shadow: none;
+  border: none;
+  background: none;
+  max-width: 100%;
+  border-radius: 0ex;
+  border: none;
+}
+
+div.sidetoccontainer {
+  font-family: "DejaVu Serif", "Bitstream Vera Serif", "Lucida Bright", Georgia,
+    serif;
+  float: left;
+  width: 19%; /* room for border-right next to 80% main */
+  margin: 0pt 0em 3ex 0pt;
+  border-right: 1px solid silver;
+  border-bottom: 1px solid silver;
+  background: #faf7f4;
+  font-size: 0.9em;
+  border-radius: 0px 0px 20px 0px;
+}
+
+div.sidetoccontents {
+  overflow-y: auto;
+  width: 100%;
+  text-align: left;
+}
+
+nav.sidetoc p {
+  line-height: 1.2;
+  margin: 1ex 0.5em 1ex 0.5em;
+  text-indent: 0;
+}
+
+nav.sidetoc p a {
+  color: black;
+  font-size: 0.7em;
+}
+
+div.sidetoctitle {
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 1px solid silver;
+}
+
+nav.sidetoc a:hover {
+  text-decoration: underline;
+}
+
+section.textbody {
+  margin: 0ex 1em 0ex 1em;
+}
+
+div.multicolsheading {
+  -webkit-column-span: all;
+  -moz-column-span: all;
+  column-span: all;
+}
+div.multicols {
+  -webkit-columns: 3 auto;
+  -moz-columns: 3 auto;
+  columns: 3 auto;
+}
+div.multicols p {
+  margin-top: 0ex;
+}
+
+/* Used for xfrac and nicefrac: */
+span.numerator {
+  font-size: 60%;
+  vertical-align: 0.4em;
+}
+
+span.denominator {
+  font-size: 60%;
+}
+
+/* Used for algorithm2e: */
+div.alg2evline {
+  margin-left: 1em;
+  padding-left: 1em;
+  border-left: 1px solid black;
+  border-radius: 0px 0px 0px 1ex;
+}
+
+div.alg2evsline {
+  margin-left: 1em;
+  padding-left: 1em;
+  border-left: 1px solid black;
+}
+
+div.alg2enoline {
+  margin-left: 1em;
+  padding-left: 1em;
+}
+
+span.alg2elinenumber {
+  margin-right: 0.5em;
+  font-size: 60%;
+  color: red;
+}
+
+/* Used for algorithmicx: */
+span.floatright {
+  float: right;
+}
+
+/* keyfloat and tocdata: */
+.floatnotes {
+  margin: 0ex 5% 0ex 5%;
+  padding: 0ex 1em 0ex 1em;
+  font-size: 0.8em;
+  text-align: left;
+}
+
+.authorartist {
+  display: block;
+  font-size: 0.7em;
+  font-style: italic;
+}
+
+nav .authorartist {
+  display: inline;
+}
+
+/* Native LaTeX theorems: */
+
+.theoremcontents {
+  font-style: italic;
+  margin-top: 3ex;
+  margin-bottom: 3ex;
+}
+
+.theoremlabel {
+  font-style: normal;
+  font-weight: bold;
+  margin-right: 0.5em;
+}
+
+/* theorem, amsthm, and ntheorem packages */
+
+span.theoremheader,
+span.theoremheaderplain,
+span.theoremheaderdefinition,
+span.theoremheaderbreak,
+span.theoremheadermarginbreak,
+span.theoremheaderchangebreak,
+span.theoremheaderchange,
+span.theoremheadermargin {
+  font-style: normal;
+  font-weight: bold;
+  margin-right: 1em;
+}
+
+span.amsthmnameplain,
+span.amsthmnamedefinition,
+span.amsthmnumberplain,
+span.amsthmnumberdefinition {
+  font-style: normal;
+  font-weight: bold;
+}
+
+span.amsthmnameremark,
+span.amsthmnumberremark {
+  font-style: italic;
+  font-weight: normal;
+}
+
+span.amsthmnoteplain,
+span.amsthmnotedefinition {
+  font-style: normal;
+}
+
+span.theoremheaderremark,
+span.theoremheaderproof,
+span.amsthmproofname {
+  font-style: italic;
+  font-weight: normal;
+  margin-right: 1em;
+}
+
+span.theoremheadersc {
+  font-style: normal;
+  font-variant: small-caps;
+  font-weight: normal;
+  margin-right: 1em;
+}
+
+.theoremendmark {
+  float: right;
+}
+
+div.amsthmbodyplain,
+div.theorembodyplain,
+div.theorembodynonumberplain,
+div.theorembodybreak,
+div.theorembodynonumberbreak,
+div.theorembodymarginbreak,
+div.theorembodychangebreak,
+div.theorembodychange,
+div.theorembodymargin {
+  font-style: italic;
+  margin-top: 3ex;
+  margin-bottom: 3ex;
+}
+
+div.theorembodydefinition,
+div.theorembodyremark,
+div.theorembodyproof,
+div.theorembodyplainupright,
+nonumberplainuprightsc,
+div.amsthmbodydefinition,
+div.amsthmbodyremark,
+div.amsthmproof {
+  font-style: normal;
+  margin-top: 3ex;
+  margin-bottom: 3ex;
+}
+
+span.amsthmnoteremark {
+}
+
+/* thmbox */
+
+.thmbox {
+  font-style: italic;
+  margin-top: 3ex;
+  margin-bottom: 3ex;
+  border: 1px solid gray;
+  padding: 1ex;
+}
+
+.thmboxtitle {
+  font-style: normal;
+  font-weight: bold;
+  margin-right: 0.5em;
+  border-bottom: 1px solid gray;
+}
+
+span.thmboxproofname,
+span.thmboxexamplename {
+  font-weight: bold;
+}
+
+div.thmboxproof,
+div.thmboxexample {
+  font-size: 0.85em;
+  margin: 2ex;
+}
+
+div.thmboxleftbar {
+  border-left: 2px solid black;
+  padding-left: 1em;
+}
+
+/* For the backnaur package: */
+div.backnaur {
+  display: block;
+  margin: 2ex 2em 2ex 2em;
+}
+
+div.backnaur p {
+  margin: 0.25ex 0ex 0.25ex 0ex;
+}
+
+div.backnaurprod {
+  display: inline-block;
+  min-width: 8em;
+  text-align: right;
+}
+
+div.backnaurdesc {
+  display: inline-block;
+}
+
+/* For the notes package: */
+div.notesimportantnote,
+div.noteswarningnote,
+div.notesinformationnote {
+  clear: both;
+  margin: 2ex 2em 2ex 2em;
+  border: 1px solid silver;
+}
+
+div.notesicon {
+  float: left;
+  display: inline-block;
+  background: gold;
+  padding: 0ex 1em 0ex 1em;
+  margin-right: 1em;
+  font-weight: bold;
+}
+
+div.notescontents {
+  font-style: italic;
+}
+
+/* nolbreaks package: */
+span.nolbreaks {
+  white-space: nowrap;
+}
+
+/*
+For CSS LaTeX and related logos:
+Based on spacing demonstrated by the metafont package.
+
+The subscripts are shrunk instead of lowered below the baseline,
+to avoid browser rendering errors with the line height in lists, etc.
+*/
+
+.latexlogofont {
+  font-family: "Linux Libertine O", "Nimbus Roman No 9 L", "FreeSerif",
+    "Hoefler Text", Times, "Times New Roman", serif;
+  font-variant: normal;
+}
+
+.latexlogo {
+  font-family: "Linux Libertine O", "Nimbus Roman No 9 L", "FreeSerif",
+    "Hoefler Text", Times, "Times New Roman", serif;
+}
+
+.latexlogosup {
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-size: 0.7em;
+  vertical-align: 0.25em;
+  margin-left: -0.4em;
+  margin-right: -0.15em;
+}
+
+.latexlogosub {
+  text-transform: uppercase;
+  /*  vertical-align: -0.27ex; */
+  margin-left: -0.08em;
+  margin-right: -0.07em;
+  /*  font-size: 1em; */
+  font-size: 0.7em;
+}
+
+.latexlogotwoe {
+  text-transform: none;
+  font-variant-numeric: oldstyle-nums;
+}
+
+.latexlogotwoesub {
+  font-style: italic;
+  /*  vertical-align: -0.27ex; */
+  margin-left: -0.11em;
+  margin-right: -0.1em;
+  /*  font-size: 1em; */
+  font-size: 0.7em;
+}
+
+.xelatexlogo {
+  font-family: "Linux Libertine O", "Nimbus Roman No 9 L", "FreeSerif",
+    "Hoefler Text", Times, "Times New Roman", serif;
+  letter-spacing: 0.03em;
+}
+
+.xelatexlogosub {
+  /*  vertical-align: -0.27ex; */
+  margin-left: -0.0667em;
+  margin-right: -0.05em;
+  /*  font-size: 1em; */
+  font-size: 0.7em;
+  letter-spacing: 0.03em;
+}
+
+.amslogo {
+  font-family: "TeXGyreChorus", "URW Chancery L", "Apple Chancery",
+    "ITC Zapf Chancery", "Monotype Corsiva", "Linux Libertine O",
+    "Nimbus Roman No 9 L", "FreeSerif", "Hoefler Text", Times, "Times New Roman",
+    serif;
+  font-style: italic;
+}
+
+.lyxlogo {
+  font-family: "URW Classico", Optima, "Linux Biolinum O", "DejaVu Sans",
+    "Bitstream Vera Sans", Geneva, Verdana, sans-serif;
+}
+
+/* Only display top and bottom navigation if a small screen: */
+/* Hide the sidetoc if a small screen: */
+nav.topnavigation {
+  display: none;
+}
+nav.botnavigation {
+  display: none;
+}
+
+/* Only display the sidetoc's webpage title if a small screen */
+span.sidetocthetitle {
+  display: none;
+}
+
+@media screen and (max-width: 100em) {
+  div.multicols {
+    -webkit-columns: 2 auto;
+    -moz-columns: 2 auto;
+    columns: 2 auto;
+  }
+}
+
+@media screen and (max-width: 50em) {
+  div.sidetoccontainer {
+    float: none;
+    width: 100%;
+    padding: 0;
+    border-radius: 0;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    box-shadow: none;
+  }
+  span.sidetocthetitle {
+    display: inline;
+  }
+  nav.topnavigation {
+    display: block;
+  }
+  nav.botnavigation {
+    display: block;
+  }
+  main.bodycontainer {
+    width: 100%;
+  }
+  .marginpar {
+    max-width: 100%;
+    float: none;
+    display: block;
+    margin: 1ex 1em 1ex 1em;
+  }
+  div.multicols {
+    -webkit-columns: 1 auto;
+    -moz-columns: 1 auto;
+    columns: 1 auto;
+  }
+}
+
+@media print {
+  body {
+    font-family: "Linux Libertine O", "DejaVu Serif", "Bitstream Vera Serif",
+      "Liberation Serif", "Nimbus Roman No 9 L", "FreeSerif", "Hoefler Text",
+      Times, "Times New Roman", serif;
+  }
+  div.sidetoccontainer {
+    display: none;
+  }
+  nav.topnavigation {
+    display: none;
+  }
+  nav.botnavigation {
+    display: none;
+  }
+  main.bodycontainer {
+    width: 100%;
+  }
+}
+
+@media handheld {
+  div.sidetoccontainer {
+    display: none;
+  }
+  nav.topnavigation {
+    display: block;
+  }
+  nav.botnavigation {
+    display: block;
+  }
+  main.bodycontainer {
+    width: 100%;
+  }
+}
+
+@media projection {
+  div.sidetoccontainer {
+    display: none;
+  }
+  nav.topnavigation {
+    display: block;
+  }
+  nav.botnavigation {
+    display: block;
+  }
+  main.bodycontainer {
+    width: 100%;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 :root {
   --header-height: 40px;
@@ -46,7 +1842,7 @@
   }
 }
 
-.bodyandsidetoc>header {
+.bodyandsidetoc > header {
   grid-area: header;
   display: flex;
   justify-content: space-between;
@@ -127,8 +1923,12 @@ nav {
   padding: 0;
   margin: 0;
   max-height: calc(100vh - var(--header-height));
-  overflow: scroll;
+  overflow-y: auto;
   scroll-padding: 100px;
+}
+
+#chapter-toc-container nav.sidetoc {
+  max-height: none;
 }
 
 footer {
@@ -139,15 +1939,20 @@ footer {
   font-size: 1em;
 }
 
-header h1 {
+header strong {
+  display: block;
   font-size: 1.1em;
+  font-family: "Linux Libertine O", "Hoefler Text", "Garamond", "Bembo",
+    "Janson", "TeX Gyre Pagella", "Palatino", "Liberation Serif",
+    "Nimbus Roman No 9 L", "FreeSerif", Times, "Times New Roman", serif;
   margin: 0;
   margin-left: 0.4em;
+  padding: 0.4ex 0em 0ex 0em;
 }
 
-header h1 a,
-header h1 a:visited,
-header h1 a:hover {
+header strong a,
+header strong a:visited,
+header strong a:hover {
   color: #fff !important;
   text-decoration: none;
 }
@@ -157,13 +1962,13 @@ header h1 a:hover {
 }
 
 @media screen and (min-width: 750px) {
-  #search>button {
+  #search > button {
     width: 13em;
   }
 }
 
 @media screen and (min-width: 1280px) {
-  #search>button {
+  #search > button {
     width: 19em;
   }
 }
@@ -185,7 +1990,7 @@ header h1 a:hover {
 }
 
 @media screen and (min-width: 640px) {
-  header h1 {
+  header strong {
     font-size: 1.5em;
     margin-left: 1em;
   }
@@ -195,6 +2000,10 @@ header h1 a:hover {
     width: 14em;
     font-size: 105%;
     padding: 3px 5px;
+  }
+
+  #chapter-toc-container nav.sidetoc {
+    max-height: calc(100vh - var(--header-height));
   }
 }
 
@@ -207,7 +2016,34 @@ h2.inserted {
 }
 
 h4 {
-  margin-top: 0;
+  margin: 0;
+}
+
+h5 {
+  margin-top: 1.5ex;
+}
+
+/* anchor links for headings */
+h5, h6 {
+  display: flex;
+}
+
+h5 > .anchor-link, 
+h6 > .anchor-link {
+  margin-left: auto;
+  font-family: "DejaVu Serif", "Bitstream Vera Serif", "Lucida Bright", Georgia, serif;
+  font-size: 90%;
+  color: #000080;
+  font-weight: normal;
+}
+
+h5 > .anchor-link {
+  font-size: 75%;
+}
+
+h5 > .anchor-link:hover,
+h6 > .anchor-link:hover {
+  background-color: rgb(201, 204, 243);
 }
 
 .example {
@@ -215,6 +2051,7 @@ h4 {
   align-items: stretch;
   flex-wrap: wrap;
   margin: 1em;
+  padding: 0;
 }
 
 .example-image {
@@ -226,12 +2063,8 @@ h4 {
   padding: 0.5em;
 }
 
-.example-image img {
-  width: 100%;
-}
-
 .example-code {
-  padding: 0 1em;
+  padding: 0.75em;
   background: #e5e5ff;
   font-family: monospace;
   position: relative;
@@ -274,7 +2107,7 @@ h4 {
   text-decoration-color: blue;
 }
 
-.example-code>p>br:first-child {
+.example-code > code > br:first-child {
   display: none;
   /* hide the first <br> which is spurious */
 }
@@ -311,7 +2144,7 @@ p span.text {
   margin-left: -40px;
 }
 
-.entryheadline p>a {
+.entryheadline p > a {
   position: absolute;
   /* ignore in flex layout */
 }
@@ -325,11 +2158,11 @@ nav.sidetoc .sidetoccontents p {
   font-size: 110%;
 }
 
-nav.sidetoc .sidetoccontents>p.current-part {
+nav.sidetoc .sidetoccontents > p.current-part {
   background-color: rgb(219, 221, 243);
 }
 
-nav.sidetoc .sidetoccontents>p.current {
+nav.sidetoc .sidetoccontents > p.current {
   background-color: rgb(195, 199, 241);
 }
 
@@ -377,13 +2210,13 @@ nav.sidetoc .sidetoccontents a.tocsubsubsection {
   position: relative;
 }
 
-.entryheadline p>a.anchor-link {
+.entryheadline p > a.anchor-link {
   position: static;
   /* do not ignore in flex layout */
   margin-left: 0.5em;
 }
 
-.entryheadline p>a.anchor-link:hover {
+.entryheadline p > a.anchor-link:hover {
   background-color: rgb(201, 204, 243);
 }
 

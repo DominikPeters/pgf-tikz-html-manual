@@ -516,6 +516,14 @@ executecheckerror (
     "pdftocairo -svg -noshrink  " .. imagesdirectory .. dirslash .. lwimgname .. ".pdf " ..
         imagesdirectory .. dirslash .. lwimgname ..".svg" ..
         seqname ..
+    -- Convert the image to png:
+    "pdftocairo -png -transp -r 300 -singlefile " .. imagesdirectory .. dirslash .. lwimgname .. ".pdf " ..
+        imagesdirectory .. dirslash .. lwimgname ..
+        seqname ..
+    -- Compress the png:
+    "pngquant --force --ext .png -- " ..
+        imagesdirectory .. dirslash .. lwimgname ..".png" ..
+        seqname ..
     -- Remove the temporary files:
     rmname .. " " .. imagesdirectory .. dirslash .. lwimgname .. ".pdf" .. seqname ..
     rmname .. " " .. imagesdirectory .. dirslash .. "lateximagetemp-" .. lwimgpage .. ".pdf" ..
