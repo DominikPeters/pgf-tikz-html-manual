@@ -142,7 +142,7 @@ It turns out that there are actually \emph{two} layers below \tikzname:
         headaches to everyone who wants to create graphics in a portable way.
         \pgfname's system layer ``abstracts away'' these differences. For
         example, the system command |\pgfsys@lineto{10pt}{10pt}| extends the
-        current path  to the coordinate $(10\mathrm{pt},10\mathrm{pt})$ of
+        current path  to the coordinate (10pt, 10pt) of
         the current |{pgfpicture}|. Depending on whether |dvips|, |dvipdfm|,
         or |pdftex| is used to process the document, the system command will
         be converted to different |\special| commands. The system layer is as
