@@ -20,9 +20,9 @@ function updateTOC() {
 
   navLi.forEach((li) => {
     li.parentElement.classList.remove("current");
-    if (li.href.includes(current)) {
+    if (li.href.endsWith(current)) {
       li.parentElement.classList.add("current");
-      li.parentElement.scrollIntoView({block: "nearest"});
+      li.parentElement.scrollIntoView({ block: "nearest" });
     }
   });
 }
@@ -32,7 +32,7 @@ function initClipboardButtons() {
     elem.addEventListener("click", function (e) {
       var target = e.target;
       var copyText = target.parentElement
-        .getElementsByTagName("p")[0]
+        .getElementsByTagName("code")[0]
         .innerText.trim();
       navigator.clipboard.writeText(copyText).then(
         function () {
@@ -53,7 +53,7 @@ function initClipboardButtons() {
 }
 
 document.addEventListener("DOMContentLoaded", (event) => {
-  sections = document.querySelectorAll("h4,h5,h6");
+  sections = document.querySelectorAll("span.sectionnumber");
   navLi = document.querySelectorAll("#local-toc-container a");
 
   window.onscroll = () => {
@@ -67,5 +67,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
 });
 
 window.addEventListener("load", () => {
-  document.querySelector("#chapter-toc-container p.current").scrollIntoView({block: "nearest"});
+  document
+    .querySelector("#chapter-toc-container p.current")
+    .scrollIntoView({ block: "nearest" });
+  updateTOC();
 });

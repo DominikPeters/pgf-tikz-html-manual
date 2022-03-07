@@ -369,7 +369,6 @@ def _add_dimensions(tag, svgfilename):
         height_pt = svg.documentElement.getAttribute("height").replace("pt", "")
     width_px = float(width_pt) * 1.33333
     height_px = float(height_pt) * 1.33333
-    # very large SVGs are pathological and empty, delete them
     tag['width'] = "{:.3f}".format(width_px)
     tag['height'] = "{:.3f}".format(height_px)
     return (width_px, height_px)
@@ -378,6 +377,7 @@ def process_images(soup):
     for tag in soup.find_all("img"):
         if "svg" in tag['src']: 
             width_px, height_px = _add_dimensions(tag, tag['src'])
+            # very large SVGs are pathological and empty, delete them
             if height_px > 10000:
                 tag.decompose()
                 continue
@@ -408,7 +408,7 @@ def semantic_tags(soup):
         p = examplecode.find("p")
         p.name = "code"
 
-for filename in sorted(os.listdir(".")):
+for filename in sorted(os.listdir()):
     if filename.endswith(".html"):
         if filename in ["description.html", "pgfmanual_html.html", "home.html"]:
             continue
