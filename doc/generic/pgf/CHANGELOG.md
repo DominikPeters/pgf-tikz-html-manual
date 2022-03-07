@@ -16,6 +16,18 @@ lot of contributed changes. Thanks to everyone who volunteered their time!
   `\pgfrevision{,date}` and `\pgfversion{,date}` are synonyms for now, but the
   revision should eventually gain back its original meaning.  However, as of now
   this is not supported by l3build.
+- Many operations in `pgfkeys` used to use `\csname` directly which lets the
+  given csname become `\relax` in case it wasn't defined. This resulted in some
+  leakage of accidentally `\relax`ed keys into the global scope. This has been
+  cleaned up a little. To preserve compatibility macros that used to expand to a
+  `\relax`ed csname now expand to a primitive `\relax`. This affects the
+  user-level commands `\pgfkeysgetvalue` and `\pgfkeysgetvalueof`. For the
+  former the change should not be visible except for the number of expansions
+  required. For `\pgfkeysgetvalueof`, however, the behavior is manifestly
+  different in that it will now expand to an alias for the primitive `\relax` in
+  case the value is undefined instead of a `\relax`ed csname. It has always been
+  semantically wrong to assign to the result of `\pgfkeysgetvalueof`, but now it
+  will have undesired side-effects. Therefore this change is breaking.
 
 ### Added
 
@@ -24,6 +36,7 @@ lot of contributed changes. Thanks to everyone who volunteered their time!
 - Add rhombic polihedra #1022
 - Add Developer Certificate of Origin (DCO) to Pull Request template and enforce
 - Add test set for `graphdrawing` (gd) 
+- pgfkeys gained support for loading libraries
 
 ### Fixed
 
@@ -60,6 +73,7 @@ lot of contributed changes. Thanks to everyone who volunteered their time!
   #1112
 - Form-only patterns have no specified color #1122 
 - Make `graphdrawing` work with `name prefix` and `name suffix` options #1087
+- pgfkeys was a bit too relaxed around `\relax` #1132
 
 ### Changed
 
@@ -848,7 +862,7 @@ numbers to get to the fix and the ticket, respectively.
 - Reset \tikz@intersect@namedpaths at scope boundaries, fixes #284
 - Make \node foreach work if loop variable is used for positioning, fixes #735
 - Correct some typos, fixes #736
-- checked `pattern.meta` library stuff and fixed some minor issues
+- checked `patterns.meta` library stuff and fixed some minor issues
 - corrected a word in `pgfmanual-en-dv-axes.tex`
 - harmonized spelling of `i.e.` and `e.g.`
 - corrected line breaking in `pgfmanual-en-math-numberprinting.tex` where a
