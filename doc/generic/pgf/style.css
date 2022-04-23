@@ -2032,18 +2032,26 @@ h5 > .anchor-link,
 h6 > .anchor-link {
   margin-left: auto;
   font-family: "DejaVu Serif", "Bitstream Vera Serif", "Lucida Bright", Georgia, serif;
-  font-size: 90%;
+  font-size: 85%;
   color: #000080;
+  opacity: 0.4;
+  padding-left: 3px;
   font-weight: normal;
 }
 
 h5 > .anchor-link {
-  font-size: 75%;
+  font-size: 70%;
 }
 
 h5 > .anchor-link:hover,
 h6 > .anchor-link:hover {
   background-color: rgb(201, 204, 243);
+  text-decoration: none;
+}
+
+h5:hover > .anchor-link, 
+h6:hover > .anchor-link {
+  opacity: 1;
 }
 
 .example {
@@ -2211,13 +2219,20 @@ nav.sidetoc .sidetoccontents a.tocsubsubsection {
 }
 
 .entryheadline p > a.anchor-link {
+  opacity: 0.4;
+  padding-left: 3px;
   position: static;
   /* do not ignore in flex layout */
   margin-left: 0.5em;
 }
 
+.entryheadline p:hover > a.anchor-link {
+  opacity: 1;
+}
+
 .entryheadline p > a.anchor-link:hover {
   background-color: rgb(201, 204, 243);
+  text-decoration: none;
 }
 
 #local-toc-container a.current {
