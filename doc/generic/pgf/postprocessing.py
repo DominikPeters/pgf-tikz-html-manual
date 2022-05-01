@@ -1,6 +1,7 @@
 from xml.dom import minidom
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Comment
 from shutil import copyfile, copytree
+import json
 import re
 import os
 import datetime
@@ -17,6 +18,10 @@ copyfile("lwarp.css", "processed/lwarp.css")
 copyfile("pgfmanual.js", "processed/pgfmanual.js")
 copytree("pgfmanual-images", "processed/pgfmanual-images", dirs_exist_ok=True)
 copytree("standalone", "processed/standalone", dirs_exist_ok=True)
+copytree("banners/social-media-banners", "processed/social-media-banners", dirs_exist_ok=True)
+copytree("banners/toc-banners", "processed/toc-banners", dirs_exist_ok=True)
+
+meta_descriptions = json.load(open("meta-descriptions.json"))
 
 ## table of contents and anchor links
 def rearrange_heading_anchors(soup):
@@ -48,6 +53,33 @@ def rearrange_heading_anchors(soup):
                 break
             else:
                 break
+
+def add_copyright_comment_block(filename, soup):
+    # open tex file to fetch copyright block (initial lines starting in %)
+    stem = os.path.splitext(filename)[0]
+    tex_filename = f"pgfmanual-en-{stem}.tex"
+    copyright_lines = []
+    if os.path.isfile(tex_filename):
+        with open(tex_filename, "r") as file:
+            for line in file:
+                if line.startswith("%"):
+                    copyright_lines.append(line[1:].strip())
+                else:
+                    break
+    if not copyright_lines:
+        copyright_lines = [
+            "Copyright 2019 by Till Tantau",
+            "",
+            "This file may be distributed and/or modified",
+            "",
+            "1. under the LaTeX Project Public License and/or",
+            "2. under the GNU Free Documentation License.",
+            "",
+            "See the file doc/generic/pgf/licenses/LICENSE for more details."
+        ]
+    # add copyright block to html
+    comment = Comment("\n".join(copyright_lines).replace("the file doc/generic/pgf/licenses/LICENSE","https://tikz.dev/license"))
+    soup.html.insert(0, comment)
 
 def make_page_toc(soup):
     container = soup.find(class_="bodyandsidetoc")
@@ -90,7 +122,7 @@ def add_class(tag, c):
         tag['class'] = [c]
 
 ## shorten sidetoc
-def shorten_sidetoc_and_add_part_header(soup):
+def shorten_sidetoc_and_add_part_header(soup, is_home=False):
     container = soup.find(class_="sidetoccontainer")
     container['id'] = "chapter-toc-container"
     sidetoc = soup.find(class_="sidetoccontents")
@@ -129,6 +161,8 @@ def shorten_sidetoc_and_add_part_header(soup):
         # Skip introduction link because it doesn't have a part
         if entry.a['href'] == "index-0":
             entry.a['class'] = ['linkintro']
+            if is_home:
+                entry['class'] = ['current']
             continue
         if "tocpart" in entry.a['class']:
             element = {
@@ -264,11 +298,12 @@ def add_header(soup):
     h1 = soup.new_tag('strong')
     link = soup.new_tag('a', href="/")
     h1.append(link)
-    link.append("PGF/Ti")
-    k = soup.new_tag("i")
-    k.append("k")
+    link.append("PGF/")
+    k = soup.new_tag("span")
+    k['class'] = "tikzname"
+    k.append("TikZ")
     link.append(k)
-    link.append("Z Manual")
+    link.append(" Manual")
     header.append(h1)
     soup.find(class_="bodyandsidetoc").insert(0, header)
 
@@ -408,6 +443,48 @@ def semantic_tags(soup):
         p = examplecode.find("p")
         p.name = "code"
 
+def add_meta_tags(filename, soup):
+    stem = os.path.splitext(filename)[0]
+    # descriptions
+    if filename == "index-0.html":
+        meta = soup.new_tag('meta', content="Full online version of the documentation of PGF/TikZ, the TeX package for creating graphics.")
+        meta['name'] = "description"
+        soup.head.append(meta)
+        og_meta = soup.new_tag('meta', property="og:description", content="Full online version of the documentation of PGF/TikZ, the TeX package for creating graphics.")
+        soup.head.append(og_meta)
+    elif stem in meta_descriptions:
+        meta = soup.new_tag('meta', content=meta_descriptions[stem])
+        meta['name'] = "description"
+        soup.head.append(meta)
+        og_meta = soup.new_tag('meta', property="og:description", content=meta_descriptions[stem])
+        soup.head.append(og_meta)
+    # canonical
+    if filename == "index-0.html":
+        link = soup.new_tag('link', rel="canonical", href="https://tikz.dev/")
+        soup.head.append(link)
+        meta = soup.new_tag('meta', property="og:url", content="https://tikz.dev/")
+        soup.head.append(meta)
+    else:
+        link = soup.new_tag('link', rel="canonical", href="https://tikz.dev/" + stem)
+        soup.head.append(link)
+        meta = soup.new_tag('meta', property="og:url", content="https://tikz.dev/" + stem)
+        soup.head.append(meta)
+    # thumbnail
+    img_filename = "social-media-banners/" + stem + ".png"
+    if os.path.isfile("banners/"+img_filename):
+        meta = soup.new_tag('meta', property="og:image", content="https://tikz.dev/" + img_filename)
+        soup.head.append(meta)
+    # og.type = article
+    meta = soup.new_tag('meta', property="og:type", content="article")
+    soup.head.append(meta)
+    # get og.title from soup.title
+    meta = soup.new_tag('meta', property="og:title", content=soup.title.string)
+    soup.head.append(meta)
+    # twitter format
+    meta = soup.new_tag('meta', content="summary_large_image")
+    meta['name'] = "twitter:card"
+    soup.head.append(meta)
+
 for filename in sorted(os.listdir()):
     if filename.endswith(".html"):
         if filename in ["description.html", "pgfmanual_html.html", "home.html"]:
@@ -417,7 +494,7 @@ for filename in sorted(os.listdir()):
             with open(filename, "r") as fp:
                 soup = BeautifulSoup(fp, 'html5lib')
                 add_footer(soup)
-                shorten_sidetoc_and_add_part_header(soup)
+                shorten_sidetoc_and_add_part_header(soup, is_home=(filename == "index-0.html"))
                 rearrange_heading_anchors(soup)
                 make_page_toc(soup)
                 remove_mathjax_if_possible(filename, soup)
@@ -430,12 +507,11 @@ for filename in sorted(os.listdir()):
                 add_header(soup)
                 favicon(soup)
                 semantic_tags(soup)
+                add_meta_tags(filename, soup)
+                add_copyright_comment_block(filename, soup)
                 soup.find(class_="bodyandsidetoc")['class'].append("grid-container")
                 if filename == "index-0.html":
                     soup.h4.decompose() # don't need header on start page
-                    meta = soup.new_tag('meta', content="Full online version of the documentation of PGF/TikZ, the TeX package for creating graphics.")
-                    meta['name'] = "description"
-                    soup.head.append(meta)
                     soup.title.string = "PGF/TikZ Manual - Complete Online Documentation"
                     write_to_file(soup, "processed/index.html")
                 else:
