@@ -16,6 +16,7 @@ os.makedirs("processed", exist_ok=True)
 copyfile("style.css", "processed/style.css")
 copyfile("lwarp.css", "processed/lwarp.css")
 copyfile("pgfmanual.js", "processed/pgfmanual.js")
+copyfile("lwarp-mathjax-emulation.js", "processed/lwarp-mathjax-emulation.js")
 copytree("pgfmanual-images", "processed/pgfmanual-images", dirs_exist_ok=True)
 copytree("standalone", "processed/standalone", dirs_exist_ok=True)
 copytree("banners/social-media-banners", "processed/social-media-banners", dirs_exist_ok=True)
@@ -261,6 +262,7 @@ def remove_mathjax_if_possible(filename, soup):
     with open(filename, "r") as file:
         content = file.read()
         if content.count("\(") == 61:
+            # mathjax isn't actually used
             soup.find(class_="hidden").decompose()
             # remove element with id "MathJax-script"
             soup.find(id="MathJax-script").decompose()
@@ -268,8 +270,18 @@ def remove_mathjax_if_possible(filename, soup):
             for tag in soup.find_all('script'):
                 if "Lwarp MathJax emulation code" in tag.string:
                     tag.decompose()
+                    break
         else:
             soup.find(id="MathJax-script").attrs['async'] = None
+            # externalize emulation code
+            for tag in soup.find_all('script'):
+                # print(tag.string)
+                if tag.string is not None and "Lwarp MathJax emulation code" in tag.string:
+                    tag.decompose()
+                    script = soup.new_tag('script', src="lwarp-mathjax-emulation.js")
+                    script.attrs['async'] = None
+                    soup.head.append(script)
+                    break
 
 def remove_html_from_links(filename, soup):
     for tag in soup.find_all("a"):
@@ -362,7 +374,8 @@ def favicon(soup):
 
 def add_footer(soup):
     footer = soup.new_tag('footer')
-    footer_left = soup.new_tag('div', class_="footer-left")
+    footer_left = soup.new_tag('div')
+    footer_left['class'] = "footer-left"
     # Link to github
     link = soup.new_tag('a', href="https://github.com/pgf-tikz/pgf")
     link.string = "Github"
@@ -389,7 +402,8 @@ def add_footer(soup):
     footer_left.append(link)
     #
     footer.append(footer_left)
-    footer_right = soup.new_tag('div', class_="footer-right")
+    footer_right = soup.new_tag('div')
+    footer_right['class'] = "footer-right"
     today = datetime.date.today().isoformat()
     em = soup.new_tag('em')
     em.append("Manual last updated: " + today)
