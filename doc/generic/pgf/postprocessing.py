@@ -396,6 +396,11 @@ def add_footer(soup):
     link.string = "PDF version"
     footer_left.append(link)
     footer_left.append(" · ")
+    # Issue tracker
+    link = soup.new_tag('a', href="https://github.com/DominikPeters/tikz.dev-issues/issues")
+    link.string = "Feedback and issues"
+    footer_left.append(link)
+    footer_left.append(" · ")
     # Link to About the HTML version
     link = soup.new_tag('a', href="https://github.com/DominikPeters/pgf-tikz-html-manual")
     link.string = "About this HTML version"
@@ -499,9 +504,28 @@ def add_meta_tags(filename, soup):
     meta['name'] = "twitter:card"
     soup.head.append(meta)
 
+def add_spotlight_toc(filename):
+    spotlight_files = ["index", "tutorials-guidelines", "tikz", "libraries", "gd", "dv"]
+    if not any(filename == x + ".html" for x in spotlight_files):
+        return
+    # read as string
+    with open("processed/"+filename, "r") as f:
+        html = f.read()
+    # read replacement string
+    with open("spotlight-toc-"+filename, "r") as f:
+        toc = f.read()
+    # replace
+    if filename == "index.html":
+        html = html.replace('<div class="titlepagepic">', toc)
+    else:
+        html = html.replace('</section>', toc+'</section>')
+    # write back
+    with open("processed/"+filename, "w") as f:
+        f.write(html)
+
 for filename in sorted(os.listdir()):
     if filename.endswith(".html"):
-        if filename in ["description.html", "pgfmanual_html.html", "home.html"]:
+        if filename in ["description.html", "pgfmanual_html.html", "home.html"] or "spotlight" in filename:
             continue
         else:
             print(f"Processing {filename}")
@@ -527,9 +551,12 @@ for filename in sorted(os.listdir()):
                 if filename == "index-0.html":
                     soup.h4.decompose() # don't need header on start page
                     soup.title.string = "PGF/TikZ Manual - Complete Online Documentation"
+                    soup.body['class'] = "index-page"
                     write_to_file(soup, "processed/index.html")
+                    add_spotlight_toc("index.html")
                 else:
                     write_to_file(soup, "processed/"+filename)
+                    add_spotlight_toc(filename)
 
 
 # prettify
