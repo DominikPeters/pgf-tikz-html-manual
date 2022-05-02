@@ -5,6 +5,10 @@ It is built using the incredibly powerful [`lwarp`](https://ctan.org/pkg/lwarp?l
 
 [<img src="https://user-images.githubusercontent.com/3543224/149638481-c98fccbb-d779-41cc-bd2d-7d0f5705c645.png" alt="Screenshot of tikz.dev" width="500">](https://tikz.dev)
 
+## Feedback
+For feedback, bug reports, and feature requests, open an issue in the [tikz.dev issue repository](https://github.com/DominikPeters/tikz.dev-issues/issues).
+
+## Usage
 The documentation is produced using the following steps.
 
 1. Separately compile examples that use animation with [`dvisvgm`](https://dvisvgm.de/) in `standalone` [files](https://github.com/DominikPeters/pgf-tikz-html-manual/tree/master/doc/generic/pgf/standalone), produced by a [python script](https://github.com/DominikPeters/pgf-tikz-html-manual/blob/master/doc/generic/pgf/make-standalones.py).
