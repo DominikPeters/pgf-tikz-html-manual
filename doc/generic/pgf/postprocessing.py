@@ -464,6 +464,9 @@ def semantic_tags(soup):
 
 def add_meta_tags(filename, soup):
     stem = os.path.splitext(filename)[0]
+    # title
+    if filename == "index-0.html":
+        soup.title.string = "PGF/TikZ Manual - Complete Online Documentation"
     # descriptions
     if filename == "index-0.html":
         meta = soup.new_tag('meta', content="Full online version of the documentation of PGF/TikZ, the TeX package for creating graphics.")
@@ -550,7 +553,6 @@ for filename in sorted(os.listdir()):
                 soup.find(class_="bodyandsidetoc")['class'].append("grid-container")
                 if filename == "index-0.html":
                     soup.h4.decompose() # don't need header on start page
-                    soup.title.string = "PGF/TikZ Manual - Complete Online Documentation"
                     soup.body['class'] = "index-page"
                     write_to_file(soup, "processed/index.html")
                     add_spotlight_toc("index.html")
@@ -563,3 +565,29 @@ for filename in sorted(os.listdir()):
 # run command with subprocess
 print("Prettifying")
 subprocess.run(["prettier", "--write", "processed"])
+
+def numspace_to_spaces(filename):
+    "replace numspaces by normal spaces in code blocks"
+    with open("processed/"+filename, "r") as f:
+        html = f.read()
+    for num_copies in range(30,1,-1):
+        pattern = "&numsp;"*num_copies
+        replacement = '<span class="spaces">'+' '*num_copies+'</span>'
+        html = html.replace(pattern, replacement)
+    for opener in [">", "}", "]", ","]:
+        for closer in ["<", "{", "["]:
+            pattern = opener+"&numsp;"+closer
+            replacement = opener+" "+closer
+            html = html.replace(pattern, replacement)
+    html = html.replace("&numsp;", '<span class="spaces"> </span>')
+    with open("processed/"+filename, "w") as f:
+        f.write(html)
+
+for filename in sorted(os.listdir()):
+    if filename.endswith(".html"):
+        if filename in ["index-0.html", "description.html", "pgfmanual_html.html", "home.html"] or "spotlight" in filename:
+            continue
+        else:
+            numspace_to_spaces(filename)
+
+print("Finished")

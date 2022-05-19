@@ -2124,6 +2124,10 @@ h6:hover > .anchor-link {
   color: #444;
 }
 
+.example-code .spaces {
+  white-space: pre-wrap;
+}
+
 .c-preamble {
   color: #444;
 }
