@@ -236,7 +236,9 @@
 \newif\ifpgfmanualprettyenabled
 \pgfmanualprettyenabledtrue
 
-\def\HTMLCodeSpace{\HTMLunicode{2007}}
+% The InlineClass will be deleted later
+% it's here to avoid overflowing boxes
+\def\HTMLCodeSpace{\InlineClass{numsp}{}\HTMLunicode{2007}}
 
 % User interface command to handle unmatched braces:
 %

@@ -574,6 +574,15 @@ def add_spotlight_toc(filename):
     with open("processed/"+filename, "w") as f:
         f.write(html)
 
+def handle_code_spaces(soup):
+    # these are throwaway tags, only used to avoid overfull boxes
+    for tag in soup.find_all(class_="numsp"):
+        tag.decompose()
+    # some links within codes have extra spaces, strip them
+    for codeblock in soup.find_all(class_="example-code"):
+        for link in codeblock.find_all("a"):
+            link.string = link.string.strip()
+
 for filename in sorted(os.listdir()):
     if filename.endswith(".html"):
         if filename in ["description.html", "pgfmanual_html.html", "home.html"] or "spotlight" in filename:
@@ -599,6 +608,7 @@ for filename in sorted(os.listdir()):
                 semantic_tags(soup)
                 add_meta_tags(filename, soup)
                 add_copyright_comment_block(filename, soup)
+                handle_code_spaces(soup)
                 soup.find(class_="bodyandsidetoc")['class'].append("grid-container")
                 if filename == "index-0.html":
                     soup.h4.decompose() # don't need header on start page
