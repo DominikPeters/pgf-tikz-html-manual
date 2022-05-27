@@ -66,6 +66,17 @@ document.addEventListener("DOMContentLoaded", (event) => {
     debounce(updateTOC, 75)();
   };
 
+  const hamburger = document.getElementById("hamburger-button");
+  const chapterMenu = document.getElementById("chapter-toc-container");
+  function toggleMenu() {
+    if (chapterMenu.classList.contains("show-menu")) {
+      chapterMenu.classList.remove("show-menu");
+    } else {
+      chapterMenu.classList.add("show-menu");
+    }
+  }
+  hamburger.addEventListener("click", toggleMenu);
+
   initClipboardButtons();
 
   italicizeKinTikZnames();

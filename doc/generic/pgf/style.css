@@ -302,7 +302,6 @@ blockquote {
   margin-right: 2em;
 }
 
-
 html body {
   margin: 0;
   line-height: 1.2;
@@ -417,7 +416,6 @@ div.titlepage {
   margin: 3ex 2em 0ex 2em;
   border-top: 1px solid silver;
 }
-
 
 div.bodywithoutsidetoc main.bodycontainer {
   float: none;
@@ -609,7 +607,6 @@ div.doublespace {
   line-height: 2;
 }
 
-
 /* Minipage environments, vertically aligned to top, center, bottom: */
 .minipage,
 .fminipage,
@@ -699,7 +696,6 @@ div.doublespace {
   margin: 0pt 0.1ex 0pt 0.1ex;
   display: inline-block;
 }
-
 
 dl {
   margin: 1ex 2em 1ex 0em;
@@ -1778,24 +1774,6 @@ span.sidetocthetitle {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 :root {
   --header-height: 40px;
 }
@@ -1845,7 +1823,6 @@ span.sidetocthetitle {
 .bodyandsidetoc > header {
   grid-area: header;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   background-color: #1a458f;
   color: #fff;
@@ -1874,17 +1851,34 @@ div.sidetoccontainer {
   grid-area: left;
   background-color: rgb(242, 242, 242);
   border-right: 1px solid #ccc;
-  width: 100%;
 }
 
-#local-toc-container {
-  display: none;
+@media screen and (max-width: 639px) {
+  #chapter-toc-container {
+    width: 100%;
+    transform: translateX(-100%);
+    transition: transform 0.15s;
+    position: fixed;
+    z-index: 1000;
+    top: var(--header-height);
+    left: 0;
+    bottom: 0;
+    overflow-y: scroll;
+  }
+
+  #chapter-toc-container.show-menu {
+    transform: translateX(0);
+  }
 }
 
 @media screen and (min-width: 640px) {
   #chapter-toc-container {
     width: 11em;
   }
+}
+
+#local-toc-container {
+  display: none;
 }
 
 @media screen and (min-width: 1024px) {
@@ -1957,7 +1951,23 @@ header strong a:hover {
   text-decoration: none;
 }
 
+#hamburger-button {
+  font-family: "Linux Libertine O", "Hoefler Text", "Garamond", "Bembo",
+    "Janson", "TeX Gyre Pagella", "Palatino", "Liberation Serif",
+    "Nimbus Roman No 9 L", "FreeSerif", Times, "Times New Roman", serif;
+  margin-left: 0.5em;
+  cursor: pointer;
+  font-size: 1.3em;
+}
+
+@media screen and (min-width: 640px) {
+  #hamburger-button {
+    display: none;
+  }
+}
+
 #search {
+  margin-left: auto;
   margin-right: 1em;
 }
 
@@ -2024,14 +2034,16 @@ h5 {
 }
 
 /* anchor links for headings */
-h5, h6 {
+h5,
+h6 {
   display: flex;
 }
 
-h5 > .anchor-link, 
+h5 > .anchor-link,
 h6 > .anchor-link {
   margin-left: auto;
-  font-family: "DejaVu Serif", "Bitstream Vera Serif", "Lucida Bright", Georgia, serif;
+  font-family: "DejaVu Serif", "Bitstream Vera Serif", "Lucida Bright", Georgia,
+    serif;
   font-size: 85%;
   color: #000080;
   opacity: 0.4;
@@ -2049,7 +2061,7 @@ h6 > .anchor-link:hover {
   text-decoration: none;
 }
 
-h5:hover > .anchor-link, 
+h5:hover > .anchor-link,
 h6:hover > .anchor-link {
   opacity: 1;
 }

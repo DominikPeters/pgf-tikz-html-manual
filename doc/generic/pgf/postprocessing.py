@@ -122,6 +122,29 @@ def add_class(tag, c):
     else:
         tag['class'] = [c]
 
+def _add_mobile_toc(soup):
+    "on part overview pages, add a list of sections for mobile users"
+    mobile_toc = soup.new_tag('div')
+    mobile_toc['class'] = 'mobile-toc'
+    mobile_toc_title = soup.new_tag('strong')
+    mobile_toc_title.string = "Sections"
+    mobile_toc.append(mobile_toc_title)
+    mobile_toc_list = soup.new_tag('ul')
+    mobile_toc.append(mobile_toc_list)
+    # get toc contents
+    toc_container = soup.find(class_="sidetoccontainer")
+    toc_items = toc_container.find_all('a', class_="tocsection")
+    for item in toc_items:
+        li = soup.new_tag('li')
+        a = soup.new_tag('a', href=item.get('href'))
+        a.string = item.text
+        li.append(a)
+        mobile_toc_list.append(li)
+    # add toc to section class="textbody", after the h2
+    textbody = soup.find(class_="textbody")
+    h2_index = textbody.contents.index(soup.h2)
+    textbody.insert(h2_index+1, mobile_toc)
+
 ## shorten sidetoc
 def shorten_sidetoc_and_add_part_header(soup, is_home=False):
     container = soup.find(class_="sidetoccontainer")
@@ -209,6 +232,10 @@ def shorten_sidetoc_and_add_part_header(soup, is_home=False):
                 assert part_name is not None
                 h2.append(part_name)
                 soup.h1.insert_after(h2)
+            if not is_a_section and not is_home:
+                # this is a part overview page
+                # let's insert an additional local table of contents for mobile users
+                _add_mobile_toc(soup)
 
 ## make anchor tags to definitions
 def get_entryheadline_p(tag):
@@ -307,6 +334,12 @@ def addClipboardButtons(soup):
 
 def add_header(soup):
     header = soup.new_tag('header')
+
+    hamburger = soup.new_tag('div')
+    hamburger['id'] = "hamburger-button"
+    hamburger.string = "☰"
+    header.append(hamburger)
+
     h1 = soup.new_tag('strong')
     link = soup.new_tag('a', href="/")
     h1.append(link)
