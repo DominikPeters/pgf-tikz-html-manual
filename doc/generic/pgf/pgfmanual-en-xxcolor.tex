@@ -33,7 +33,7 @@ such an environment is not available.
     |90!blue| will mix in 10\% of blue into everything, whereas |25!white| will
     make everything nearly white.
     %
-\begin{codeexample}[width=4cm,preamble={\usepackage{xxcolor}}]
+\begin{codeexample}[width=4cm,preamble={\usepackage{xxcolor}},pre={\begin{lateximage}},post={\end{lateximage}}]
 \begin{minipage}{3.5cm}\raggedright
 \color{red}Red text,%
 \begin{colormixin}{25!white}
@@ -68,7 +68,7 @@ whether there exists an image named |foo.!25!white!25!black|.
     adds a mix-in to this list.
     %
 \begin{codeexample}[preamble={\usepackage{xxcolor}
-\usepackage{calc}}]
+\usepackage{calc}},pre={\begin{lateximage}},post={\end{lateximage}}]
 \begin{minipage}{\linewidth-6pt}\raggedright
 \begin{colormixin}{75!white}
   \colorcurrentmixin\ should be ``!75!white''\par

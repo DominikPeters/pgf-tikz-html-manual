@@ -269,7 +269,7 @@ entertaining, the |\pgfshadepath| command must be given \emph{inside} a
     box is created whose size is the size of the computed bounding box and this
     box is inserted at the current position.
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 Hello \begin{pgfpicture}
   \pgfpathrectangle{\pgfpointorigin}{\pgfpoint{2ex}{1ex}}
   \pgfusepath{stroke}
@@ -291,7 +291,7 @@ Hello \begin{pgfpicture}
     the fact that the second graphic uses ``higher'' coordinates than the
     first:
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 Rectangles \begin{pgfpicture}
   \pgfpathrectangle{\pgfpointorigin}{\pgfpoint{2ex}{1ex}}
   \pgfusepath{stroke}
@@ -303,7 +303,7 @@ Rectangles \begin{pgfpicture}
 
     You can change the baseline using the |\pgfsetbaseline| command, see below.
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 Rectangles \begin{pgfpicture}
   \pgfpathrectangle{\pgfpointorigin}{\pgfpoint{2ex}{1ex}}
   \pgfusepath{stroke}
@@ -386,7 +386,7 @@ Rectangles \begin{pgfpicture}
     of the bottom of the picture, but it is often desirable to use a different
     height.
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 Text
 \begin{pgfpicture}
   \pgfpathcircle{\pgfpointorigin}{1ex}\pgfusepath{stroke}
@@ -416,7 +416,7 @@ Text
     This command also specifies the baseline indirectly, but the $y$-coordinate
     of the given \meta{point} is only computed at the end of the picture.
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 Hello
 \begin{pgfpicture}
   \pgfsetbaselinepointlater{\pgfpointanchor{X}{base}}
