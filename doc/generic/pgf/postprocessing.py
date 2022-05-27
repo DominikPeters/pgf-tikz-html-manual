@@ -496,6 +496,10 @@ def add_meta_tags(filename, soup):
     if os.path.isfile("banners/"+img_filename):
         meta = soup.new_tag('meta', property="og:image", content="https://tikz.dev/" + img_filename)
         soup.head.append(meta)
+        # allow Google Discover
+        meta = soup.new_tag('meta', content="max-image-preview:large")
+        meta['name'] = "robots"
+        soup.head.append(meta)
     # og.type = article
     meta = soup.new_tag('meta', property="og:type", content="article")
     soup.head.append(meta)
