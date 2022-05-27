@@ -1,3 +1,4 @@
+from unicodedata import name
 from xml.dom import minidom
 from bs4 import BeautifulSoup, Comment
 from shutil import copyfile, copytree
@@ -232,14 +233,14 @@ def shorten_sidetoc_and_add_part_header(soup, is_home=False):
                 assert part_name is not None
                 h2.append(part_name)
                 soup.h1.insert_after(h2)
-            if not is_a_section and not is_home:
-                # this is a part overview page
-                # let's insert an additional local table of contents for mobile users
-                _add_mobile_toc(soup)
+    if not is_a_section and not is_home:
+        # this is a part overview page
+        # let's insert an additional local table of contents for mobile users
+        _add_mobile_toc(soup)
 
 ## make anchor tags to definitions
 def get_entryheadline_p(tag):
-    for child in tag.children:
+    for child in tag.find_all(name="p"):
         if child.name is not None:
             if child.name == 'p':
                 return child
@@ -488,6 +489,16 @@ def rewrite_svg_links(soup):
                 object['type'] = "image/svg+xml"
                 tag.replace_with(object)
 
+def add_version_to_css_js(soup):
+    "to avoid caching, add a version number to the URL"
+    today = datetime.date.today().isoformat().replace("-", "")
+    for tag in soup.find_all("link"):
+        if tag.has_attr('href') and tag['href'] == "style.css":
+            tag['href'] += "?v=" + today
+    for tag in soup.find_all("script"):
+        if tag.has_attr('src') and tag['src'] == "pgfmanual.js":
+            tag['src'] += "?v=" + today
+
 def semantic_tags(soup):
     for example in soup.find_all(class_="example"):
         example.name = "figure"
@@ -581,6 +592,7 @@ for filename in sorted(os.listdir()):
                 remove_useless_elements(soup)
                 addClipboardButtons(soup)
                 rewrite_svg_links(soup)
+                add_version_to_css_js(soup)
                 process_images(soup)
                 add_header(soup)
                 favicon(soup)
@@ -601,7 +613,7 @@ for filename in sorted(os.listdir()):
 # prettify
 # run command with subprocess
 print("Prettifying")
-subprocess.run(["prettier", "--write", "processed"])
+subprocess.run(["prettier", "--write", "processed/*.html"])
 
 def numspace_to_spaces(filename):
     "replace numspaces by normal spaces in code blocks"

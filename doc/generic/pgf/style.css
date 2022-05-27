@@ -1955,7 +1955,8 @@ header strong a:hover {
   font-family: "Linux Libertine O", "Hoefler Text", "Garamond", "Bembo",
     "Janson", "TeX Gyre Pagella", "Palatino", "Liberation Serif",
     "Nimbus Roman No 9 L", "FreeSerif", Times, "Times New Roman", serif;
-  margin-left: 0.5em;
+  padding-left: 0.5em;
+  padding-right: 0.2em;
   cursor: pointer;
   font-size: 1.3em;
 }
