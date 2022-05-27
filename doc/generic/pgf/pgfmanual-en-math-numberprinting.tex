@@ -28,7 +28,7 @@ precision.
     Configures |\pgfmathprintnumber| to round the number to a fixed number of
     digits after the period, discarding any trailing zeros.
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,fixed,precision=2}
 \pgfmathprintnumber{4.568}\hspace{1em}
 \pgfmathprintnumber{5e-04}\hspace{1em}
@@ -44,7 +44,7 @@ precision.
     Enables or disables zero filling for any number drawn in fixed point
     format.
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,fixed,fixed zerofill,precision=2}
 \pgfmathprintnumber{4.568}\hspace{1em}
 \pgfmathprintnumber{5e-04}\hspace{1em}
@@ -56,7 +56,7 @@ precision.
     This key affects numbers drawn with |fixed| or |std| styles (the latter
     only if no scientific format is chosen).
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,std,fixed zerofill,precision=2}
 \pgfmathprintnumber{4.568}\hspace{1em}
 \pgfmathprintnumber{5e-05}\hspace{1em}
@@ -72,7 +72,7 @@ precision.
     that means sign, mantissa and exponent (basis~$10$). The mantissa is
     rounded to the desired |precision| (or |sci precision|, see below).
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,sci,precision=2}
 \pgfmathprintnumber{4.568}\hspace{1em}
 \pgfmathprintnumber{5e-04}\hspace{1em}
@@ -88,7 +88,7 @@ precision.
 \begin{key}{/pgf/number format/sci zerofill=\marg{boolean}  (default true)}
     Enables or disables zero filling for any number drawn in scientific format.
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,sci,sci zerofill,precision=2}
 \pgfmathprintnumber{4.568}\hspace{1em}
 \pgfmathprintnumber{5e-04}\hspace{1em}
@@ -118,7 +118,7 @@ precision.
     e \le 4$, the number is displayed using |fixed| format. Otherwise, it is
     displayed using |sci| format.
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,std,precision=2}
 \pgfmathprintnumber{4.568}\hspace{1em}
 \pgfmathprintnumber{5e-04}\hspace{1em}
@@ -146,7 +146,7 @@ precision.
     provide a unified format for a \emph{sequence} of numbers. Consider the
     following test:
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/relative*={1}}
 \pgfmathprintnumber{6.42e-16}\hspace{1em}
 \pgfmathprintnumber{1.2}\hspace{1em}
@@ -160,7 +160,7 @@ precision.
     to $10^1$ (the exponent $1$ is the argument for |relative|), it has no
     significant digits.
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/relative*={2}}
 \pgfmathprintnumber{123.345}\hspace{1em}
 \pgfmathprintnumber{0.0012}\hspace{1em}
@@ -174,7 +174,7 @@ precision.
     the other two numbers are |0| compared to $100$ using the given
     |precision|.
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/relative*={-3}}
 \pgfmathprintnumber{123.345}\hspace{1em}
 \pgfmathprintnumber{0.0012}\hspace{1em}
@@ -191,7 +191,7 @@ precision.
     artifact due to the limited precision. Use |relative*=3,precision=0| to
     eliminate the artifacts:
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,relative*={3},precision=0}
 \pgfmathprintnumber{123456999}\hspace{1em}
 \pgfmathprintnumber{123456999.12}
@@ -202,7 +202,7 @@ precision.
     position. Adding |relative style=fixed| results in fixed point output
     format:
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,relative*={3},precision=0,relative style=fixed}
 \pgfmathprintnumber{123456999}\hspace{1em}
 \pgfmathprintnumber{123456999.12}
@@ -211,7 +211,7 @@ precision.
     \noindent Note that there is another alternative for this use-case which is
     discussed later: the |fixed relative| style.
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,fixed relative,precision=6}
 \pgfmathprintnumber{123456999}\hspace{1em}
 \pgfmathprintnumber{123456999.12}
@@ -262,7 +262,7 @@ precision.
     The motivation is to get the same rounding effect as for |sci|, but to
     display the number in the |fixed| style:
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,fixed relative,precision=3}
 \pgfmathprintnumber{1000.0123}\hspace{1em}
 \pgfmathprintnumber{100.0567}\hspace{1em}
@@ -299,7 +299,7 @@ precision.
     input number is an integer, no period is displayed at all. If not, the
     scientific format is chosen.
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,int detect,precision=2}
 \pgfmathprintnumber{15}\hspace{1em}
 \pgfmathprintnumber{20}\hspace{1em}
@@ -321,7 +321,7 @@ precision.
     The argument \meta{number constant} will be parsed with
     |\pgfmathfloatparsenumber|.
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 15 \pgfmathifisint{15}{is an int: \pgfretval.}{is no int}\hspace{1em}
 15.5 \pgfmathifisint{15.5}{is an int: \pgfretval.}{is no int}
 \end{codeexample}
@@ -330,7 +330,7 @@ precision.
 
 \begin{key}{/pgf/number format/int trunc}
     Truncates every number to integers (discards any digit after the period).
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,int trunc}
 \pgfmathprintnumber{4.568}\hspace{1em}
 \pgfmathprintnumber{5e-04}\hspace{1em}
@@ -344,7 +344,7 @@ precision.
 \begin{key}{/pgf/number format/frac}
     Displays numbers as fractionals.
     %
-\begin{codeexample}[width=3cm,preamble={\usetikzlibrary{fpu}}]
+\begin{codeexample}[width=3cm,preamble={\usetikzlibrary{fpu}},pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/frac}
 \pgfmathprintnumber{0.333333333333333}\hspace{1em}
 \pgfmathprintnumber{0.5}\hspace{1em}
@@ -370,7 +370,7 @@ precision.
     \begin{key}{/pgf/number format/frac denom=\meta{int} (initially empty)}
         Allows to provide a custom denominator for |frac|.
         %
-\begin{codeexample}[width=3cm,preamble={\usetikzlibrary{fpu}}]
+\begin{codeexample}[width=3cm,preamble={\usetikzlibrary{fpu}},pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,frac, frac denom=10}
 \pgfmathprintnumber{0.1}\hspace{1em}
 \pgfmathprintnumber{0.5}\hspace{1em}
@@ -385,7 +385,7 @@ precision.
         the fractional part. In this case, the fractional part will be less
         then $1$. Use |frac whole=false| to avoid whole number parts.
         %
-\begin{codeexample}[width=3cm,preamble={\usetikzlibrary{fpu}}]
+\begin{codeexample}[width=3cm,preamble={\usetikzlibrary{fpu}},pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,frac, frac whole=false}
 \pgfmathprintnumber{20.1}\hspace{1em}
 \pgfmathprintnumber{5.5}\hspace{1em}
@@ -427,7 +427,7 @@ precision.
     This is one of the few keys which allows to customize the number parser. If
     this switch is turned on, a comma is read just as a period.
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/read comma as period}
 \pgfmathprintnumber{1234,56}
 \end{codeexample}
@@ -436,7 +436,7 @@ precision.
     instructions. However, it is supported to format input numbers or input
     tables. Consider |use comma| to typeset the result with a comma as well.
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,
     read comma as period,
     use comma}
@@ -471,7 +471,7 @@ the correct digits, afterwards a display style generates proper \TeX-code.
     Assigns \marg{text} as thousands separator for any fixed point numbers
     (including the mantissa in sci format).
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,
     fixed,
     fixed zerofill,
@@ -480,7 +480,7 @@ the correct digits, afterwards a display style generates proper \TeX-code.
 \pgfmathprintnumber{1234.56}
 \end{codeexample}
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,
     fixed,
     fixed zerofill,
@@ -489,7 +489,7 @@ the correct digits, afterwards a display style generates proper \TeX-code.
 \pgfmathprintnumber{1234567890}
 \end{codeexample}
 
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,
     fixed,
     fixed zerofill,
@@ -498,7 +498,7 @@ the correct digits, afterwards a display style generates proper \TeX-code.
 \pgfmathprintnumber{1234567890}
 \end{codeexample}
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,
     fixed,
     fixed zerofill,
@@ -507,7 +507,7 @@ the correct digits, afterwards a display style generates proper \TeX-code.
 \pgfmathprintnumber{1234567890}
 \end{codeexample}
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,
     fixed,
     fixed zerofill,
@@ -534,7 +534,7 @@ the correct digits, afterwards a display style generates proper \TeX-code.
     fractional parts. The value |false| will active |1000 sep| only for the
     integer part.
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,
     fixed,
     precision=999,
@@ -544,7 +544,7 @@ the correct digits, afterwards a display style generates proper \TeX-code.
 \pgfmathprintnumber{1234.1234567}
 \end{codeexample}
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,
     fixed,fixed zerofill,
     precision=9,
@@ -556,13 +556,15 @@ the correct digits, afterwards a display style generates proper \TeX-code.
     %
 \end{key}
 
+Testing comma\, to see what happens after the end of key.
+
 \begin{key}{/pgf/number format/min exponent for 1000 sep=\marg{number} (initially 0)}
     Defines the smallest exponent in scientific notation which is required to
     draw thousand separators. The exponent is the number of digits minus one,
     so $\meta{number}=4$ will use thousand separators starting with $1e4 =
     10000$.
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,
     int detect,
     1000 sep={\,},
@@ -570,7 +572,7 @@ the correct digits, afterwards a display style generates proper \TeX-code.
 \pgfmathprintnumber{5000}; \pgfmathprintnumber{1000000}
 \end{codeexample}
 
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,
     int detect,
     1000 sep={\,},
@@ -578,7 +580,7 @@ the correct digits, afterwards a display style generates proper \TeX-code.
 \pgfmathprintnumber{1000}; \pgfmathprintnumber{5000}
 \end{codeexample}
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,
     int detect,
     1000 sep={\,},
@@ -590,17 +592,19 @@ the correct digits, afterwards a display style generates proper \TeX-code.
     ignored).
 \end{key}
 
+Checking\, comma.
+
 \begin{key}{/pgf/number format/use period}
     A predefined style which installs periods ``\texttt{.}'' as decimal
     separators and commas ``\texttt{,}'' as thousands separators. This style is
     the default.
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,fixed,precision=2,use period}
 \pgfmathprintnumber{12.3456}
 \end{codeexample}
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,fixed,precision=2,use period}
 \pgfmathprintnumber{1234.56}
 \end{codeexample}
@@ -611,12 +615,12 @@ the correct digits, afterwards a display style generates proper \TeX-code.
     A predefined style which installs commas ``\texttt{,}'' as decimal
     separators and periods ``\texttt{.}'' as thousands separators.
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,fixed,precision=2,use comma}
 \pgfmathprintnumber{12.3456}
 \end{codeexample}
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,fixed,precision=2,use comma}
 \pgfmathprintnumber{1234.56}
 \end{codeexample}
@@ -626,7 +630,7 @@ the correct digits, afterwards a display style generates proper \TeX-code.
 \begin{key}{/pgf/number format/skip 0.=\marg{boolean} (initially false)}
     Configures whether numbers like $0.1$ shall be typeset as $.1$ or not.
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,
     fixed,
     fixed zerofill,precision=2,
@@ -634,7 +638,7 @@ the correct digits, afterwards a display style generates proper \TeX-code.
 \pgfmathprintnumber{0.56}
 \end{codeexample}
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,
     fixed,
     fixed zerofill,precision=2,
@@ -647,17 +651,17 @@ the correct digits, afterwards a display style generates proper \TeX-code.
 \begin{key}{/pgf/number format/showpos=\marg{boolean} (initially false)}
     Enables or disables the display of plus signs for non-negative numbers.
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/showpos}
 \pgfmathprintnumber{12.345}
 \end{codeexample}
 
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/showpos=false}
 \pgfmathprintnumber{12.345}
 \end{codeexample}
 
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,showpos,sci}
 \pgfmathprintnumber{12.345}
 \end{codeexample}
@@ -671,7 +675,7 @@ the correct digits, afterwards a display style generates proper \TeX-code.
 \begin{key}{/pgf/number format/sci 10e}
     Uses $m \cdot 10^e$ for any number displayed in scientific format.
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,sci,sci 10e}
 \pgfmathprintnumber{12.345}
 \end{codeexample}
@@ -686,7 +690,7 @@ the correct digits, afterwards a display style generates proper \TeX-code.
     Uses the `$1e{+}0$' format which is generated by common scientific tools
     for any number displayed in scientific format.
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,sci,sci e}
 \pgfmathprintnumber{12.345}
 \end{codeexample}
@@ -696,7 +700,7 @@ the correct digits, afterwards a display style generates proper \TeX-code.
 \begin{key}{/pgf/number format/sci E}
     The same with an uppercase `\texttt{E}'.
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,sci,sci E}
 \pgfmathprintnumber{12.345}
 \end{codeexample}
@@ -707,7 +711,7 @@ the correct digits, afterwards a display style generates proper \TeX-code.
     Typesets the exponent as subscript for any number displayed in scientific
     format. This style requires very little space.
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,sci,sci subscript}
 \pgfmathprintnumber{12.345}
 \end{codeexample}
@@ -718,7 +722,7 @@ the correct digits, afterwards a display style generates proper \TeX-code.
     Typesets the exponent as superscript for any number displayed in scientific
     format. This style requires very little space.
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{/pgf/number format/.cd,sci,sci superscript}
 \pgfmathprintnumber{12.345}
 \end{codeexample}
@@ -739,7 +743,7 @@ the correct digits, afterwards a display style generates proper \TeX-code.
         as argument |#1| (see below).
     \end{key}
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{
     /pgf/number format/.cd,
     sci,
@@ -761,7 +765,7 @@ the correct digits, afterwards a display style generates proper \TeX-code.
 \begin{key}{/pgf/number format/retain unit mantissa=\mchoice{true,false} (initially true)}
     Allows to omit a unit mantissa.
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{
     /pgf/number format/.cd,
     sci, retain unit mantissa=false}
@@ -807,7 +811,7 @@ the correct digits, afterwards a display style generates proper \TeX-code.
     A style which configures the number printer to produce verbatim text
     output, i.e., it doesn't contain \TeX\ macros.
     %
-\begin{codeexample}[preamble={\usetikzlibrary{fpu}}]
+\begin{codeexample}[preamble={\usetikzlibrary{fpu}}, pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{
     /pgf/fpu,
     /pgf/number format/.cd,
