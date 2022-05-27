@@ -519,7 +519,7 @@ def add_spotlight_toc(filename):
     with open("processed/"+filename, "r") as f:
         html = f.read()
     # read replacement string
-    with open("spotlight-toc-"+filename, "r") as f:
+    with open("spotlight-tocs/spotlight-toc-"+filename, "r") as f:
         toc = f.read()
     # replace
     if filename == "index.html":
