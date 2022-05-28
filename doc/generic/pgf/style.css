@@ -474,6 +474,8 @@ html {
   margin: 1ex 0ex 1ex 0ex;
   padding: 0.5ex 0pt 0.5ex 0pt;
   overflow-x: auto;
+  white-space: pre-wrap;
+  font-size: 80%;
 }
 
 section.textbody > pre.programlisting {
