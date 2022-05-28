@@ -2173,8 +2173,13 @@ p span.text {
   word-break: break-word;
 }
 
-.manualentry {
+/* Taken out 2022-05-28 after list behavior changed */
+/* .manualentry {
   margin-left: 40px;
+} */
+
+.manualentry > ul {
+  margin: 0;
 }
 
 .entryheadline {
