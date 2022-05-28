@@ -402,7 +402,7 @@ h5 {
 }
 
 h6 {
-  margin: 3ex 0em 1ex 0em;
+  margin: 2ex 0em 1ex 0em;
   line-height: 1.3;
 }
 
@@ -2137,8 +2137,14 @@ h6:hover > .anchor-link {
   text-decoration-color: rgba(255, 255, 255, 0.6);
 }
 
+.example-code:hover a {
+  background-color: rgba(255, 255, 255, 0.4);
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.8);
+}
+
 .example-code a:hover {
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.8);
   text-decoration-color: blue;
 }
 
@@ -2218,7 +2224,8 @@ nav.sidetoc .sidetoccontents a {
   font-size: 0.85em;
 }
 
-.sidetoccontents p:hover {
+.sidetoccontents p:hover,
+nav.sidetoc .sidetoccontents > p.current-part:hover {
   background-color: rgb(174, 178, 240);
 }
 
