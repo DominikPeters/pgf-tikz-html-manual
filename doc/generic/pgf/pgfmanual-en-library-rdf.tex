@@ -807,7 +807,8 @@ transition/.style = {
 
 Putting it all together, we now get the following library code:
 %
-\begin{codeexample}[setup code, multipage]
+% \begin{codeexample}[setup code, multipage]
+\begin{codeexample}[code only, multipage]
 \tikzset {
   dfa/.style = {
     semithick, > = To [sep], % as before,
@@ -979,10 +980,12 @@ slightly simplified):
 </g>
 \end{lstlisting}
 
-\iffalse
 When this code is processed by some \textsc{rdf}a tool, the following graph
 will result where the blue nodes represent resources:
 
+\includegraphics[width=\linewidth]{standalone/rdf.png}
+
+\iffalse
 \ifluatex
 \else
     This example can only be typeset using Lua\TeX.
