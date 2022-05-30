@@ -2154,15 +2154,15 @@ h6:hover > .anchor-link {
 }
 
 .example-code-comment {
-  color: #444;
+  color: #4f4f4f;
 }
 
 .example-code .spaces {
   white-space: pre-wrap;
 }
 
-.c-preamble {
-  color: #444;
+.codepreamble {
+  color: #4f4f4f;
 }
 
 .angle {
