@@ -380,17 +380,17 @@ def add_header(soup):
     search_input = soup.new_tag('div', id="search")
     header.append(search_input)
 
-    link = soup.new_tag('link', rel="stylesheet", href="https://unpkg.com/@docsearch/css@alpha")
+    link = soup.new_tag('link', rel="stylesheet", href="https://cdn.jsdelivr.net/npm/@docsearch/css@3")
     soup.head.append(link)
 
-    script = soup.new_tag('script', src="https://cdn.jsdelivr.net/npm/@docsearch/js@alpha")
+    script = soup.new_tag('script', src="https://cdn.jsdelivr.net/npm/@docsearch/js@3")
     soup.body.append(script)
     script = soup.new_tag('script')
     script.append("""
       docsearch({
-        apiKey: 'ae66ec3fc9df4b52b4d6f24fc8508fd3',
-        indexName: 'tikz.dev',
-        appId: 'Q70NNMA9GC',
+        apiKey: '196e8c10ec187c9ae525dd5226fb9378',
+        indexName: 'tikz',
+        appId: 'JS6V5VZSDB',
         container: '#search',
     });
     """)
