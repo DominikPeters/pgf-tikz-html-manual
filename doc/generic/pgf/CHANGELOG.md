@@ -81,6 +81,7 @@ lot of contributed changes. Thanks to everyone who volunteered their time!
 - Make `graphdrawing` work with `name prefix` and `name suffix` options #1087
 - pgfkeys was a bit too relaxed around `\relax` #1132
 - Remove spurious spaces for `3d view` #1151
+- Fix incorrectly placed matrix delimiters for implicitly positioned nodes #1102
 
 ### Changed
 
@@ -92,6 +93,8 @@ lot of contributed changes. Thanks to everyone who volunteered their time!
 - Flatten the doc tree
 - Ensure `\tracinglostchars<3` in `\pgf@picture`
 - Use descriptive workflow job ids
+- Ensure `doc` v2 is loaded for pgfmanual
+- Ensure active `^^M` is non-expandable in `codeexample`
 
 ### Contributors
 
