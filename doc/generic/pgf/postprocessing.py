@@ -262,8 +262,11 @@ def make_entryheadline_anchor_links(soup):
         anchor = a_tag.get('id')
         if "pgf" not in anchor:
             continue
-        link = soup.new_tag('a', href=f"#{anchor}")
+        # make anchor prettier
+        pretty_anchor = anchor.replace("pgf.back/","\\").replace("pgf./","")
+        link = soup.new_tag('a', href=f"#{pretty_anchor}")
         link['class'] = 'anchor-link'
+        link['id'] = pretty_anchor
         link.append("¶")
         p_tag.append(link)
 
