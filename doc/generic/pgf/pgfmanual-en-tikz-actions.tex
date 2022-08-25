@@ -1026,7 +1026,7 @@ is just a shorthand for |\path[use as bounding box]|.
     The first application of this option is to have a |{tikzpicture}| overlap
     with the main text:
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 Left of picture\begin{tikzpicture}
   \draw[use as bounding box] (2,0) rectangle (3,1);
   \draw (1,0) -- (4,.75);
@@ -1036,7 +1036,7 @@ Left of picture\begin{tikzpicture}
     In a second application this option can be used to get better control over
     the white space around the picture:
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 Left of picture
 \begin{tikzpicture}
   \useasboundingbox (0,0) rectangle (3,1);
@@ -1060,7 +1060,7 @@ always the size of the current bounding box.
 Similarly, the |current path bounding box| node has the |rectangle| shape and
 the size of the bounding box of the current path.
 %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \begin{tikzpicture}
   \draw[red] (0,0) circle (2pt);
   \draw[red] (2,1) circle (3pt);
@@ -1094,7 +1094,7 @@ keys:
     difference of the picture's bounding box lower left $x$ coordinate and the
     $x$ coordinate specified as \meta{dimension or coordinate}:
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 Text before image.%
     \begin{tikzpicture}[trim left]
         \draw (-1,-1) grid (3,2);
@@ -1147,7 +1147,7 @@ Text after image.
 
     We use the same example from above and add |trim right|:
     %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 Text before image.%
     \begin{tikzpicture}[trim left, trim right=2cm, baseline]
         \draw (-1,-1) grid (3,2);
