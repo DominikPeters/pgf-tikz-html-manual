@@ -11,15 +11,14 @@
 \section[math-parsing]{Mathematical Expressions}
 \label{pgfmath-syntax}
 
-\begin{warpMathJax}
-    \( \newcommand{\mvar}[1]{#1} \)
-\end{warpMathJax}
-
 The easiest way of using \pgfname's mathematical engine is to provide a
 mathematical expression given in familiar infix notation, for example,
 |1cm+4*2cm/5.5| or |2*3+3*sin(30)|. This expression can be parsed by the
 mathematical engine and the result can be placed in a dimension register, a
 counter, or a macro.
+\begin{warpMathJax}
+    \( \newcommand{\mvar}[1]{#1} \)
+\end{warpMathJax}
 
 It should be noted that all calculations must not exceed $\pm16383.99999$ at
 \emph{any} point, because the underlying computations rely on \TeX{}
@@ -1305,7 +1304,7 @@ some notable exceptions.
 
 \begin{math-function}{veclen(\mvar{x},\mvar{y})}
 \mathcommand
-    Calculates $\sqrt{\left(\textrm{\mvar{x}}^2+\textrm{\mvar{y}}^2\right)}$.
+    Calculates $\sqrt{\left(\mvar{x}^2+\mvar{y}^2\right)}$.
     This uses a polynomial approximation, based on ideas of Rouben Rostamian
     %
 \begin{codeexample}[]
