@@ -413,11 +413,6 @@ def add_footer(soup):
     footer = soup.new_tag('footer')
     footer_left = soup.new_tag('div')
     footer_left['class'] = "footer-left"
-    # Link to github
-    link = soup.new_tag('a', href="https://github.com/pgf-tikz/pgf")
-    link.string = "Github"
-    footer_left.append(link)
-    footer_left.append(" · ")
     # Link to license
     link = soup.new_tag('a', href="/license")
     link.string = "License"
@@ -430,7 +425,7 @@ def add_footer(soup):
     footer_left.append(" · ")
     # Link to PDF version
     link = soup.new_tag('a', href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf")
-    link.string = "PDF version"
+    link.string = "Official PDF version"
     footer_left.append(link)
     footer_left.append(" · ")
     # Issue tracker
@@ -448,7 +443,7 @@ def add_footer(soup):
     footer_right['class'] = "footer-right"
     today = datetime.date.today().isoformat()
     em = soup.new_tag('em')
-    em.append("Manual last updated: " + today)
+    em.append("HTML version last updated: " + today)
     footer_right.append(em)
     footer.append(footer_right)
     soup.find(class_="bodyandsidetoc").append(footer)

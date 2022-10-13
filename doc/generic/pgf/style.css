@@ -2289,8 +2289,8 @@ nav.sidetoc .sidetoccontents a.tocsubsubsection {
   border: 1px solid black;
   margin: 0 auto;
   margin-bottom: 1em;
-  padding: 1em 0;
-  /* max-width: 838px; */
+  padding: 0.2em;
+  padding-top: 1em;
 }
 
 .manual-title {
@@ -2301,8 +2301,8 @@ nav.sidetoc .sidetoccontents a.tocsubsubsection {
   font-size: 1.5em;
 }
 
-.manual-author {
-  font-size: 1.3em;
+.manual-html-title {
+  font-size: 1.2em;
   font-style: italic;
   margin: 1em 0 0.3em 0;
 }
@@ -2310,12 +2310,14 @@ nav.sidetoc .sidetoccontents a.tocsubsubsection {
 .manual-authorship-explanation,
 .manual-html-explanation {
   margin: 0 auto;
+  margin-bottom: 0.2em;
   max-width: 60em;
   font-size: 1em;
+  text-align: center;
 }
 
 .manual-html-explanation {
-  margin-top: 0.5em;
+  margin-bottom: 0.7em;
 }
 
 .index-page #local-toc-container {
