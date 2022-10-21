@@ -72,12 +72,9 @@ table p {
   margin: 0.5ex 0em 0.5ex 0em;
 }
 
-/* Holds a section number */
 span.sectionnumber {
-  margin-right: 0em;
+  margin-right: 0.5em;
 }
-
-/* Inserted in front of index lines */
 
 div.hidden,
 span.hidden {
@@ -790,7 +787,7 @@ h2.inserted {
 
 h4 {
   margin: 0;
-  margin-bottom: -0.5em;
+  margin-bottom: -0.3em;
 }
 
 h5 {

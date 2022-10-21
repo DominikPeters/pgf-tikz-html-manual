@@ -29,17 +29,22 @@ meta_descriptions = json.load(open("meta-descriptions.json"))
 def rearrange_heading_anchors(soup):
     heading_tags = ["h4", "h5", "h6"]
     for tag in soup.find_all(heading_tags):
+        entry = tag.find()
+        assert "class" in entry.attrs and "sectionnumber" in entry["class"]
+        entry.string = entry.string.replace("\u2003", "").strip()
+        anchor = "sec-" + entry.string
+        entry["id"] = anchor
         # add paragraph links
         if tag.name in ["h5", "h6"]:
-            for entry in tag.children:
-                if "class" in entry.attrs and "sectionnumber" in entry["class"]:
-                    anchor = "sec-" + entry.text.strip().split("\u2003")[0]
-                    entry["id"] = anchor
-                    link = soup.new_tag('a', href=f"#{anchor}")
-                    link['class'] = 'anchor-link'
-                    link.append("¶")
-                    tag.append(link)
-                    break
+            # wrap the headline tag's contents in a span (for flexbox purposes)
+            headline = soup.new_tag("span")
+            for child in reversed(tag.contents):
+                headline.insert(0, child.extract())
+            tag.append(headline)
+            link = soup.new_tag('a', href=f"#{anchor}")
+            link['class'] = 'anchor-link'
+            link.append("¶")
+            tag.append(link)
         # find human-readable link target and re-arrange anchor
         for sibling in tag.next_siblings:
             if sibling.name is None:
@@ -105,16 +110,17 @@ def make_page_toc(soup):
     for tag in soup.find_all(heading_tags):
         anchor = tag.find(class_="sectionnumber").get('id')
         item = soup.new_tag('p')
-        # a = soup.new_tag('a', href=f"#{tag.get('id')}")
         a = soup.new_tag('a', href=f"#{anchor}")
-        a.string = tag.text.strip().split("\u2003")[1].replace("¶", "")
+        toc_string = tag.text.strip().replace("¶", "")
+        sectionnumber = tag.find(class_="sectionnumber").text.strip()
+        toc_string = toc_string.replace(sectionnumber, "")
+        a.string = toc_string.strip()
         if tag.name == "h5":
             a['class'] = 'tocsubsection'
         elif tag.name == "h6":
             a['class'] = 'tocsubsubsection'
         item.append(a)
         toc.append(item)
-        pass
     container.insert(0,toc_container)
 
 def add_class(tag, c):
@@ -616,7 +622,6 @@ for filename in sorted(os.listdir()):
                 else:
                     write_to_file(soup, "processed/"+filename)
                     add_spotlight_toc(filename)
-
 
 # prettify
 # run command with subprocess
