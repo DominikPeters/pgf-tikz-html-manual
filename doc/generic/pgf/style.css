@@ -189,11 +189,10 @@ section.textbody div.footnotes {
   border-bottom: 2px solid silver;
 }
 
-/* Remove footnote top border in the title page. */
-
 ul {
   margin: 1ex 1em 1ex 0em;
   line-height: 1.2;
+  padding-left: 1.5em;
 }
 
 li {
@@ -637,6 +636,10 @@ div.sidetoccontainer {
     bottom: 0;
     overflow-y: scroll;
   }
+
+  #chapter-toc-container.show-menu {
+    transform: translateX(0);
+  }
 }
 
 @media screen and (min-width: 640px) {
@@ -766,10 +769,28 @@ header strong a:hover {
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
+.DocSearch header {
+  border-bottom: 0px;
+}
+
+.search-input {
+  margin-right: 0.3em;
+  width: 10em;
+  font-size: 0.9em;
+  padding: 1px 3px;
+}
+
 @media screen and (min-width: 640px) {
   header strong {
     font-size: 1.5em;
     margin-left: 0.5em;
+  }
+
+  .search-input {
+    margin-right: 1em;
+    width: 14em;
+    font-size: 105%;
+    padding: 3px 5px;
   }
 
   #chapter-toc-container nav.sidetoc {
