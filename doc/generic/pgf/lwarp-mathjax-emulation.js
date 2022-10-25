@@ -217,6 +217,7 @@ MathJax = {
 
     tex: {
         packages: { "[+]": ["tagformat", "Lwarp-macros", "textmacros"] },
+        processEscapes: false,
         tags: "ams",
         tagformat: {
             number: function (n) {
