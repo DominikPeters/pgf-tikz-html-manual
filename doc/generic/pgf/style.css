@@ -1,7 +1,10 @@
-/*** uncss> filename: processed/style.css ***/
 /*
+  CSS stylesheet for tikz.dev
+  Copyright 2021-2022 Dominik Peters
+
+  adapted from:
   CSS stylesheet for the LaTeX Lwarp package
-  Copyright 2016-2021 Brian Dunn — BD Tech Concepts LLC
+  Copyright 2016-2021 Brian Dunn - BD Tech Concepts LLC
 */
 
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap');
