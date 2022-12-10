@@ -549,6 +549,8 @@ def add_meta_tags(filename, soup):
         soup.head.append(meta)
     # thumbnail
     img_filename = "social-media-banners/" + stem + ".png"
+    if filename == "index-0.html":
+        img_filename = "social-media-banners/introduction.png"
     if os.path.isfile("banners/"+img_filename):
         meta = soup.new_tag('meta', property="og:image", content="https://tikz.dev/" + img_filename)
         soup.head.append(meta)
