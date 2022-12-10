@@ -43,6 +43,7 @@ lot of contributed changes. Thanks to everyone who volunteered their time!
 - Add Developer Certificate of Origin (DCO) to Pull Request template and enforce
 - Add test set for `graphdrawing` (gd) 
 - pgfkeys gained support for loading libraries
+- Add dependabot to keep GitHub Actions up to date
 
 ### Fixed
 
@@ -82,6 +83,7 @@ lot of contributed changes. Thanks to everyone who volunteered their time!
 - pgfkeys was a bit too relaxed around `\relax` #1132
 - Remove spurious spaces for `3d view` #1151
 - Fix incorrectly placed matrix delimiters for implicitly positioned nodes #1102
+- Use `/.append` to fix a wrong usage of `/.add` in pgfmanual #1201
 
 ### Changed
 
