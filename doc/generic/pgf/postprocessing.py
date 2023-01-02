@@ -90,7 +90,7 @@ def add_copyright_comment_block(filename, soup):
     copyright_lines.append("Copyright 2016-2021 Brian Dunn - BD Tech Concepts LLC")
     copyright_lines.append("")
     copyright_lines.append("tikz.dev:")
-    copyright_lines.append("Copyright 2021-2022 Dominik Peters")
+    copyright_lines.append("Copyright 2021-2023 Dominik Peters")
     copyright_lines.append("This file may be distributed and/or modified under the LaTeX Project Public License.")
     # add copyright block to html
     comment = Comment("\n".join(copyright_lines).replace("the file doc/generic/pgf/licenses/LICENSE","https://tikz.dev/license"))
@@ -409,6 +409,9 @@ def add_header(soup):
         indexName: 'tikz',
         appId: 'JS6V5VZSDB',
         container: '#search',
+        searchParameters: {
+          tagFilters: ['tikz'],
+        },
     });
     """)
     soup.body.append(script)
