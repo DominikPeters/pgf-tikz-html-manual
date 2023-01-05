@@ -2905,6 +2905,13 @@ Let us have a look at the effect of these options.
 
 Let us now have a look at a few examples. These examples work only if this
 document is processed with a driver that supports picture remembering.
+
+\BlockClassSingle{warning-see-pdf}{
+For the intended rendering of the following examples, please see the PDF version of the manual.
+
+\includegraphics{standalone/pgfmanual-sec-17-13-1}
+}
+
 \medskip
 
 \noindent%
@@ -2951,6 +2958,7 @@ part of the picture.
 
 \subsubsection{Referencing the Current Page Node -- Absolute Positioning}
 
+\begin{BlockClass}{section-absolute-positioning}
 There is a special node called |current page| that can be used to access the
 current page. It is a node of shape rectangle whose |south west| anchor is the
 lower left corner of the page and whose |north east| anchor is the upper right
@@ -2962,7 +2970,7 @@ options to a picture, you can position nodes \emph{absolutely} on a page.
 The first example places some text in the lower left corner of the current
 page:
 %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{BlockClass}{example-absolute-positioning-bottom-left}},post={\end{BlockClass}}]
 \begin{tikzpicture}[remember picture,overlay]
   \node [xshift=1cm,yshift=1cm] at (current page.south west)
         [text width=7cm,fill=red!20,rounded corners,above right]
@@ -2975,7 +2983,7 @@ page:
 
 The next example adds a circle in the middle of the page.
 %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{BlockClass}{example-absolute-positioning-center}},post={\end{BlockClass}}]
 \begin{tikzpicture}[remember picture,overlay]
   \draw [line width=1mm,opacity=.25]
     (current page.center) circle (3cm);
@@ -2985,13 +2993,13 @@ The next example adds a circle in the middle of the page.
 The final example overlays some text over the page (depending on where this
 example is found on the page, the text may also be behind the page).
 %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{BlockClass}{example-absolute-positioning-center}},post={\end{BlockClass}}]
 \begin{tikzpicture}[remember picture,overlay]
   \node [rotate=60,scale=10,text opacity=0.2]
     at (current page.center) {Example};
 \end{tikzpicture}
 \end{codeexample}
-
+\end{BlockClass}
 
 \subsection{Late Code and Late Options}
 \label{section-node-also}

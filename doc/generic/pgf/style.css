@@ -1148,3 +1148,48 @@ nav.sidetoc .sidetoccontents a.tocsubsubsection {
 .dedicationsignature {
   text-align: right;
 }
+
+/* *************************** */
+/* "Remember picture" examples */
+/* *************************** */
+
+div.section-absolute-positioning {
+  position: relative;
+  padding-bottom: 5em;
+}
+
+div.example-absolute-positioning-bottom-left img {
+  position: absolute;
+  z-index: 100;
+  bottom: 1em;
+  left: 0.1em;
+}
+
+div.example-absolute-positioning-center img {
+  position: absolute;
+  z-index: 100;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+div.warning-see-pdf {
+  background-color: rgb(254, 229, 184);
+  border: 1px solid rgb(255, 204, 0);
+  border-radius: 5px;
+  padding: 0.5em;
+  padding-left: 3.5em;
+  background-image: url('standalone/exclamation-square.svg');
+  background-repeat: no-repeat;
+  background-position: 0.5em 0.5em;
+  background-size: 2.3em;
+}
+
+div.warning-see-pdf img {
+  display: block;
+  margin-top: 0.5em;
+  border: 1px solid rgb(219, 176, 1);
+  max-width: 95%;
+  width: 50em;
+  box-shadow: 2px 2px 4px rgba(219, 176, 1, 0.3);
+}
