@@ -410,7 +410,7 @@ def add_header(soup):
         appId: 'JS6V5VZSDB',
         container: '#search',
         searchParameters: {
-          tagFilters: ['tikz'],
+          filters: "tags:tikz",
         },
     });
     """)
