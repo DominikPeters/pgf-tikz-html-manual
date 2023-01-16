@@ -16,6 +16,9 @@ jobs:
       with:
         fetch-depth: 0
 
+    - name: Fixup Run actions/checkout
+      run: git config --global --add safe.directory '*'
+
     - name: Generate the revision file
       run: |
         export tagname=$(git describe --abbrev=0 --tags)
@@ -121,9 +124,13 @@ jobs:
 
     - name: "CTAN: Validate"
       run: |
-        l3build upload --dry-run --date "$tagdate" "$tagname"
+        # temp workaround for l3build 2022-11-10
+        # see https://github.com/latex3/l3build/issues/264
+        echo "n" | l3build upload --dry-run --date "$tagdate" "$tagname"
 
     - name: "CTAN: Upload"
       if: github.repository == 'pgf-tikz/pgf'
       run: |
-        l3build upload --date "$tagdate" "$tagname"
+        # temp workaround for l3build 2022-11-10
+        # https://github.com/latex3/l3build/issues/265
+        echo "y" | l3build upload --date "$tagdate" "$tagname"
