@@ -64,6 +64,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   window.onscroll = () => {
     debounce(updateTOC, 75)();
+    document.getElementById("pgfplots-link").style.display = scrollY == 0 ? "block" : "none";
   };
 
   const hamburger = document.getElementById("hamburger-button");

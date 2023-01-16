@@ -591,6 +591,26 @@ def add_spotlight_toc(filename):
     with open("processed/"+filename, "w") as f:
         f.write(html)
 
+def add_pgfplots_ad(filename):
+    with open("processed/"+filename, "r") as f:
+        html = f.read()
+        html = html.replace('<div id="search"></div>', """<!-- temporary ad for new pgfplots pages -->
+        <div id="pgfplots-link">
+          <a href="https://tikz.dev/pgfplots">
+            <span id="pgfplots-desktop-version">
+              NEW:
+              <span class="pgfplots-link-text">tikz.dev/PGFplots</span>
+            </span>
+            <span id="pgfplots-smaller-version">
+              NEW:
+              <span class="pgfplots-link-text">PGFplots</span>
+            </span>
+          </a>
+        </div>
+        <div id="search"></div>""")
+    with open("processed/"+filename, "w") as f:
+        f.write(html)
+
 def handle_code_spaces(soup):
     # these are throwaway tags, only used to avoid overfull boxes
     for tag in soup.find_all(class_="numsp"):
@@ -632,9 +652,11 @@ for filename in sorted(os.listdir()):
                     soup.body['class'] = "index-page"
                     write_to_file(soup, "processed/index.html")
                     add_spotlight_toc("index.html")
+                    add_pgfplots_ad("index.html")
                 else:
                     write_to_file(soup, "processed/"+filename)
                     add_spotlight_toc(filename)
+                    add_pgfplots_ad(filename)
 
 # prettify
 # run command with subprocess

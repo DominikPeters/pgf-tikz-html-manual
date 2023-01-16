@@ -1193,3 +1193,62 @@ div.warning-see-pdf img {
   width: 50em;
   box-shadow: 2px 2px 4px rgba(219, 176, 1, 0.3);
 }
+
+/* Temporary ad for pgfplots pages */
+
+#pgfplots-link, #pgfplots-desktop-version, #pgfplots-smaller-version {
+  display: none;
+}
+
+.pgfplots-link-text {
+  font-weight: 600; 
+  font-size: 1.11em;
+}
+
+@media screen and (min-width: 380px) {
+  #pgfplots-link {
+    display: block;
+    background-color: #623cc9;
+    color: #fff;
+    border-radius: 5px;
+    margin-left: 1em;
+    padding: 0;
+    box-shadow: inset 0 0 5px #341e72;
+    border: 1px solid #623cc9;
+    outline: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  #pgfplots-link:hover {
+    background-color: #7751e0;
+    box-shadow: inset 0 0 5px #b4a0ea,
+                0 0 5px rgba(255, 255, 255, 0.2);
+  }
+  #pgfplots-link a {
+    color:#fff; 
+    font-size: 0.75em;
+    display: block; 
+    padding: 0.2em;
+  }
+  #pgfplots-smaller-version {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  #pgfplots-link {
+    margin-left: 1.5em;
+  }
+  #pgfplots-link a {
+    color:#fff; 
+    font-size: 0.85em;
+    display: block; 
+    padding: 0.35em;
+  }
+  #pgfplots-smaller-version {
+    display: none;
+  }
+  #pgfplots-desktop-version {
+    display: block;
+  }
+}
+
+/* end temporary ad */
