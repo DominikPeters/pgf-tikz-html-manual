@@ -160,6 +160,30 @@ def _add_mobile_toc(soup):
     h2_index = textbody.contents.index(soup.h2)
     textbody.insert(h2_index+1, mobile_toc)
 
+def make_breadcrumb(soup, breadcrumb):
+    # example for breadcrumb parameter:
+    # breadcrumb = [
+    #                {"name": "Parent", "item": "https://.."},
+    #                {"name": "This page", "item": "https://.."}
+    #            ]
+    # make JSON-LD for Google
+    breadcrumb_json = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": []
+    }
+    for i, item in enumerate(breadcrumb):
+        breadcrumb_json["itemListElement"].append({
+            "@type": "ListItem",
+            "position": i+1,
+            "name": item["name"],
+            "item": item["item"]
+        })
+    script = soup.new_tag('script', type="application/ld+json")
+    script.string = json.dumps(breadcrumb_json, indent=4)
+    soup.head.append(script)
+
+
 ## shorten sidetoc
 def shorten_sidetoc_and_add_part_header(soup, is_home=False):
     container = soup.find(class_="sidetoccontainer")
@@ -226,8 +250,10 @@ def shorten_sidetoc_and_add_part_header(soup, is_home=False):
             if file_id == my_file_id:
                 assert 'class' not in entry
                 entry['class'] = ["current"]
-                soup.title.string = entry.a.get_text() + " - PGF/TikZ Manual"
                 my_part = last_part
+                my_title = entry.a.get_text()
+                my_href = entry.a.get('href')
+                soup.title.string = my_title + " - PGF/TikZ Manual"
         else:
             print(f"unknown class: {entry.a['class']}")
     for part in toc:
@@ -247,6 +273,11 @@ def shorten_sidetoc_and_add_part_header(soup, is_home=False):
                 assert part_name is not None
                 h2.append(part_name)
                 soup.h1.insert_after(h2)
+                breadcrumb = [
+                    {"name": part_name, "item": "https://tikz.dev/" + part['tag'].a.get('href')},
+                    {"name": my_title, "item": "https://tikz.dev/" + my_href}
+                ]
+                make_breadcrumb(soup, breadcrumb)
     if not is_a_section and not is_home:
         # this is a part overview page
         # let's insert an additional local table of contents for mobile users
@@ -592,6 +623,8 @@ def add_spotlight_toc(filename):
         f.write(html)
 
 def add_pgfplots_ad(filename):
+    if not "index" in filename:
+        return
     with open("processed/"+filename, "r") as f:
         html = f.read()
         html = html.replace('<div id="search"></div>', """<!-- temporary ad for new pgfplots pages -->
