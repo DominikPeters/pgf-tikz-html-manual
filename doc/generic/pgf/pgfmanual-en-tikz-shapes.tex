@@ -890,7 +890,7 @@ text. There are three different ways of achieving this:
         This approach offers the most flexibility in the sense that it allows
         you to use all of the alignment commands offered by your format of
         choice.
-    \item You use |\\| inside your node to mark the end of lines and then
+    \item You use |\\\\| inside your node to mark the end of lines and then
         request \tikzname\ to arrange these lines in some manner. This will
         only be done, however, if the |align| option has been given.
         %
@@ -902,7 +902,7 @@ text. There are three different ways of achieving this:
 \tikz[align=center] \node[draw] {This is a\\demonstration.};
 \end{codeexample}
         %
-        The |\\| command takes an optional extra space as an argument in square
+        The |\\\\| command takes an optional extra space as an argument in square
         brackets.
         %
 \begin{codeexample}[]
@@ -912,7 +912,7 @@ text. There are three different ways of achieving this:
         %
     \item You can request that \tikzname\ does an automatic line-breaking for
         you inside the node by specifying a fixed |text width| for the node. In
-        this case, you can still use |\\| to enforce a line-break. Note that
+        this case, you can still use |\\\\| to enforce a line-break. Note that
         when you specify a text width, the node will have this width,
         independently of whether the text actually ``reaches the end'' of the
         node.
@@ -951,7 +951,7 @@ Let us now first have a look at the |text width| command.
     then a different mechanism is used internally, namely the key
     |node halign header|, is set to an appropriate value. While this key, which
     is documented below, is not to be used by beginners, the net effect is
-    simple: When |text width| is not set, you can use |\\| to break lines and
+    simple: When |text width| is not set, you can use |\\\\| to break lines and
     align them according to \meta{alignment option} and the resulting node's
     width will be minimal to encompass the resulting lines.
 
@@ -1069,7 +1069,7 @@ Let us now first have a look at the |text width| command.
             badly typeset lines. (For this manual I asked \TeX\ to stop
             complaining by using |\hbadness=10000|, but this is a foul deed,
             indeed.)
-        \item |align=|\declare{|none|} Disables all alignments and |\\| will
+        \item |align=|\declare{|none|} Disables all alignments and |\\\\| will
             not be redefined.
     \end{itemize}
 \end{key}
@@ -1084,11 +1084,11 @@ Let us now first have a look at the |text width| command.
     key also has no effect. So, suppose |text width| is empty, but
     \meta{header} is not. In this case the following happens:
 
-    When the node text is parsed, the command |\\| is redefined internally.
+    When the node text is parsed, the command |\\\\| is redefined internally.
     This redefinition is done in such a way that the text from the start of the
-    node to the first occurrence of |\\| is put in an |\hbox|. Then the text
-    following |\\| up to the next |\\| is put in another |\hbox|. This goes on
-    until the text between the last |\\| and the closing |}| is also put in an
+    node to the first occurrence of |\\\\| is put in an |\hbox|. Then the text
+    following |\\\\| up to the next |\\\\| is put in another |\hbox|. This goes on
+    until the text between the last |\\\\| and the closing |}| is also put in an
     |\hbox|.
 
     The \meta{macro storing a header} should be a macro that contains some text

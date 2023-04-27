@@ -1171,6 +1171,7 @@ div.example-absolute-positioning-center img {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  pointer-events: none;
 }
 
 div.warning-see-pdf {
