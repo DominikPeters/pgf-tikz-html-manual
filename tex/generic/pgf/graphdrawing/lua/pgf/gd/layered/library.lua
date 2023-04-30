@@ -40,9 +40,7 @@
 --     \newblock Institute of Theoretical Computer Science, Universit\"at
 --       zu L\"ubeck, 2011.\\[.5em]
 --     \newblock Available online via
---       \url{http://www.tcs.uni-luebeck.de/downloads/papers/2011/}\\
---       \url{2011-configurable-graph-drawing-algorithms-jannis-pohlmann.pdf}
---       \\[.5em]
+--       \url{http://www.tcs.uni-luebeck.de/downloads/papers/2011/2011-configurable-graph-drawing-algorithms-jannis-pohlmann.pdf}
 --       (Note that since the publication of this thesis some option names
 --       have been changed. Most noticeably, the option name
 --       |layered drawing| was changed to |layered layout|, which is somewhat
