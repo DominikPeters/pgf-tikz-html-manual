@@ -1,6 +1,6 @@
 from unicodedata import name
 from xml.dom import minidom
-from bs4 import BeautifulSoup, Comment
+from bs4 import BeautifulSoup, Comment, NavigableString
 from shutil import copyfile, copytree
 import json
 import re
@@ -34,6 +34,12 @@ def rearrange_heading_anchors(soup):
         entry.string = entry.string.replace("\u2003", "").strip()
         anchor = "sec-" + entry.string
         entry["id"] = anchor
+        # add space between sectionnumber and section title
+        for index, content in enumerate(tag.contents):
+            if isinstance(content, str):
+                space = NavigableString(' ')
+                tag.insert(index, space)
+                break
         # add paragraph links
         if tag.name in ["h5", "h6"]:
             # wrap the headline tag's contents in a span (for flexbox purposes)

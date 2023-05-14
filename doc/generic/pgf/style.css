@@ -76,7 +76,7 @@ table p {
 }
 
 span.sectionnumber {
-  margin-right: 0.5em;
+  margin-right: 0.3em;
 }
 
 div.hidden,
@@ -1171,7 +1171,6 @@ div.example-absolute-positioning-center img {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  pointer-events: none;
 }
 
 div.warning-see-pdf {
