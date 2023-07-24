@@ -716,6 +716,8 @@ def numspace_to_spaces(filename):
             replacement = opener+" "+closer
             html = html.replace(pattern, replacement)
     html = html.replace("&numsp;", '<span class="spaces"> </span>')
+    # ugly hack to fix https://github.com/DominikPeters/tikz.dev-issues/issues/16
+    html = html.replace('<a href="drivers#pgf.class">class</a>', 'class')
     with open("processed/"+filename, "w") as f:
         f.write(html)
 
