@@ -212,7 +212,7 @@ must set up the box |\pgfnodepartXYZbox|. The box will be placed at the anchor
     Finally, when the node is drawn, the boxes are placed at the anchor
     positions |text| and |lower|.
     %
-\begin{codeexample}[preamble={\usetikzlibrary{shapes}}]
+\begin{codeexample}[preamble={\usetikzlibrary{shapes}},pre={\begin{lateximage}},post={\end{lateximage}}]
 \setbox\pgfnodeparttextbox=\hbox{$q_1$}
 \setbox\pgfnodepartlowerbox=\hbox{01}
 \begin{pgfpicture}
