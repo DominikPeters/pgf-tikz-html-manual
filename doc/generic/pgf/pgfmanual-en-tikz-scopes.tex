@@ -140,13 +140,13 @@ $A \mathbin{\tikz[baseline] \draw[->>] (0pt,.5ex) -- (3ex,.5ex);} B$
         $y$-coordinate of the resulting point. This makes it easy to reference
         the $y$-coordinate of, say, the baseline of nodes.
         %
-\begin{codeexample}[preamble={\usetikzlibrary{shapes.misc}}]
+\begin{codeexample}[preamble={\usetikzlibrary{shapes.misc}},pre={\begin{lateximage}},post={\end{lateximage}}]
 Hello
 \tikz[baseline=(X.base)]
   \node [cross out,draw] (X) {world.};
 \end{codeexample}
 
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]]
 Top align:
 \tikz[baseline=(current bounding box.north)]
   \draw (0,0) rectangle (1cm,1ex);
