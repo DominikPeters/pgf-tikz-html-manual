@@ -513,7 +513,7 @@ def _add_dimensions(tag, svgfilename):
     tag['height'] = "{:.3f}".format(height_px)
     return (width_px, height_px)
 
-def process_images(soup):
+def process_images(filename, soup):
     for tag in soup.find_all("img"):
         if "svg" in tag['src']: 
             width_px, height_px = _add_dimensions(tag, tag['src'])
@@ -522,6 +522,12 @@ def process_images(soup):
                 tag.decompose()
                 continue
             tag["loading"] = "lazy"
+            # do not replace the following svgs
+            exceptions = ["-315.", "-316.", "-342.", "-343."]
+            if any(exception in tag['src'] for exception in exceptions):
+                continue
+            if "library-patterns" in filename:
+                continue
             # replace all SVGs by PNGs except if that's a big filesize penalty
             # doing this because the SVGs are missing some features like shadows
             png_filename = tag['src'].replace("svg", "png")
@@ -678,7 +684,7 @@ for filename in sorted(os.listdir()):
                 addClipboardButtons(soup)
                 rewrite_svg_links(soup)
                 add_version_to_css_js(soup)
-                process_images(soup)
+                process_images(filename, soup)
                 add_header(soup)
                 favicon(soup)
                 semantic_tags(soup)
