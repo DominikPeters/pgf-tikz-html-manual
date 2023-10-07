@@ -393,6 +393,7 @@ img.lateximage {
   border: none;
   background: none;
   max-width: 100%;
+  height: auto;
   border-radius: 0ex;
   border: none;
 }
@@ -957,8 +958,22 @@ h6:hover > .anchor-link {
   margin: 0;
 }
 
+ul {
+  padding-left: 20px;
+}
+
 .entryheadline {
-  margin-left: -40px;
+  margin-left: -20px;
+}
+
+@media screen and (min-width: 640px) {
+  ul {
+    padding-left: 40px;
+  }
+
+  .entryheadline {
+    margin-left: -40px;
+  }
 }
 
 .entryheadline p > a {
