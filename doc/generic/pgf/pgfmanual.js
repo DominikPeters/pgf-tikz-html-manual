@@ -1,3 +1,6 @@
+let sections;
+let navLi;
+
 function debounce(func, timeout = 300) {
   let timer;
   return (...args) => {
@@ -59,8 +62,8 @@ function italicizeKinTikZnames() {
 }
 
 document.addEventListener("DOMContentLoaded", (event) => {
-  const sections = document.querySelectorAll("span.sectionnumber");
-  const navLi = document.querySelectorAll("#local-toc-container a");
+  sections = document.querySelectorAll("span.sectionnumber");
+  navLi = document.querySelectorAll("#local-toc-container a");
 
   window.onscroll = () => {
     debounce(updateTOC, 75)();
