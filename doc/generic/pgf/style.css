@@ -101,9 +101,13 @@ p span.texttt {
   border: 1px solid hsl(240, 100%, 94%);
 }
 /* remove the above styling in some places */
-.entryheadline p span.texttt {
+.entryheadline p span.texttt,
+p span.texttt.nobackground
+{
   background-color: transparent;
   border: none;
+  padding: 0;
+  font-size: 88%;
 }
 
 pre {

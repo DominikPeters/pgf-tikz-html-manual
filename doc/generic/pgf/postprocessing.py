@@ -564,6 +564,20 @@ def semantic_tags(soup):
         p = examplecode.find("p")
         p.name = "code"
 
+# some texttt spans (inline code) should not get a blue background, because 
+# they appear as part of longer definitions that don't have a background
+# in particular, let's check whether they are immediately preceded
+# or succeded by another span
+def texttt_spans(soup):
+    for span in soup.find_all('span', class_='texttt'):
+        prev_sibling = span.previous_sibling
+        if prev_sibling and prev_sibling.name == 'span':
+            span['class'].append('nobackground')
+            continue
+        next_sibling = span.next_sibling
+        if next_sibling and next_sibling.name == 'span':
+            span['class'].append('nobackground')
+
 def add_meta_tags(filename, soup):
     stem = os.path.splitext(filename)[0]
     # title
@@ -688,6 +702,7 @@ for filename in sorted(os.listdir()):
                 add_header(soup)
                 favicon(soup)
                 semantic_tags(soup)
+                texttt_spans(soup)
                 add_meta_tags(filename, soup)
                 add_copyright_comment_block(filename, soup)
                 handle_code_spaces(soup)
