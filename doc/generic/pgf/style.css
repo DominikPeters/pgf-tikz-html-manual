@@ -93,6 +93,19 @@ p span.texttt {
   word-break: break-word;
 }
 
+p span.texttt {
+  padding: 0.07em 0.14em;
+  margin: 0;
+  font-size: 85%;
+  background-color: hsl(240, 100%, 97%);
+  border: 1px solid hsl(240, 100%, 94%);
+}
+/* remove the above styling in some places */
+.entryheadline p span.texttt {
+  background-color: transparent;
+  border: none;
+}
+
 pre {
   padding: 3pt;
 }

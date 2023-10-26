@@ -59,12 +59,15 @@ function italicizeKinTikZnames() {
 }
 
 document.addEventListener("DOMContentLoaded", (event) => {
-  sections = document.querySelectorAll("span.sectionnumber");
-  navLi = document.querySelectorAll("#local-toc-container a");
+  const sections = document.querySelectorAll("span.sectionnumber");
+  const navLi = document.querySelectorAll("#local-toc-container a");
 
   window.onscroll = () => {
     debounce(updateTOC, 75)();
-    document.getElementById("pgfplots-link").style.display = scrollY == 0 ? "block" : "none";
+    const pgfplots = document.getElementById("pgfplots-link");
+    if (pgfplots) {
+      pgfplots.style.display = scrollY == 0 ? "block" : "none";
+    }
   };
 
   const hamburger = document.getElementById("hamburger-button");
