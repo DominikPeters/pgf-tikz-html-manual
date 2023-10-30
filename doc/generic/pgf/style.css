@@ -86,14 +86,16 @@ span.hidden {
 
 kbd,
 span.texttt,
-p span.texttt {
+p span.texttt,
+.quicklinks a {
   font-family: var(--monospace-font);
   font-size: 88%;
   line-height: 0.8;
   word-break: break-word;
 }
 
-p span.texttt {
+p span.texttt,
+.quicklinks a {
   padding: 0.07em 0.14em;
   margin: 0;
   font-size: 85%;
@@ -1117,6 +1119,25 @@ nav.sidetoc .sidetoccontents a.tocsubsubsection {
 .index-page #local-toc-container {
   display: none;
 }
+
+.quicklinks {
+  margin-bottom: 0.5em;
+  line-height: 1.8;
+}
+.quicklinks strong {
+  font-size: 140%;
+  line-height: 1;
+  display: block;
+  margin-bottom: 0.3em;
+}
+.quicklinks a {
+  font-size: 100%;
+  margin-right: 0.2em;
+}
+.quicklinks a:hover {
+  background-color: hsl(240, 100%, 94%);
+}
+
 .home-toc-section {
   margin-bottom: 1em;
 }

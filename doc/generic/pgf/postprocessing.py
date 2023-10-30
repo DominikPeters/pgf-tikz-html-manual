@@ -648,6 +648,33 @@ def add_spotlight_toc(filename):
     with open("processed/"+filename, "w") as f:
         f.write(html)
 
+def add_quicklinks(filename):
+    assert filename == "index.html"
+    quicklinks = """
+        <div class="quicklinks">
+            <strong>Quick Links</strong>
+            <a href="https://tikz.dev/tikz-shapes#sec-17.2.1">\\node</a>
+            <a href="https://tikz.dev/tikz-actions#sec-15.5">\\fill</a>
+            <a href="https://tikz.dev/tikz-actions#sec-15.3">\\draw</a>
+            <a href="https://tikz.dev/pgffor">\\foreach</a>
+            <a href="https://tikz.dev/tikz-actions#sec-15.2">color</a>
+            <a href="https://tikz.dev/tikz-paths#pgf.circle">circle</a>
+            <a href="https://tikz.dev/tikz-paths#sec-14.7">arc</a>
+            <a href="https://tikz.dev/tikz-paths#sec-14.8">grid</a>
+            <a href="https://tikz.dev/tikz-paths#sec-14.4">rectangle</a>
+            <a href="https://tikz.dev/tikz-shapes#sec-17.10">label</a>
+            <a href="https://tikz.dev/tikz-shapes#sec-17.12">edge</a>
+            <a href="https://tikz.dev/tikz-shapes#sec-17.5.1">anchor</a>
+            <a href="https://tikz.dev/tikz-actions#sec-15.9">clip</a>
+        </div>
+        """
+    pattern = '<div class="home-toc-section">'
+    with open("processed/"+filename, "r") as f:
+        html = f.read()
+        html = html.replace(pattern, quicklinks + pattern, 1)
+    with open("processed/"+filename, "w") as f:
+        f.write(html)
+
 def add_pgfplots_ad(filename):
     if not "index" in filename:
         return
@@ -712,6 +739,7 @@ for filename in sorted(os.listdir()):
                     soup.body['class'] = "index-page"
                     write_to_file(soup, "processed/index.html")
                     add_spotlight_toc("index.html")
+                    add_quicklinks("index.html")
                     add_pgfplots_ad("index.html")
                 else:
                     write_to_file(soup, "processed/"+filename)
