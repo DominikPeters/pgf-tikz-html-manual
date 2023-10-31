@@ -723,7 +723,7 @@ simulated ones.
     instance the |patterns| library, see
     Section~\ref{section-library-patterns}, to install predefined patterns.
     %
-\begin{codeexample}[preamble={\usetikzlibrary{patterns}}]
+\begin{codeexample}[preamble={\usetikzlibrary{patterns}},svg]
 \begin{tikzpicture}
   \draw[pattern=dots] (0,0) circle (1cm);
   \draw[pattern=fivepointed stars] (0,0) rectangle (3,1);
@@ -736,7 +736,7 @@ simulated ones.
     This option is used to set the color to be used for form-only patterns.
     This option has no effect on inherently colored patterns.
     %
-\begin{codeexample}[preamble={\usetikzlibrary{patterns}}]
+\begin{codeexample}[preamble={\usetikzlibrary{patterns}},svg]
 \begin{tikzpicture}
   \draw[pattern color=red,pattern=fivepointed stars]  (0,0) circle (1cm);
   \draw[pattern color=blue,pattern=fivepointed stars] (0,0) rectangle (3,1);
@@ -1326,7 +1326,7 @@ the following two options:
     In the following example, we use one |preaction| to add a shadow and
     another to provide a shading, while the main action is to use a pattern.
     %
-\begin{codeexample}[preamble={\usetikzlibrary{patterns}}]
+\begin{codeexample}[preamble={\usetikzlibrary{patterns}},svg]
 \begin{tikzpicture}
   \draw[help lines] (0,0) grid (3,2);
   \draw [pattern=fivepointed stars]
@@ -1342,7 +1342,7 @@ the following two options:
     is used several times with different fadings and shadings to create a
     special visual effect:
     %
-\begin{codeexample}[preamble={\usetikzlibrary{fadings,patterns}}]
+\begin{codeexample}[preamble={\usetikzlibrary{fadings,patterns}},svg]
 \begin{tikzpicture}
   [
     % Define an interesting style
