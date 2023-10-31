@@ -514,6 +514,14 @@ def _add_dimensions(tag, svgfilename):
     return (width_px, height_px)
 
 def process_images(filename, soup):
+    "replace SVGs by PNGs if this saves filesize"
+    # Step 1: label all images explicitly tagged that they should remain an SVG
+    # (tagging works by adding the option "svg" to the \begin{codeexample})
+    divs = soup.find_all("div", class_="prefers-svg")
+    for div in divs:
+        imgs = div.find_all("img", recursive=True)
+        for img in imgs:
+            img['class'] = img.get('class', []) + ['prefers-svg']
     for tag in soup.find_all("img"):
         if "svg" in tag['src']: 
             width_px, height_px = _add_dimensions(tag, tag['src'])
@@ -523,15 +531,15 @@ def process_images(filename, soup):
                 continue
             tag["loading"] = "lazy"
             # do not replace the following svgs
-            exceptions = ["-315.", "-316.", "-342.", "-343."]
-            if any(exception in tag['src'] for exception in exceptions):
+            if "prefers-svg" in tag['class']:
                 continue
             if "library-patterns" in filename:
                 continue
             # replace all SVGs by PNGs except if that's a big filesize penalty
             # doing this because the SVGs are missing some features like shadows
+            factor = 5
             png_filename = tag['src'].replace("svg", "png")
-            if kilobytes(png_filename) < 5 * kilobytes(tag['src']):
+            if kilobytes(png_filename) < factor * kilobytes(tag['src']):
                 tag['src'] = png_filename
     for tag in soup.find_all("object"):
         if "svg" in tag['data']: 

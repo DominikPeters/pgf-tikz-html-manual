@@ -1635,6 +1635,9 @@
   % Dominik: extra values for imagecodeexample
   imagewidth/.store in=\code@imagewidth,
   imagesource/.store in=\code@imagesource,
+  % Dominik: allow to specify that an image should stay an svg and not be replaced by the converted png 
+  % (e.g., necessary because weird things happen for images with `pattern=` during png conversion)
+  svg/.is if=code@svg,
   % #1 is the *complete* environment contents as it shall be
   % typeset. In particular, the catcodes are NOT the normal ones.
   typeset listing/.code=  {#1},
@@ -1708,6 +1711,7 @@
 \newdimen\codeexamplewidth
 \newif\ifcode@execute
 \newif\ifcode@hidden
+\newif\ifcode@svg
 \newbox\codeexamplebox
 \def\codeexample[#1]{%
   \global\let\pgfmanual@do@this\relax%
@@ -1759,7 +1763,9 @@
   \begin{BlockClass}{example}%
     \ifx\code@imagesource\pgfutil@empty
       \ifcode@execute%
-        \begin{BlockClass}{example-image}%
+        % \begin{BlockClass}{example-image}%
+        % if code@svg, class should be "example-image prefers-svg", otherwise "example-image"
+        \begin{BlockClass}{example-image\ifcode@svg\space prefers-svg\fi}%
         \ifx\code@render\pgfutil@empty%
           {% 
             {%
