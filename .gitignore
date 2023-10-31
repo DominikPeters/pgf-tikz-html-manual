@@ -6,9 +6,8 @@
 *.log
 *.out
 *.pdf
-
 *.toc
-*.zip 
+*.zip
 
 build/*
 .DS_Store

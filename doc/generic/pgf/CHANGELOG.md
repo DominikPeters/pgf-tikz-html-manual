@@ -6,16 +6,32 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Unreleased
 
+### BREAKING CHANGES
+
+### Added
+
+### Fixed
+
+- Typo in animations `end on` key #1273
+- Output bounding box adjustment in pgfsys-dvisvgm.def #1275
+- Fix shadings under LuaMetaTeX
+
 ### Changed
 
 - Typo fixes in the manual
+- Simplify short verb `|...|` or add required preamble for it
+- Harden parser for math expressions against active chars
 
 ### Contributors
 
 - Andreas Deininger
+- Joseph Wright
+- Marcel Krüger
 - Matthias Hetzenberger
+- Qrrbrbirlbel
 - quark67
 - Yukai Chou (muzimuzhi)
+- Alexander Grahn
 
 ## [3.1.10] - 2023-01-13 Henri Menke
 
