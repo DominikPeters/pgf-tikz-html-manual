@@ -838,16 +838,21 @@ h5 {
 }
 
 /* anchor links for headings */
+h4,
 h5,
 h6 {
   display: flex;
 }
 
+h4 > .anchor-link,
 h5 > .anchor-link,
 h6 > .anchor-link {
   margin-left: auto;
 }
 
+h4 > .anchor-link,
+h4 > .anchor-pdf-link,
+h4 > .anchor-html-link,
 h5 > .anchor-link,
 h5 > .anchor-pdf-link,
 h5 > .anchor-html-link,
@@ -858,7 +863,7 @@ h6 > .anchor-html-link {
     serif;
   font-size: 85%;
   color: #000080;
-  opacity: 0.4;
+  opacity: 0.35;
   padding-left: 3px;
   font-weight: normal;
 }
@@ -867,6 +872,9 @@ h5 > .anchor-link {
   font-size: 70%;
 }
 
+h4 > .anchor-link:hover,
+h4 > .anchor-pdf-link:hover,
+h4 > .anchor-html-link:hover,
 h5 > .anchor-link:hover,
 h5 > .anchor-pdf-link:hover,
 h5 > .anchor-html-link:hover,
@@ -879,9 +887,18 @@ h6 > .anchor-html-link:hover {
   transform: scale(1.15);
 }
 
+h4:hover > .anchor-link,
 h5:hover > .anchor-link,
 h6:hover > .anchor-link {
   opacity: 1;
+}
+
+h4 > .anchor-pdf-link > svg,
+h4 > .anchor-html-link > svg {
+  width: 24px;
+  height: 24px;
+  margin-top: 6px;
+  margin-bottom: -6px;
 }
 
 h5 > .anchor-pdf-link > svg,

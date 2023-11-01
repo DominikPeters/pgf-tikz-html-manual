@@ -5,8 +5,10 @@ from shutil import copyfile, copytree
 import json
 import re
 import os
+import sys
 import datetime
 import subprocess
+import requests
 
 def kilobytes(filename):
     st = os.stat(filename)
@@ -22,6 +24,34 @@ copytree("pgfmanual-images", "processed/pgfmanual-images", dirs_exist_ok=True)
 copytree("standalone", "processed/standalone", dirs_exist_ok=True)
 copytree("banners/social-media-banners", "processed/social-media-banners", dirs_exist_ok=True)
 copytree("banners/toc-banners", "processed/toc-banners", dirs_exist_ok=True)
+
+# get PDF version, and get the page numbers of all the sections
+# (this will be used in the deep links)
+pdf_url = "https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+if not os.path.isfile("pgfmanual.pdf"):
+    print("Downloading PDF")
+    response = requests.get(pdf_url)
+    with open("pgfmanual.pdf", "wb") as file:
+        file.write(response.content)
+# run "pdfinfo -dests pgfmanual.pdf", get the stdout
+print("Getting PDF page numbers")
+pdfinfo = subprocess.run(["pdfinfo", "-dests", "pgfmanual.pdf"], capture_output=True)
+destinations = {}
+# example line:
+# 1268 [ XYZ   64  102 null      ] "subsection.123.10"
+# should become
+# destinations["subsection.123.10"] = "1268"
+if pdfinfo.returncode == 0:
+    output = pdfinfo.stdout.decode()
+    lines = output.split('\n')
+    for line in lines:
+        match = re.search(r'(\d+) \[ XYZ\s+\d+\s+\d+\s+null\s+\] "(.+?)"', line)
+        if match:
+            page_number = match.group(1)
+            destination_name = match.group(2)
+            destinations[destination_name] = page_number
+else:
+    print("Error running pdfinfo:", pdfinfo.stderr.decode())
 
 meta_descriptions = json.load(open("meta-descriptions.json"))
 
@@ -41,7 +71,7 @@ def rearrange_heading_anchors(soup):
                 tag.insert(index, space)
                 break
         # add paragraph links
-        if tag.name in ["h5", "h6"]:
+        if tag.name in ["h4", "h5", "h6"]:
             # wrap the headline tag's contents in a span (for flexbox purposes)
             headline = soup.new_tag("span")
             for child in reversed(tag.contents):
@@ -49,13 +79,18 @@ def rearrange_heading_anchors(soup):
             tag.append(headline)
             link = soup.new_tag('a', href=f"#{anchor}")
             link['class'] = 'anchor-link'
-            link['data-html-link'] = anchor
+            if tag.name != "h4":
+                # h4 should only get PDF link
+                link['data-html-link'] = anchor
             # make pdf deep links
             if "sec" in anchor:
                 level = anchor.count(".")
                 if level <= 2:
                     heading_type = "sub" * level + "section"
-                    link['data-pdf-link'] = heading_type + anchor.replace("sec-", ".")
+                    destination = heading_type + "." + anchor.replace("sec-", "")
+                    link['data-pdf-destination'] = destination
+                    assert destination in destinations
+                    link['data-pdf-page'] = destinations[destination]
             link.append("¶")
             tag.append(link)
         # find human-readable link target and re-arrange anchor
