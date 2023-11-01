@@ -49,6 +49,13 @@ def rearrange_heading_anchors(soup):
             tag.append(headline)
             link = soup.new_tag('a', href=f"#{anchor}")
             link['class'] = 'anchor-link'
+            link['data-html-link'] = anchor
+            # make pdf deep links
+            if "sec" in anchor:
+                level = anchor.count(".")
+                if level <= 2:
+                    heading_type = "sub" * level + "section"
+                    link['data-pdf-link'] = heading_type + anchor.replace("sec-", ".")
             link.append("¶")
             tag.append(link)
         # find human-readable link target and re-arrange anchor
@@ -317,6 +324,7 @@ def make_entryheadline_anchor_links(soup):
         pretty_anchor = anchor.replace("pgf.back/","\\").replace("pgf./","")
         link = soup.new_tag('a', href=f"#{pretty_anchor}")
         link['class'] = 'anchor-link'
+        link['data-html-link'] = anchor
         link['id'] = pretty_anchor
         link.append("¶")
         p_tag.append(link)

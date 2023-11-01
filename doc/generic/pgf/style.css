@@ -846,6 +846,14 @@ h6 {
 h5 > .anchor-link,
 h6 > .anchor-link {
   margin-left: auto;
+}
+
+h5 > .anchor-link,
+h5 > .anchor-pdf-link,
+h5 > .anchor-html-link,
+h6 > .anchor-link,
+h6 > .anchor-pdf-link,
+h6 > .anchor-html-link {
   font-family: "DejaVu Serif", "Bitstream Vera Serif", "Lucida Bright", Georgia,
     serif;
   font-size: 85%;
@@ -860,14 +868,36 @@ h5 > .anchor-link {
 }
 
 h5 > .anchor-link:hover,
-h6 > .anchor-link:hover {
-  background-color: rgb(201, 204, 243);
+h5 > .anchor-pdf-link:hover,
+h5 > .anchor-html-link:hover,
+h6 > .anchor-link:hover,
+h6 > .anchor-pdf-link:hover,
+h6 > .anchor-html-link:hover {
+  opacity: 1;
+  /* background-color: rgb(201, 204, 243); */
   text-decoration: none;
+  transform: scale(1.15);
 }
 
 h5:hover > .anchor-link,
 h6:hover > .anchor-link {
   opacity: 1;
+}
+
+h5 > .anchor-pdf-link > svg,
+h5 > .anchor-html-link > svg {
+  width: 20px;
+  height: 20px;
+  margin-top: 6px;
+  margin-bottom: -6px;
+}
+
+h6 > .anchor-pdf-link > svg,
+h6 > .anchor-html-link > svg {
+  width: 17px;
+  height: 17px;
+  margin-top: 4px;
+  margin-bottom: -4px;
 }
 
 .example {
@@ -1061,16 +1091,31 @@ nav.sidetoc .sidetoccontents a.tocsubsubsection {
   position: relative;
 }
 
-.entryheadline p > a.anchor-link {
+.entryheadline p > a.anchor-link,
+.entryheadline p > a.anchor-html-link
+{
   opacity: 0.4;
   padding-left: 3px;
   position: static;
   /* do not ignore in flex layout */
-  margin-left: 0.5em;
+  margin-left: 0.5em !important;
 }
 
-.entryheadline p:hover > a.anchor-link {
+.entryheadline p > a.anchor-html-link > svg {
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  margin-bottom: -2px;
+}
+
+.entryheadline p:hover > a.anchor-link,
+.entryheadline p:hover > a.anchor-html-link {
   opacity: 1;
+}
+
+.entryheadline p > a.anchor-html-link:hover {
+  opacity: 1;
+  transform: scale(1.15);
 }
 
 .entryheadline p > a.anchor-link:hover {
