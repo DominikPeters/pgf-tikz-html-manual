@@ -62,7 +62,7 @@ function makeAnchorButtons() {
   if (element.dataset.pdfLink && element.dataset.htmlLink) {
     // Create the PDF link element
     const pdfLink = document.createElement('a');
-    pdfLink.href = `${pdfManualURL}#${element.dataset.pdfLink}`;
+    pdfLink.href = `${pdfManualURL}#nameddest=${element.dataset.pdfLink}`;
     pdfLink.className = 'anchor-pdf-link';
     pdfLink.setAttribute('aria-label', 'Link to this section in PDF version');
     pdfLink.title = 'Open in PDF version';
