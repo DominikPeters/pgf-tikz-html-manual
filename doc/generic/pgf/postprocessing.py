@@ -676,7 +676,7 @@ def add_meta_tags(filename, soup):
     meta = soup.new_tag('meta', property="og:title", content=soup.title.string)
     soup.head.append(meta)
     # twitter format
-    meta = soup.new_tag('meta', content="summary_large_image")
+    meta = soup.new_tag('meta', content="summary")
     meta['name'] = "twitter:card"
     soup.head.append(meta)
 
