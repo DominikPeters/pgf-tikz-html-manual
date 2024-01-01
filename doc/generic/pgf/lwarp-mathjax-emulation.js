@@ -214,9 +214,27 @@ MathJax = {
             delimiter.add("\\Vvert", new Symbol("\\Vvert", "\u2980"));
         }, // ready
     }, // startup
-
+    textmacros: { packages: { '[+]': ['textcomp'] } },
     tex: {
         packages: { "[+]": ["tagformat", "Lwarp-macros", "textmacros"] },
+        macros: {
+            footnotename: "footnote",
+            LWRfootnote: "1",
+            footnote: ["{}^{\\mathrm{#1}}", 2, "\\LWRfootnote "],
+            LWRorighspace: "\\hspace",
+            hspace: "\\ifstar \\LWRorighspace \\LWRorighspace ",
+            setlength: ["{}", 2],
+            directlua: ["\\text{(directlua)}", 1],
+            o: "\\unicode{x00F8}",
+            O: "\\unicode{x00D8}",
+            l: "\\unicode{x0142}",
+            L: "\\unicode{x0141}",
+            ss: "\\unicode{x00DF}",
+            P: "\\unicode{x00B6}",
+            LWRref: "\\ref",
+            ref: "\\ifstar \\LWRref\\LWRref ",
+            meta: ["\\langle \\textit{#1}\\rangle", 1]
+        },
         processEscapes: false,
         tags: "ams",
         tagformat: {

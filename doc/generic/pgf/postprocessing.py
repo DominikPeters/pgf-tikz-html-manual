@@ -397,6 +397,7 @@ def remove_mathjax_if_possible(filename, soup):
                     tag.decompose()
                     break
         else:
+            soup.find(class_="hidden").decompose() # mathjax macro definitions have been moved to lwarp-mathjax-emulation.js
             soup.find(id="MathJax-script").attrs['async'] = None
             # externalize emulation code
             for tag in soup.find_all('script'):
