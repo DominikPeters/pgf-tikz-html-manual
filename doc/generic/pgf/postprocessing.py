@@ -135,10 +135,10 @@ def add_copyright_comment_block(filename, soup):
     copyright_lines.insert(0, "TikZ/PGF documentation:")
     copyright_lines.append("")
     copyright_lines.append("Translated to HTML using the lwarp package:")
-    copyright_lines.append("Copyright 2016-2021 Brian Dunn - BD Tech Concepts LLC")
+    copyright_lines.append("Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC")
     copyright_lines.append("")
     copyright_lines.append("tikz.dev:")
-    copyright_lines.append("Copyright 2021-2023 Dominik Peters")
+    copyright_lines.append("Copyright 2021-2024 Dominik Peters")
     copyright_lines.append("This file may be distributed and/or modified under the LaTeX Project Public License.")
     # add copyright block to html
     comment = Comment("\n".join(copyright_lines).replace("the file doc/generic/pgf/licenses/LICENSE","https://tikz.dev/license"))
