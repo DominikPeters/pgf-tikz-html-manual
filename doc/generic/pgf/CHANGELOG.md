@@ -15,6 +15,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Typo in animations `end on` key #1273
 - Output bounding box adjustment in pgfsys-dvisvgm.def #1275
 - Fix shadings under LuaMetaTeX
+- Resolve missing `gnuplot` plots in manual #1238
 
 ### Changed
 
@@ -22,6 +23,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Simplify short verb `|...|` or add required preamble for it
 - Harden parser for math expressions against active chars
 - Resolve overfull hboxes >=20pt in the manual
+- Adapt `\graphicspath` setting for flattened doc tree #1191
+- Promote warning "Plot data file \`...' not found" to error
 
 ### Contributors
 
@@ -31,7 +34,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Matthias Hetzenberger
 - Qrrbrbirlbel
 - quark67
-- Yukai Chou (muzimuzhi)
+- Rocky Zhang (@rockyzhz)
+- Yukai Chou (@muzimuzhi)
 - Alexander Grahn
 
 ## [3.1.10] - 2023-01-13 Henri Menke

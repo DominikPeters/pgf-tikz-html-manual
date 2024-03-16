@@ -12,18 +12,12 @@ docfiledir = "./doc/generic/pgf"
 docfiles =
   {
     "RELEASE_NOTES.md", "description.html", -- Part of the release script
-    "color.cfg", "pgfmanual.cfg", "images/*.jpg", "*.tex" -- Build the PDF
+    "color.cfg", "pgfmanual.cfg", "images", "plots", "*.tex" -- Build the manual
   }
 tdsroot = "generic"
 typesetfiles = {"pgfmanual.tex"}
 typesetexe = "lualatex"
 flatten = false
-
--- To allow writing
-function docinit_hook()
-  mkdir(typesetdir .. "/plots")
-  return 0
-end
 
 -- Set up to allow testing dvips, etc.
 specialformats = specialformats or {}
@@ -86,9 +80,3 @@ function tag_hook(tagname, tagdate)
   return 0
 end
 
-target_list = target_list or { }
-target_list.revisionfile =
-  {
-    desc = "Create revision data file",
-    func = revisionfile
-  }
