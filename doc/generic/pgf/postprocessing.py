@@ -494,6 +494,7 @@ def add_header(soup):
         searchParameters: {
           filters: "tags:tikz",
         },
+        maxResultsPerGroup: 8,
     });
     """)
     soup.body.append(script)
