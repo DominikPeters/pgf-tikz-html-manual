@@ -803,7 +803,7 @@ for filename in sorted(os.listdir()):
 # prettify
 # run command with subprocess
 print("Prettifying")
-subprocess.run(["prettier", "--write", "processed/*.html"])
+subprocess.run(["prettier", "--print-width", "140", "--write", "processed/*.html"])
 
 def numspace_to_spaces(filename):
     "replace numspaces by normal spaces in code blocks"
