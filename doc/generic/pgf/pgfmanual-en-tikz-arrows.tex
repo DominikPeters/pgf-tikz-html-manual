@@ -320,8 +320,8 @@ context:
     Following the \meta{dimension}, you may put a space followed by a
     \meta{line width factor}, which must be a plain number (no |pt| or |cm|
     following). When you provide such a number, the size of the arrow tip is
-    not just \meta{dimension}, but rather $\meta{dimension} + \meta{line width
-    factor}\cdot w$ where $w$ is the width of the to-be-drawn path. This makes
+    not just \meta{dimension}, but rather \meta{dimension} + \meta{line width
+    factor} $\cdot w$ where $w$ is the width of the to-be-drawn path. This makes
     it easy to vary the size of an arrow tip in accordance with the line width
     -- usually a very good idea since thicker lines will need thicker arrow
     tips.
@@ -342,11 +342,11 @@ context:
     the ``total line width'' $w_t = w_i + 2w_o$. In the below examples, we have
     $w_i = 3\mathrm{pt}$, $w_o=1\mathrm{pt}$, and $w_t = 5\mathrm{pt}$. It is
     not immediately clear which of these line widths should be considered as
-    $w$ in the above formula $\meta{dimension} + \meta{line width factor}\cdot
+    $w$ in the above formula \meta{dimension} + \meta{line width factor} $\cdot
     w$ for the computation of the length. One can argue both for $w_t$ and also
     for $w_o$. Because of this, you use the \meta{outer factor} to decide on
-    one of them or even mix them: \tikzname\ sets $w = \meta{outer factor} w_o
-    + (1-\meta{outer factor})w_t$. Thus, when the outer factor is $0$, as in
+    one of them or even mix them: \tikzname\ sets $w$ = \meta{outer factor} $w_o$
+    + (1 \textminus \meta{outer factor})$w_t$. Thus, when the outer factor is $0$, as in
     the first of the following examples and as is the default when it is not
     specified, the computed $w$ will be the total line width $w_t =
     5\mathrm{pt}$. Since $w=5\mathrm{pt}$, we get a total length of $15pt$ in
