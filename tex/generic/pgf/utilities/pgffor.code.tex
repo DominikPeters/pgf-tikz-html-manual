@@ -248,6 +248,8 @@
   \pgffor@next%
 }
 
+\newif\ifpgffor@repeat
+
 \def\pgffor@multiassignrest{\expandafter\pgffor@multiassignfinal\pgffor@valuerest}
 \def\pgffor@multiassignfinal#1/#2/\relax{%
     \def\pgffor@temp{#1}%
@@ -258,7 +260,11 @@
   \fi%
   \def\pgffor@test{#2}%
   \ifx\pgffor@test\pgfutil@empty%
-    \expandafter\def\expandafter\pgffor@valuerest\expandafter{\pgffor@temp//\relax}% repeat
+    \ifpgffor@repeat%
+      \expandafter\def\expandafter\pgffor@valuerest\expandafter{\pgffor@temp//\relax}% repeat last value
+    \else%
+      \expandafter\def\expandafter\pgffor@valuerest\expandafter{//\relax}% interpret as empty
+    \fi%
   \else%
     \def\pgffor@valuerest{#2/\relax}%
   \fi%
@@ -627,6 +633,8 @@
     expand list/.is if=pgffor@expand@list@,
     expand list/.default=true,
     expand list=false,
+    repeat/.is if=pgffor@repeat,
+    repeat/.default=true,
 }
 
 \def\pgffor@assign@parse#1{%
