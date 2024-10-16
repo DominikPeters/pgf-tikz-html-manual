@@ -820,6 +820,10 @@ def numspace_to_spaces(filename):
     html = html.replace("&numsp;", '<span class="spaces"> </span>')
     # ugly hack to fix https://github.com/DominikPeters/tikz.dev-issues/issues/16
     html = html.replace('<a href="drivers#pgf.class">class</a>', 'class')
+    # ugly hack to fix https://github.com/DominikPeters/tikz.dev-issues/issues/46
+    if filename == 'pgfkeys.html':
+        assert '<bar></bar>' in html
+        html = html.replace('<bar></bar>','&lt;bar&gt;')
     with open("processed/"+filename, "w") as f:
         f.write(html)
 
