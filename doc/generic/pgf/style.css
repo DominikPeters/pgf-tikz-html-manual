@@ -85,6 +85,7 @@ span.hidden {
 }
 
 kbd,
+span.verb,
 span.texttt,
 p span.texttt,
 .quicklinks a {
@@ -95,6 +96,7 @@ p span.texttt,
 }
 
 p span.texttt,
+p span.verb,
 .quicklinks a {
   padding: 0.07em 0.14em;
   margin: 0;
@@ -104,6 +106,8 @@ p span.texttt,
 }
 /* remove the above styling in some places */
 .entryheadline p span.texttt,
+.entryheadline p span.verb,
+p span.verb.nobackground,
 p span.texttt.nobackground
 {
   background-color: transparent;

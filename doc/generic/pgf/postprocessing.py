@@ -622,7 +622,7 @@ def semantic_tags(soup):
 # in particular, let's check whether they are immediately preceded
 # or succeded by another span
 def texttt_spans(soup):
-    for span in soup.find_all('span', class_='texttt'):
+    for span in soup.find_all('span', class_='texttt') + soup.find_all('span', class_='verb'):
         prev_sibling = span.previous_sibling
         if prev_sibling and prev_sibling.name == 'span':
             span['class'].append('nobackground')
