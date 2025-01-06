@@ -55,6 +55,21 @@ else:
 
 meta_descriptions = json.load(open("meta-descriptions.json"))
 
+def add_version_date(soup):
+    "For the home page, add the date of the last commit to the pgf repository"
+    "do this because otherwise Google could interpret the version number"
+    "as a date (e.g. 3.1.10 -> 2010-03-01), which looks bad"
+    url = f"https://api.github.com/repos/pgf-tikz/pgf/commits"
+    response = requests.get(url, params={"per_page": 1})
+    if response.status_code == 200:
+        commit_data = response.json()[0]
+        commit_date = commit_data['commit']['author']['date']
+        commit_date = datetime.date.fromisoformat(commit_date.split("T")[0])
+        manual_version = soup.find(class_="manual-version")
+        manual_version.insert(0, f"Updated {commit_date.strftime('%Y-%m-%d')} – ")
+    else:
+        raise Exception(f"Error fetching last commit date: {response.status_code}")
+
 ## table of contents and anchor links
 def rearrange_heading_anchors(soup):
     heading_tags = ["h4", "h5", "h6"]
@@ -790,6 +805,7 @@ for filename in sorted(os.listdir()):
                 if filename == "index-0.html":
                     soup.h4.decompose() # don't need header on start page
                     soup.body['class'] = "index-page"
+                    add_version_date(soup)
                     write_to_file(soup, "processed/index.html")
                     add_spotlight_toc("index.html")
                     add_quicklinks("index.html")

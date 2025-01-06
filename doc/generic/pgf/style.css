@@ -31,7 +31,7 @@ A:visited {
   color: #800000;
 }
 A:hover {
-  color: #000080;
+  color: #4545df;
   text-decoration: underline;
 }
 A:active {
@@ -826,6 +826,18 @@ header strong a:hover {
 
 .textbody h1 {
   display: none;
+}
+
+.textbody a:link,
+.textbody a:visited {
+  text-decoration: underline;
+}
+
+.textbody code a:link,
+.textbody code a:visited,
+.textbody .home-toc-section a:link,
+.textbody .home-toc-section a:visited {
+  text-decoration: none;
 }
 
 h2.inserted {
