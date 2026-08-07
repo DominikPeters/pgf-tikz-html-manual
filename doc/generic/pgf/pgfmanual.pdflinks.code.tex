@@ -234,7 +234,7 @@
         \ifvmode%
           \expandafter\hypertarget\expandafter{\pgfmanualpdflabel@@}{#2}%
         \else%
-          {\setbox0=\hbox{\raise1em\hbox{\expandafter\hypertarget\expandafter{\pgfmanualpdflabel@@}{}}}\ht0=0pt\box0}#2%
+          \expandafter\hypertarget\expandafter{\pgfmanualpdflabel@@}{}#2%
         \fi%
     \else
         #2%
