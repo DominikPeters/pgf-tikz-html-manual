@@ -1,12 +1,20 @@
 # [tikz.dev](https://tikz.dev) - HTML version of the PGF-TikZ documentation
 
+> [!IMPORTANT]
+> **This repository is archived.** Since October 2026 the HTML version of the PGF/TikZ manual on [tikz.dev](https://tikz.dev) is built in
+> [DominikPeters/tikz.dev](https://github.com/DominikPeters/tikz.dev)
+> (folder [`pgf/`](https://github.com/DominikPeters/tikz.dev/tree/master/pgf)),
+> together with the other manuals on tikz.dev; this fork's own files were
+> imported there with their history. Report problems in
+> [its issues](https://github.com/DominikPeters/tikz.dev/issues).
+
 This is a browsable [HTML version](https://tikz.dev) of the package documentation for [PGF/TikZ](https://github.com/pgf-tikz/pgf), whose [PDF version](https://pgf-tikz.github.io/pgf/pgfmanual.pdf) is 1300+ pages long. 
 It is built using the incredibly powerful [`lwarp`](https://ctan.org/pkg/lwarp?lang=en) package by [Brian Dunn](https://bdtechconcepts.com/LaTeX-HTML-Converter-The-Lwarp-package.html).
 
 [<img src="https://user-images.githubusercontent.com/3543224/149638481-c98fccbb-d779-41cc-bd2d-7d0f5705c645.png" alt="Screenshot of tikz.dev" width="500">](https://tikz.dev)
 
 ## Feedback
-For feedback, bug reports, and feature requests, open an issue in the [tikz.dev issue repository](https://github.com/DominikPeters/tikz.dev-issues/issues).
+For feedback, bug reports, and feature requests, open an issue in the [tikz.dev repository](https://github.com/DominikPeters/tikz.dev/issues).
 
 ## Usage
 The documentation is produced using the following steps.
